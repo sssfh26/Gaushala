@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Shri Ram Krishna Gaushala</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- Colors & Theme --- */
+        :root {
+            --dark-peacock: #005B60;
+            --light-peacock: #E0F2F1;
+            --accent-peacock: #00897B;
+            --gold-color: #D4AF37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-peacock);
+            /* Background Peacock Image with 90% white overlay */
+            background-image: linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)), url('assets/images/Peacock.png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            overflow-x: hidden;
+        }
+
+        /* --- App Bar --- */
+        .app-bar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            background-color: var(--dark-peacock);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            color: white;
+            z-index: 1000;
+        }
+        .app-bar-left { display: flex; align-items: center; gap: 10px; }
+        .app-bar-left img { height: 40px; border-radius: 5px; }
+        .app-bar-title { font-size: 18px; font-weight: bold; }
+        .app-bar-right { display: flex; align-items: center; gap: 15px; font-size: 18px; }
+        .menu-btn { cursor: pointer; font-size: 22px; }
+
+        /* --- Right Drawer (Side Menu) --- */
+        .drawer-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); z-index: 1001; display: none;
+        }
+        .drawer {
+            position: fixed; top: 0; right: -300px; width: 280px; height: 100%;
+            background: white; z-index: 1002; transition: 0.3s ease-in-out;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+        }
+        .drawer-header {
+            background-color: var(--dark-peacock); padding: 30px 20px;
+            text-align: center; color: white;
+        }
+        .drawer-header img { height: 60px; margin-bottom: 10px; }
+        .drawer-item {
+            padding: 15px 20px; display: flex; align-items: center; gap: 15px;
+            border-bottom: 1px solid #eee; color: #333; cursor: pointer;
+            text-decoration: none; font-size: 16px;
+        }
+        .drawer-item i { color: var(--accent-peacock); font-size: 20px; }
+
+        /* --- Main Content Layout --- */
+        .main-container {
+            max-width: 800px; /* 800px Constraint just like code */
+            margin: 60px auto 70px auto; /* space for header and bottom nav */
+            background: transparent;
+        }
+
+        /* --- Top Navigation Icons --- */
+        .top-nav {
+            background-color: var(--dark-peacock);
+            display: flex; justify-content: space-evenly;
+            padding: 15px 0 20px 0; color: white; text-align: center;
+        }
+        .top-nav-item i { font-size: 24px; margin-bottom: 5px; }
+        .top-nav-item span { font-size: 13px; display: block; }
+
+        /* --- Hero Banners (Carousel) --- */
+        .hero-banner {
+            width: 100%; height: 40vh; max-height: 400px;
+            position: relative; overflow: hidden; background: #ddd;
+        }
+        .carousel-slide {
+            width: 100%; height: 100%; object-fit: cover;
+            position: absolute; transition: opacity 0.6s ease-in-out; opacity: 0;
+        }
+        .carousel-slide.active { opacity: 1; }
+
+        /* --- Common Card Style --- */
+        .card {
+            background: white; border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 15px; padding: 15px;
+        }
+
+        /* --- Search Bar --- */
+        .search-header { display: flex; justify-content: space-between; padding: 0 15px; margin-top: 20px; color: var(--dark-peacock); font-weight: bold; font-size: 18px; }
+        .search-box { display: flex; align-items: center; background: white; border-radius: 10px; padding: 10px 15px; margin: 10px 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .search-box input { border: none; outline: none; width: 100%; margin-left: 10px; font-size: 15px; }
+        .search-box i { color: var(--accent-peacock); }
+
+        /* --- Motivational Video Card --- */
+        .video-card { text-align: center; border: 1px solid rgba(0,137,123,0.3); border-radius: 20px; }
+        .video-card h3 { color: var(--dark-peacock); font-size: 18px; margin-bottom: 15px; line-height: 1.5; }
+        .video-wrapper { width: 220px; height: 220px; margin: 0 auto 20px auto; border-radius: 10px; overflow: hidden; background: #eee; }
+        .video-wrapper video { width: 100%; height: 100%; object-fit: cover; }
+        .video-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn { padding: 12px 20px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: white; display: flex; align-items: center; gap: 8px; font-size: 15px; }
+        .btn-member { background-color: var(--dark-peacock); }
+        .btn-donate { background-color: #FF5722; }
+
+        /* --- Address Details --- */
+        .address-card { display: flex; flex-direction: column; }
+        .address-row { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 500; }
+        .address-row i { color: var(--accent-peacock); margin-top: 3px; }
+        .read-more { align-self: flex-end; color: var(--dark-peacock); font-weight: bold; text-decoration: none; margin-top: 10px; }
+
+        /* --- Gradient Promo Cards --- */
+        .promo-card { border-radius: 15px; text-align: center; padding: 25px; margin: 15px; color: white; }
+        .promo-card h3 { font-size: 18px; margin-bottom: 5px; }
+        .promo-card p { font-size: 13px; opacity: 0.8; margin-bottom: 15px; }
+        .promo-img { width: 100%; border-radius: 8px; object-fit: cover; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: white; margin-bottom: 15px; }
+        .btn-white { background: white; padding: 10px 20px; border-radius: 5px; border: none; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
+        
+        .bg-certificate { background: linear-gradient(to bottom right, #005B60, #00897B); }
+        .bg-certificate .btn-white { color: var(--dark-peacock); }
+        .bg-certificate img { height: 220px; }
+
+        .bg-id { background: linear-gradient(to right, #F57C00, #E64A19); }
+        .bg-id .btn-white { color: #E64A19; }
+        .bg-id img { height: 160px; object-fit: contain; }
+
+        .bg-receipt { background: linear-gradient(to right, #1565C0, #2196F3); }
+        .bg-receipt .btn-white { color: #1565C0; }
+        .bg-receipt img { height: 190px; }
+
+        /* --- Statistics --- */
+        .stats-row { display: flex; justify-content: space-evenly; margin: 20px 0; text-align: center; }
+        .stat-item h2 { color: var(--dark-peacock); font-size: 20px; }
+        .stat-item p { color: var(--accent-peacock); font-size: 14px; font-weight: 500; }
+
+        /* --- Animal Categories --- */
+        .animal-title { padding: 0 15px; font-size: 18px; font-weight: bold; color: var(--dark-peacock); margin-bottom: 10px; }
+        .animal-scroll { display: flex; overflow-x: auto; gap: 10px; padding: 0 15px 10px 15px; scrollbar-width: none; }
+        .animal-scroll::-webkit-scrollbar { display: none; }
+        .animal-card { min-width: 100px; background: white; border-radius: 10px; padding: 15px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1); flex-shrink: 0; }
+        .animal-card img { height: 50px; margin-bottom: 10px; filter: invert(27%) sepia(85%) saturate(718%) hue-rotate(143deg) brightness(40%) contrast(100%); /* Simulating color: darkPeacock */ }
+        .animal-card p { color: var(--dark-peacock); font-weight: bold; font-size: 14px; }
+
+        /* --- Donors Preview --- */
+        .donor-container { border: 2px solid rgba(212, 175, 55, 0.5); border-radius: 10px; background: white; margin: 15px; overflow: hidden; }
+        .donor-header { background: rgba(212, 175, 55, 0.2); padding: 10px; display: flex; justify-content: center; align-items: center; gap: 10px; font-weight: bold; color: var(--dark-peacock); font-size: 18px; }
+        .donor-header i { color: var(--gold-color); }
+        .donor-list { list-style: none; }
+        .donor-item { display: flex; align-items: center; justify-content: space-between; padding: 15px; border-bottom: 1px solid #eee; }
+        .donor-left { display: flex; align-items: center; gap: 15px; }
+        .donor-img { width: 50px; height: 50px; border-radius: 50%; background: var(--light-peacock); display: flex; justify-content: center; align-items: center; color: gray; overflow: hidden; }
+        .donor-img img { width: 100%; height: 100%; object-fit: cover; }
+        .donor-name { font-weight: bold; font-size: 16px; }
+        .donor-right { display: flex; align-items: center; gap: 8px; color: var(--dark-peacock); font-weight: bold; font-size: 16px; }
+        .donor-right i { color: var(--accent-peacock); }
+        .view-all-btn { display: block; width: 100%; text-align: center; padding: 12px; color: var(--accent-peacock); font-weight: bold; text-decoration: none; background: transparent; border: none; cursor: pointer; }
+
+        /* --- Bottom Navigation --- */
+        .bottom-nav {
+            position: fixed; bottom: 0; width: 100%; background: white; height: 65px;
+            display: flex; justify-content: space-around; align-items: center;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 1000;
+        }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: gray; font-size: 12px; cursor: pointer; }
+        .nav-item.active { color: var(--dark-peacock); font-weight: bold; }
+        .nav-item i { font-size: 22px; margin-bottom: 3px; }
+
+    </style>
+</head>
+<body>
+
+    <!-- App Bar -->
+    <header class="app-bar">
+        <div class="app-bar-left">
+            <img src="assets/images/logo.png" alt="Logo" onerror="this.outerHTML='<i class=\'fa-solid fa-image\'></i>'">
+            <span class="app-bar-title">श्री राम कृष्ण गौशाला</span>
+        </div>
+        <div class="app-bar-right">
+            <i class="fa-solid fa-paw"></i>
+            <span>0</span>
+            <i class="fa-solid fa-bars menu-btn" onclick="openDrawer()"></i>
+        </div>
+    </header>
+
+    <!-- Side Drawer (Right) -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+    <aside class="drawer" id="endDrawer">
+        <div class="drawer-header">
+            <img src="assets/images/logo.png" alt="Logo" onerror="this.outerHTML='<i class=\'fa-solid fa-building-columns\' style=\'font-size:50px;\'></i>'">
+            <div style="font-size: 18px; font-weight: bold; margin-top: 10px;">श्री राम कृष्ण गौशाला</div>
+        </div>
+        <div class="drawer-content">
+            <a href="#" class="drawer-item" onclick="closeDrawer()">
+                <i class="fa-solid fa-circle-info"></i> About (हमारे बारे में)
+            </a>
+            <a href="#" class="drawer-item" onclick="closeDrawer()">
+                <i class="fa-solid fa-phone"></i> Contact (संपर्क करें)
+            </a>
+            <a href="#" class="drawer-item" onclick="closeDrawer()">
+                <i class="fa-solid fa-user-gear"></i> Member's Detail (सदस्य विवरण)
+            </a>
+            <a href="#" class="drawer-item" onclick="closeDrawer()">
+                <i class="fa-solid fa-bell"></i> Notification (सूचनाएं)
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <div class="top-nav-item"><i class="fa-solid fa-user-group"></i><span>डोनर्स</span></div>
+            <div class="top-nav-item"><i class="fa-solid fa-id-card"></i><span>मेंबर्स</span></div>
+            <div class="top-nav-item"><i class="fa-solid fa-newspaper"></i><span>समाचार</span></div>
+            <div class="top-nav-item"><i class="fa-solid fa-calendar-check"></i><span>गतिविधियां</span></div>
+        </div>
+
+        <!-- Hero Banners -->
+        <div class="hero-banner">
+            <img src="assets/images/banner1.jpg" class="carousel-slide active" onerror="this.outerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:gray;font-size:40px;\'><i class=\'fa-solid fa-image\'></i></div>'">
+            <img src="assets/images/banner2.jpg" class="carousel-slide" onerror="this.outerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:gray;font-size:40px;\'><i class=\'fa-solid fa-image\'></i></div>'">
+            <img src="assets/images/banner3.jpg" class="carousel-slide" onerror="this.outerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:gray;font-size:40px;\'><i class=\'fa-solid fa-image\'></i></div>'">
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-header">
+            <span>डोनर / मेंबर खोजें</span>
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="नाम या मोबाइल नंबर से खोजें...">
+        </div>
+
+        <!-- Motivational Video Card -->
+        <div class="card video-card">
+            <h3>गौमाता की सेवा सबसे बड़ा धर्म है।<br>आइए, इस नेक कार्य में अपना योगदान दें!</h3>
+            <div class="video-wrapper">
+                <video src="assets/videos/1.mp4" autoplay loop muted playsinline onerror="this.outerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;\'><i class=\'fa-solid fa-spinner fa-spin fa-2x\'></i></div>'"></video>
+            </div>
+            <div class="video-buttons">
+                <button class="btn btn-member"><i class="fa-solid fa-id-card"></i> मेंबर बनें</button>
+                <button class="btn btn-donate"><i class="fa-solid fa-hand-holding-heart"></i> दान करें</button>
+            </div>
+        </div>
+
+        <!-- Address Card -->
+        <div class="card address-card">
+            <div class="address-row">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Village Mota Vadala, Rajkot Kalavad Road, Dist. Jamnagar, <br>Gujarat - 361162</span>
+            </div>
+            <a href="#" class="read-more">Read More ></a>
+        </div>
+
+        <!-- Certificate Promo -->
+        <div class="promo-card bg-certificate">
+            <h3>Collect Your Thanks Certificate</h3>
+            <p>Proud to be a part of our community!</p>
+            <img src="assets/images/certi.png" class="promo-img" alt="Certificate" onerror="this.outerHTML='<div class=\'promo-img\' style=\'height:220px;\'><i class=\'fa-solid fa-image fa-3x\'></i></div>'">
+            <button class="btn-white"><i class="fa-solid fa-award"></i> Get Your Certificate</button>
+        </div>
+
+        <!-- Membership ID Promo -->
+        <div class="promo-card bg-id">
+            <h3>Get Your Membership ID Card</h3>
+            <p>Thanks For becoming our Member</p>
+            <img src="assets/images/id.png" class="promo-img" alt="ID Card" onerror="this.outerHTML='<div class=\'promo-img\' style=\'height:160px;\'><i class=\'fa-solid fa-image fa-3x\'></i></div>'">
+            <button class="btn-white"><i class="fa-solid fa-id-badge"></i> Get Your ID Card</button>
+        </div>
+
+        <!-- Receipt Promo -->
+        <div class="promo-card bg-receipt">
+            <h3>Donation Receipt</h3>
+            <p>Official receipt</p>
+            <img src="assets/images/receipt.png" class="promo-img" alt="Receipt" onerror="this.outerHTML='<div class=\'promo-img\' style=\'height:190px;\'><i class=\'fa-solid fa-image fa-3x\'></i></div>'">
+            <button class="btn-white"><i class="fa-solid fa-file-invoice"></i> Fetch Receipt</button>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-row">
+            <div class="stat-item"><h2>1000+</h2><p>डोनर्स</p></div>
+            <div class="stat-item"><h2>8000+</h2><p>पशु और पक्षी</p></div>
+            <div class="stat-item"><h2>8000+</h2><p>विजिटर्स</p></div>
+        </div>
+
+        <!-- Animal Categories -->
+        <div class="animal-title">पशु और पक्षी की सेवा</div>
+        <div class="animal-scroll">
+            <div class="animal-card">
+                <img src="assets/images/pigeon.png" onerror="this.outerHTML='<i class=\'fa-solid fa-paw fa-3x\' style=\'color:var(--dark-peacock);margin-bottom:10px;\'></i>'">
+                <p>कबूतर</p>
+            </div>
+            <div class="animal-card">
+                <img src="assets/images/cow.png" onerror="this.outerHTML='<i class=\'fa-solid fa-paw fa-3x\' style=\'color:var(--dark-peacock);margin-bottom:10px;\'></i>'">
+                <p>गाय</p>
+            </div>
+            <div class="animal-card">
+                <img src="assets/images/dog.png" onerror="this.outerHTML='<i class=\'fa-solid fa-paw fa-3x\' style=\'color:var(--dark-peacock);margin-bottom:10px;\'></i>'">
+                <p>कुत्ता</p>
+            </div>
+            <div class="animal-card">
+                <img src="assets/images/other.png" onerror="this.outerHTML='<i class=\'fa-solid fa-paw fa-3x\' style=\'color:var(--dark-peacock);margin-bottom:10px;\'></i>'">
+                <p>अन्य</p>
+            </div>
+        </div>
+
+        <!-- Top Donors -->
+        <div class="donor-container">
+            <div class="donor-header">
+                <i class="fa-solid fa-star"></i> Precious Donors <i class="fa-solid fa-star"></i>
+            </div>
+            <div class="donor-list">
+                <div class="donor-item">
+                    <div class="donor-left">
+                        <div class="donor-img"><img src="assets/images/donor1.png" onerror="this.outerHTML='<i class=\'fa-solid fa-user\'></i>'"></div>
+                        <div class="donor-name">Flora Rani</div>
+                    </div>
+                    <div class="donor-right">₹ 52,000 <i class="fa-solid fa-hand-holding-heart"></i></div>
+                </div>
+                <div class="donor-item">
+                    <div class="donor-left">
+                        <div class="donor-img"><img src="assets/images/donor2.png" onerror="this.outerHTML='<i class=\'fa-solid fa-user\'></i>'"></div>
+                        <div class="donor-name">Deepika Mehta</div>
+                    </div>
+                    <div class="donor-right">₹ 5,267 <i class="fa-solid fa-hand-holding-heart"></i></div>
+                </div>
+            </div>
+            <button class="view-all-btn">सभी डोनर्स देखें ></button>
+        </div>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-item active"><i class="fa-solid fa-house"></i><span>Home</span></div>
+        <div class="nav-item"><i class="fa-solid fa-paw"></i><span>मेरा दान</span></div>
+        <div class="nav-item"><i class="fa-solid fa-award"></i><span>सर्टिफिकेट</span></div>
+        <div class="nav-item"><i class="fa-solid fa-user"></i><span>प्रोफाइल</span></div>
+    </nav>
+
+    <!-- Scripts -->
+    <script>
+        // --- Side Drawer Logic ---
+        const drawer = document.getElementById('endDrawer');
+        const overlay = document.getElementById('drawerOverlay');
+
+        function openDrawer() {
+            drawer.style.right = '0';
+            overlay.style.display = 'block';
+        }
+
+        function closeDrawer() {
+            drawer.style.right = '-300px';
+            overlay.style.display = 'none';
+        }
+
+        // --- Carousel Logic (3 seconds interval like Dart Code) ---
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        
+        setInterval(() => {
+            if(slides.length > 0) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+        }, 3000);
+
+        // --- Bottom Nav Active State Logic ---
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelector('.nav-item.active').classList.remove('active');
+                item.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
