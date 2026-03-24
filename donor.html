@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Shri Ram Krishna Gaushala - Donor Registration</title>
+    <title>Shri Ram Krishna Gaushala - Official Portal</title>
     
     <!-- Premium Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,16 +12,9 @@
     
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- External Libraries for Payment & PDF -->
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- For Beautiful Alerts -->
     
     <style>
-        /* ========================================= */
-        /* --- ORIGINAL COLOR PALETTE & STYLES --- */
-        /* ========================================= */
+        /* --- ORIGINAL COLOR PALETTE --- */
         :root {
             --dark-peacock: #005B60;
             --light-peacock: #E0F2F1;
@@ -31,87 +24,440 @@
             --card-bg: #FFFFFF;
             --text-main: #2C3E50;
             --text-muted: #546E7A;
-            --glass-bg: rgba(255, 255, 255, 0.6);
-            --glass-border: rgba(0, 91, 96, 0.2);
-            --premium-glow: 0 8px 30px rgba(0,0,0,0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--light-peacock); color: var(--text-main); overflow-x: hidden; scroll-behavior: smooth; }
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--light-peacock);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
 
         /* --- Official App Bar --- */
         .app-bar {
             position: fixed; top: 0; width: 100%; height: 100px;
-            background: rgba(0, 91, 96, 0.85) !important; backdrop-filter: blur(15px);
+            background: var(--dark-peacock);
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 20px; color: white; z-index: 1000; box-shadow: var(--premium-glow); border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 0 20px; color: white; z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-bottom: 3px solid var(--light-peacock);
         }
         .app-bar-left { display: flex; align-items: center; gap: 12px; }
-        .app-bar-left img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold-color); box-shadow: 0 0 15px rgba(255,255,255,0.3); }
-        .app-bar-title { font-size: 18px; font-weight: 700; display: flex; flex-direction: column; line-height: 1.5; }
-        .app-bar-subtitle { font-size: 11px; color: var(--gold-color); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .app-bar-left img {
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+        .app-bar-title { font-size: 18px; font-weight: 700; display: flex; flex-direction: column; line-height: 1.7; }
+        .app-bar-subtitle { font-size: 11px; color: var(--card-bg); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+        
         .app-bar-right { display: flex; align-items: center; gap: 18px; font-size: 18px; }
         .menu-btn { cursor: pointer; font-size: 24px; transition: 0.2s; }
 
-        /* --- Drawer --- */
-        .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1001; display: none; }
-        .drawer { position: fixed; top: 0; right: -320px; width: 280px; height: 100%; background: rgba(0, 91, 96, 0.95); backdrop-filter: blur(20px); z-index: 1002; transition: 0.3s ease; box-shadow: -10px 0 40px rgba(0,0,0,0.4); }
-        .drawer-header { padding: 30px 20px; text-align: center; color: white; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .drawer-header img { width: 80px; height: 80px; margin-bottom: 10px; border-radius: 50%; border: 2px solid var(--gold-color); }
-        .drawer-item { padding: 15px 20px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: white; font-weight: 500; text-decoration: none; }
-        .drawer-item i { color: var(--gold-color); font-size: 20px; }
+        /* --- Hero Section --- */
+        .hero-section { margin-top: 70px; width: 100%; }
+        .hero-banner { width: 100%; position: relative; overflow: hidden; background: #ccc; }
+        .carousel-slide {
+            width: 100%; height: 100%; object-fit: cover;
+            position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0;
+        }
+.carousel-slide {
+    animation: zoomEffect 5s ease-in-out infinite;
+}
 
-        /* --- Footer & WhatsApp --- */
-        .footer { background: var(--dark-peacock); color: white; padding: 40px 20px 100px 20px; margin-top: 40px; }
+@keyframes zoomEffect {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+        .carousel-slide.active { opacity: 1; }
+
+        /* --- Main Layout --- */
+        .main-container { max-width: 900px; margin: 0 auto; padding: 20px 15px; }
+
+        /* --- Top Navigation Icons --- */
+        .top-nav {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            background: var(--card-bg); padding: 20px 15px;
+            border-radius: 16px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            margin-bottom: 25px; border: 1px solid rgba(0,91,96,0.1);
+        }
+        .top-nav-item {
+            display: flex; flex-direction: column; align-items: center;
+            color: var(--dark-peacock); gap: 8px; cursor: pointer; transition: 0.3s;
+        }
+        .icon-circle {
+            width: 55px; height: 55px; border-radius: 50%;
+            background: var(--accent-peacock); display: flex;
+            justify-content: center; align-items: center; font-size: 22px;
+            color: var(--dark-peacock); border: 1px solid rgba(0,91,96,0.2);
+        }
+        .top-nav-item span { font-size: 14px; font-weight: 600; text-align: center; }
+
+        .section-title { font-size: 18px; font-weight: 700; color: var(--dark-peacock); margin-bottom: 12px; border-left: 4px solid var(--accent-peacock); padding-left: 10px; }
+
+        .premium-card {
+            background: var(--card-bg); border-radius: 16px; padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); margin-bottom: 25px;
+            border: 1px solid rgba(0,91,96,0.1);
+        }
+
+        .about-text { max-height: 300px; overflow-y: auto; padding-right: 10px; line-height: 1.8; }
+
+        .search-box {
+            display: flex; align-items: center; background: var(--card-bg);
+            border-radius: 12px; padding: 15px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,91,96,0.2); margin-bottom: 25px;
+        }
+        .search-box input { border: none; outline: none; width: 100%; margin-left: 12px; font-size: 15px; color: var(--dark-peacock); }
+        .search-box i { color: var(--accent-peacock); font-size: 18px; }
+
+        .video-card h3 { font-size: 18px; color: var(--dark-peacock); line-height: 1.6; font-weight: 700; text-align: center; margin-bottom: 20px; }
+        .video-wrapper {
+            width: 100%; max-width: 350px; aspect-ratio: 9/9; margin: 0 auto 25px auto;
+            border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); background: #000;
+        }
+        .video-wrapper video { width: 100%; height: 100%; object-fit: cover; }
+        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn-theme { padding: 12px 24px; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; color: white; }
+        .btn-dark { background: var(--dark-peacock); }
+        .btn-orange { background: #E65100; }
+
+        .slider-wrapper { margin-bottom: 30px; }
+        .promo-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: 15px; padding-bottom: 10px; }
+        .promo-slider::-webkit-scrollbar { display: none; }
+        .promo-slide { min-width: 100%; scroll-snap-align: center; border-radius: 20px; padding: 30px 20px; color: white; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .promo-slide h3 { font-size: 20px; font-weight: 700; margin-bottom: 5px; }
+        .promo-slide p { font-size: 13px; opacity: 0.9; margin-bottom: 20px; }
+        .promo-slide img { width: 100%; max-width: 200px; border-radius: 8px; margin-bottom: 20px; }
+        
+        .bg-teal { background: linear-gradient(to bottom right, var(--dark-peacock), var(--accent-peacock)); }
+        .bg-orange { background: linear-gradient(to right, #F57C00, #E64A19); }
+        .bg-blue { background: linear-gradient(to right, #1565C0, #2196F3); }
+
+        .btn-white { background: white; color: var(--dark-peacock); padding: 10px 20px; border-radius: 5px; border: none; font-weight: bold; cursor: pointer; }
+        
+        .slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: 5px; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: #ccc; cursor: pointer; transition: 0.3s; }
+        .dot.active { background: var(--dark-peacock); width: 25px; border-radius: 5px; }
+
+        .donor-container { border: 2px solid rgba(212, 175, 55, 0.5); border-radius: 12px; background: white; overflow: hidden; margin-bottom: 25px; }
+        .donor-header { background: rgba(212, 175, 55, 0.2); padding: 15px; text-align: center; font-weight: bold; color: var(--dark-peacock); font-size: 18px; }
+        .donor-header i { color: var(--accent-peacock); margin: 0 5px; }
+        .donor-item { display: flex; align-items: center; justify-content: space-between; padding: 15px; border-bottom: 1px solid #eee; }
+        .donor-left { display: flex; align-items: center; gap: 15px; }
+        .donor-img { width: 50px; height: 50px; border-radius: 50%; background: var(--accent-peacock); overflow: hidden; }
+        .donor-img img { width: 100%; height: 100%; object-fit: cover; }
+        .donor-name { font-weight: bold; font-size: 16px; color: var(--dark-peacock); }
+        .donor-amount { color: var(--dark-peacock); font-weight: bold; font-size: 16px; }
+        .view-all-btn { display: block; width: 100%; text-align: center; padding: 15px; color: var(--accent-peacock); font-weight: bold; text-decoration: none; }
+
+        .stats-row { display: flex; justify-content: space-evenly; text-align: center; margin-bottom: 25px; }
+        .stat-item h2 { color: var(--dark-peacock); font-size: 24px; }
+        .stat-item p { color: var(--accent-peacock); font-size: 14px; font-weight: 600; }
+
+        .footer { background: var(--dark-peacock); color: white; padding: 40px 20px 100px 20px; margin-top: 20px; }
         .footer-grid { display: grid; grid-template-columns: 1fr; gap: 30px; max-width: 900px; margin: 0 auto; }
-        .footer-logo img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold-color); }
-        .footer-text { font-size: 14px; opacity: 0.8; line-height: 1.6; margin-bottom: 10px; }
+        .footer-logo img, .drawer-header img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; background: white; padding: 3px; }
+        .footer-text { font-size: 14px; opacity: 0.8; line-height: 1.6; }
         .footer-title { font-size: 18px; font-weight: bold; color: var(--gold-color); margin-bottom: 15px; }
         .social-icons { display: flex; gap: 15px; margin-top: 15px; }
-        .social-icons a { color: white; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; transition: 0.3s; }
+        .social-icons a { color: white; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 18px; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { background: var(--light-peacock); color: var(--dark-peacock); transform: translateY(-3px); }
         .footer-links a { display: block; color: white; text-decoration: none; margin-bottom: 10px; opacity: 0.8; }
+        .footer-links a:hover { color: var(--light-peacock); opacity: 1; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 30px; padding-top: 20px; font-size: 13px; opacity: 0.7; }
 
-        .whatsapp-float { position: fixed; bottom: 105px; right: 20px; width: 60px; height: 60px; background-color: #25D366; color: #FFF; border-radius: 50%; text-align: center; font-size: 35px; box-shadow: 0px 4px 10px rgba(0,0,0,0.3); z-index: 1000; display: flex; justify-content: center; align-items: center; text-decoration: none; animation: bounce 2s infinite; }
+        .whatsapp-float {
+            position: fixed; bottom: 105px; right: 20px; width: 55px; height: 55px;
+            background-color: #25D366; color: #FFF; border-radius: 50%;
+            text-align: center; font-size: 30px; box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000; display: flex; justify-content: center; align-items: center;
+            text-decoration: none; animation: bounce 2s infinite;
+        }
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
 
-        /* --- Magic Navigations --- */
-        .magic-nav { position: fixed; bottom: 0; left: 0; width: 100%; height: 70px; background: var(--dark-peacock); display: flex; justify-content: center; align-items: center; border-top-left-radius: 20px; border-top-right-radius: 20px; box-shadow: 0 -5px 15px rgba(0,0,0,0.2); z-index: 999; }
+        .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1001; display: none; }
+        .drawer { position: fixed; top: 0; right: -320px; width: 280px; height: 100%; background: white; z-index: 1002; transition: 0.3s ease; }
+        .drawer-header { background: var(--dark-peacock); padding: 30px 20px; text-align: center; color: white; }
+        .drawer-header img { height: 60px; margin-bottom: 10px; background: white; padding: 2px; border-radius: 5px; }
+        .drawer-item { padding: 15px 20px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #eee; color: var(--dark-peacock); font-weight: 500; text-decoration: none; }
+        .drawer-item i { color: var(--accent-peacock); font-size: 20px; }
+
+        /* ========================================= */
+        /* --- MAGIC BOTTOM NAVIGATION (MOBILE)  --- */
+        /* ========================================= */
+        .magic-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 70px;
+            background: var(--dark-peacock); display: flex; justify-content: center;
+            align-items: center; border-top-left-radius: 20px; border-top-right-radius: 20px;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1); z-index: 999;
+        }
         .magic-nav ul { display: flex; width: 300px; position: relative; }
         .magic-nav ul li { position: relative; list-style: none; width: 75px; height: 70px; z-index: 1; }
         .magic-nav ul li a { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; text-align: center; font-weight: 500; text-decoration: none; }
-        .magic-nav ul li a .icon { position: relative; display: block; line-height: 75px; font-size: 1.4em; transition: 0.5s; color: rgba(255, 255, 255, 0.5); }
+        .magic-nav ul li a .icon { position: relative; display: block; line-height: 75px; font-size: 1.4em; text-align: center; transition: 0.5s; color: rgba(255, 255, 255, 0.5); }
         .magic-nav ul li.active a .icon { transform: translateY(-32px); color: var(--dark-peacock); }
-        .magic-nav ul li a .text { position: absolute; color: white; font-weight: 600; font-size: 0.70em; transition: 0.5s; opacity: 0; transform: translateY(20px); }
+        .magic-nav ul li a .text { position: absolute; color: var(--light-peacock); font-weight: 600; font-size: 0.70em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; transform: translateY(20px); }
         .magic-nav ul li.active a .text { opacity: 1; transform: translateY(12px); }
-        .magic-indicator { position: absolute; top: -35px; left: 2.5px; width: 70px; height: 70px; background: #E0F2F1; border-radius: 50%; border: 6px solid var(--accent-peacock); transition: 0.5s; }
+        
+        .magic-indicator {
+            position: absolute; top: -35px; left: 2.5px; width: 70px; height: 70px;
+            background: var(--light-peacock); border-radius: 50%;
+            border: 6px solid var(--accent-peacock); transition: 0.5s;
+        }
         .magic-indicator::before { content: ''; position: absolute; top: 50%; left: -22px; width: 20px; height: 20px; background: transparent; border-top-right-radius: 20px; box-shadow: 1px -10px 0 0 var(--accent-peacock); }
         .magic-indicator::after { content: ''; position: absolute; top: 50%; right: -22px; width: 20px; height: 20px; background: transparent; border-top-left-radius: 20px; box-shadow: -1px -10px 0 0 var(--accent-peacock); }
+
         .magic-nav ul li:nth-child(1).active ~ .magic-indicator { transform: translateX(calc(75px * 0)); }
         .magic-nav ul li:nth-child(2).active ~ .magic-indicator { transform: translateX(calc(75px * 1)); }
         .magic-nav ul li:nth-child(3).active ~ .magic-indicator { transform: translateX(calc(75px * 2)); }
         .magic-nav ul li:nth-child(4).active ~ .magic-indicator { transform: translateX(calc(75px * 3)); }
 
+
+        /* ========================================= */
+        /* --- MAGIC TOP NAV (DESKTOP) - DOWNWARD--- */
+        /* ========================================= */
         .magic-nav-top { display: none; } 
+        
         @media (min-width: 769px) {
-            .magic-nav-top { display: flex; justify-content: center; align-items: center; height: 70px; margin-top: 15px; }
+            .magic-nav-top {
+                display: flex; justify-content: center; align-items: center;
+                height: 70px; margin-top: 15px;
+            }
             .magic-nav-top ul { display: flex; width: 400px; position: relative; }
             .magic-nav-top ul li { position: relative; list-style: none; width: 100px; height: 70px; z-index: 1; }
             .magic-nav-top ul li a { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; text-align: center; font-weight: 500; text-decoration: none; }
-            .magic-nav-top ul li a .icon { position: relative; display: block; line-height: 75px; font-size: 1.5em; transition: 0.5s; color: rgba(255, 255, 255, 0.6); }
-            .magic-nav-top ul li.active a .icon { transform: translateY(32px); color: var(--dark-peacock); }
-            .magic-nav-top ul li a .text { position: absolute; color: white; font-weight: 600; font-size: 0.8em; transition: 0.5s; opacity: 0; transform: translateY(-20px); }
-            .magic-nav-top ul li.active a .text { opacity: 1; transform: translateY(-12px); }
-            .magic-indicator-top { position: absolute; bottom: -35px; left: 15px; width: 70px; height: 70px; background: var(--light-peacock); border-radius: 50%; border: 6px solid var(--dark-peacock); transition: 0.5s; }
-            .magic-indicator-top::before { content: ''; position: absolute; top: 15px; left: -22px; width: 20px; height: 20px; background: transparent; border-bottom-right-radius: 20px; box-shadow: 1px 10px 0 0 var(--dark-peacock); }
-            .magic-indicator-top::after { content: ''; position: absolute; top: 15px; right: -22px; width: 20px; height: 20px; background: transparent; border-bottom-left-radius: 20px; box-shadow: -1px 10px 0 0 var(--dark-peacock); }
+            
+            .magic-nav-top ul li a .icon { 
+                position: relative; display: block; line-height: 75px; font-size: 1.5em; transition: 0.5s; color: rgba(255, 255, 255, 0.6); 
+            }
+            /* ICON ANIMATES DOWNWARD */
+            .magic-nav-top ul li.active a .icon { 
+                transform: translateY(32px); 
+                color: var(--dark-peacock); 
+            }
+
+            .magic-nav-top ul li a .text { 
+                position: absolute; color: var(--light-peacock); font-weight: 600; font-size: 0.8em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; 
+                transform: translateY(-20px); /* Faded higher up */
+            }
+            /* TEXT APPEARS ABOVE */
+            .magic-nav-top ul li.active a .text { 
+                opacity: 1; transform: translateY(-12px); 
+            }
+
+            /* GOLD CIRCLE MOVES TO THE BOTTOM */
+            .magic-indicator-top {
+                position: absolute; 
+                bottom: -35px; /* Sits at the bottom edge */
+                left: 15px; 
+                width: 70px; height: 70px; background: var(--light-peacock); border-radius: 50%;
+                border: 6px solid var(--dark-peacock); 
+                transition: 0.5s;
+            }
+
+            /* INVERTED CUTOUT EFFECTS */
+            .magic-indicator-top::before { 
+                content: ''; position: absolute; 
+                top: 15px; 
+                left: -22px; width: 20px; height: 20px; background: transparent; 
+                border-bottom-right-radius: 20px; /* Curve reversed */
+                box-shadow: 1px 10px 0 0 var(--dark-peacock); /* Shadow goes down */
+            }
+            .magic-indicator-top::after { 
+                content: ''; position: absolute; 
+                top: 15px; 
+                right: -22px; width: 20px; height: 20px; background: transparent; 
+                border-bottom-left-radius: 20px; /* Curve reversed */
+                box-shadow: -1px 10px 0 0 var(--dark-peacock); /* Shadow goes down */
+            }
+
             .magic-nav-top ul li:nth-child(1).active ~ .magic-indicator-top { transform: translateX(calc(100px * 0)); }
             .magic-nav-top ul li:nth-child(2).active ~ .magic-indicator-top { transform: translateX(calc(100px * 1)); }
             .magic-nav-top ul li:nth-child(3).active ~ .magic-indicator-top { transform: translateX(calc(100px * 2)); }
             .magic-nav-top ul li:nth-child(4).active ~ .magic-indicator-top { transform: translateX(calc(100px * 3)); }
-            .menu-btn, .magic-nav { display: none; }
-            .whatsapp-float { bottom: 30px; }
+        }
+
+        /* Responsive Settings */
+        @media (max-width: 768px) {
+            .hero-section { padding: 15px; margin-top: 70px; }
+            .hero-banner { border-radius: 12px; aspect-ratio: 16/9; }
+            .magic-nav-top { display: none; }
+        }
+        
+        img[src*="logo.png"] {
+            border-radius: 50%; object-fit: cover; border: 2px solid #D4AF37; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        
+                      /* =========================
+           💎 PREMIUM UI UPGRADE
+           Paste at END of CSS
+        ========================= */
+        
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --premium-glow: 0 8px 30px rgba(0,0,0,0.25);
+            --soft-glow: 0 0 15px rgba(255,255,255,0.2);
+        }
+        
+        /* 🔥 APP BAR (Glass Effect) */
+        .app-bar {
+            background: rgba(0, 91, 96, 0.75) !important;
+            backdrop-filter: blur(15px);
+            box-shadow: var(--premium-glow);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        /* 🔥 SIDEBAR / DRAWER */
+        .drawer {
+            background: rgba(0, 91, 96, 0.9) !important;
+            backdrop-filter: blur(20px);
+            box-shadow: 10px 0 40px rgba(0,0,0,0.4);
+        }
+        
+        /* 🔥 CARDS PREMIUM */
+        .premium-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--premium-glow);
+            transition: 0.3s;
+        }
+        
+        .premium-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.35);
+        }
+        
+        /* 🔥 BUTTONS */
+        button, .btn, .read-more-btn {
+            background: linear-gradient(135deg, #D4AF37, #FFD700);
+            border: none;
+            color: black;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        
+        button:hover, .btn:hover, .read-more-btn:hover {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+            transform: scale(1.05);
+        }
+        
+        /* 🔥 MENU GLOW */
+        .desktop-menu a {
+            position: relative;
+        }
+        
+        .desktop-menu a:hover {
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+        }
+        
+        /* 🔥 UNDERLINE ANIMATION */
+        .desktop-menu a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0%;
+            height: 3px;
+            background: #FFD700;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+        
+        .desktop-menu a:hover::after {
+            width: 100%;
+        }
+        
+        /* 🔥 ICON GLOW */
+        i {
+            transition: 0.3s;
+        }
+        
+        i:hover {
+            text-shadow: 0 0 12px rgba(255,255,255,0.9);
+        }
+        
+        /* 🔥 LOGO GLOW + PERFECT CIRCLE */
+        img[src*="logo"] {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(255,255,255,0.3);
+            transition: 0.3s;
+        }
+        
+        img[src*="logo"]:hover {
+            box-shadow: 0 0 25px rgba(255,255,255,0.7);
+        }
+        
+        /* 🔥 SIDEBAR LOGO FIX */
+        .drawer-header img {
+            width: 60px !important;
+            height: 60px !important;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+        }
+        
+        /* 🔥 FOOTER LOGO FIX */
+        .footer-logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        /* 🔥 MAGIC NAV PREMIUM */
+        .magic-nav ul li a .text,
+        .magic-nav-top ul li a .text {
+            color: white !important;
+        }
+        
+        .magic-nav ul li.active a .icon {
+            color: white !important;
+        }
+        
+        .magic-indicator {
+            background: lightgreen !important;
+        }
+        
+        /* 🔥 SCROLLBAR PREMIUM */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(#D4AF37, #FFD700);
+            border-radius: 10px;
+        }
+        
+        /* 🔥 SMOOTH ANIMATION GLOBAL */
+        * {
+            scroll-behavior: smooth;
+        }
+                @media (min-width: 769px) {
+            .hero-banner { height: 500px; }
+            .menu-btn { display: none; }
+            .magic-nav { display: none; } /* Hide mobile bottom nav on Desktop */
+            .whatsapp-float { bottom: 30px; } 
+            .footer { padding-bottom: 40px; }
             .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+            .promo-slide { min-width: calc(33.333% - 10px); }
+            .slider-dots { display: none; }
         }
 
         /* --- Main Content & Forms --- */
@@ -123,6 +469,10 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-bottom: 25px; border: 1px solid rgba(0,91,96,0.1);
         }
 
+        .tab-switcher { display: flex; gap: 10px; margin-bottom: 20px; background: #e0f2f1; padding: 5px; border-radius: 12px; }
+        .tab-btn { flex: 1; padding: 12px; text-align: center; font-weight: bold; border-radius: 10px; cursor: pointer; transition: 0.3s; color: var(--dark-peacock); border: none; background: transparent; font-size: 15px; }
+        .tab-btn.active { background: var(--dark-peacock); color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
         .input-group { position: relative; margin-bottom: 18px; width: 100%; }
         .input-group i { position: absolute; left: 15px; top: 16px; color: var(--accent-peacock); font-size: 18px; }
         .input-control { width: 100%; padding: 15px 15px 15px 45px; border-radius: 12px; border: 1.5px solid var(--dark-peacock); background: white; font-size: 15px; color: var(--text-main); outline: none; transition: 0.3s; }
@@ -133,6 +483,7 @@
         .btn-custom:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,91,96,0.3); }
         .btn-green { background: #28a745; }
         .btn-blue { background: #007bff; }
+        .btn-gold { background: linear-gradient(135deg, #D4AF37, #FFD700); color: black; }
         
         .inline-btn-group { display: flex; gap: 10px; margin-bottom: 15px; }
         .inline-btn-group .input-group { flex: 1; margin-bottom: 0; }
@@ -152,47 +503,35 @@
             width: 800px; 
             height: 500px; 
             
-            /* 👇 यहाँ अपनी Blank Receipt Image का URL डालें 👇 */
-            background-image: url('assets/images/receipt_template.jpg'); /* या कोई ऑनलाइन लिंक डालें */
+            /* 👇 GITHUB RAW URL FOR RECEIPT BACKGROUND 👇 */
+            background-image: url('https://raw.githubusercontent.com/sssfh26/Gaushala/67f3b913c0f724b241f01b1baa7358079bad798b/Receipt.png'); 
+            
             background-size: 100% 100%; 
             background-repeat: no-repeat;
-            
             position: relative; 
             color: #000; 
             font-family: 'Poppins', sans-serif; 
-            font-weight: 700; /* Bold text for receipt */
+            font-weight: 700; 
             font-size: 16px;
         }
-
         .pdf-abs { position: absolute; }
         
-        /* Dotted Lines Mapping */
+        /* Positioning on Dotted Lines */
         #pdf_id { top: 172px; left: 165px; color: #005B60;}
         #pdf_date { top: 172px; left: 600px; color: #005B60;}
-        
         #pdf_name { top: 232px; left: 380px; font-size: 18px; color: #000; text-transform: capitalize;}
-        
         #pdf_father { top: 288px; left: 170px; }
         #pdf_utr { top: 288px; left: 630px; font-size: 14px; color: #28a745;}
-        
         #pdf_address { top: 342px; left: 140px; width: 620px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
-        
         #pdf_amount { top: 446px; left: 100px; color: white; font-size: 18px; letter-spacing: 1px;}
         
-        /* 👇 Manager Signature Image CSS 👇 */
-        #manager_sign { 
-            position: absolute; 
-            bottom: 60px; 
-            right: 50px; 
-            height: 50px; 
-            z-index: 10;
-        }
-
+        /* 👇 GITHUB RAW URL FOR MANAGER SIGNATURE 👇 */
+        #manager_sign { position: absolute; bottom: 40px; right: 50px; height: 60px; z-index: 10; mix-blend-mode: multiply; }
     </style>
 </head>
 <body>
 
-    <!-- App Bar -->
+   <!-- App Bar -->
     <header class="app-bar">
         <div class="app-bar-left">
             <img src="https://cdn.jsdelivr.net/gh/sssfh26/Gaushala/logo.png" alt="Logo">
@@ -260,13 +599,18 @@
     <a href="https://wa.me/919466590166" target="_blank" class="whatsapp-float">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
-
-
-
     <!-- MAIN CONTENT -->
     <main class="main-container">
 
-        <!-- STEP 1: Registration Form -->
+        <!-- TAB SWITCHER -->
+        <div class="tab-switcher">
+            <button class="tab-btn active" id="tab-donate" onclick="switchTab('donate')"><i class="fa-solid fa-hand-holding-heart"></i> नया दान करें</button>
+            <button class="tab-btn" id="tab-fetch" onclick="switchTab('fetch')"><i class="fa-solid fa-download"></i> रसीद निकालें</button>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- STEP 1: Registration Form (DONATE)             -->
+        <!-- ============================================== -->
         <div id="registration-section" class="card-box">
             <div class="section-title"><i class="fa-solid fa-user-plus"></i> डोनर पंजीकरण (Register as Donor)</div>
             
@@ -285,7 +629,6 @@
                     <button type="button" id="btn-verified" class="btn-custom btn-green" style="display:none; pointer-events:none;"><i class="fa-solid fa-check-circle"></i> Verified</button>
                 </div>
 
-                <!-- OTP Input -->
                 <div id="otp-container" style="display:none; background: #fff3cd; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #ffeeba;">
                     <div class="inline-btn-group" style="margin-bottom: 0;">
                         <div class="input-group">
@@ -328,15 +671,16 @@
                     </div>
                 </div>
 
-                <button type="button" class="btn-custom" id="btn-save-details" onclick="registerDonor()" style="margin-top: 10px; background: linear-gradient(135deg, #D4AF37, #FFD700); color: black;">
+                <button type="button" class="btn-custom btn-gold" id="btn-save-details" onclick="registerDonor()" style="margin-top: 10px;">
                     <span id="save-text">Save Details & Continue</span>
                     <div class="loader" id="save-loader" style="border-top-color: black;"></div>
                 </button>
             </form>
         </div>
 
-
-        <!-- STEP 2: Payment Section -->
+        <!-- ============================================== -->
+        <!-- STEP 2: Payment Section (DONATE)               -->
+        <!-- ============================================== -->
         <div id="payment-section" class="card-box" style="display:none;">
             <div class="section-title"><i class="fa-solid fa-indian-rupee-sign"></i> सुरक्षित दान करें (Make Payment)</div>
             
@@ -359,31 +703,76 @@
             </div>
         </div>
 
+        <!-- ============================================== -->
+        <!-- NEW SECTION: FETCH RECEIPT                     -->
+        <!-- ============================================== -->
+        <div id="fetch-receipt-section" class="card-box" style="display:none;">
+            <div class="section-title" style="border-left-color: #28a745;"><i class="fa-solid fa-file-invoice"></i> पुरानी रसीद निकालें</div>
+            <p style="margin-bottom: 20px; font-size: 14px; color: grey;">अपनी पुरानी रसीद डाउनलोड करने के लिए कृपया अपना नाम, पिता का नाम और मोबाइल नंबर भरें (डेटा बिल्कुल सही होना चाहिए)।</p>
+
+            <form onsubmit="event.preventDefault();">
+                <div class="input-group">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="f_name" class="input-control" placeholder="पूरा नाम (Full Name) *" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-person-cane"></i>
+                    <input type="text" id="f_father" class="input-control" placeholder="पिता का नाम (Father's Name) *" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                    <input type="tel" id="f_mobile" class="input-control" placeholder="मोबाइल नंबर (Mobile Number) *" maxlength="10" required>
+                </div>
+
+                <button type="button" class="btn-custom btn-green" id="btn-fetch" onclick="fetchOldReceipt()">
+                    <span id="fetch-text"><i class="fa-solid fa-search"></i> ढूँढें और डाउनलोड करें (Find & Download)</span>
+                    <div class="loader" id="fetch-loader"></div>
+                </button>
+            </form>
+        </div>
+
     </main>
 
-    <!-- Footer -->
+       <!-- Footer Section -->
     <footer class="footer" id="contact">
         <div class="footer-grid">
             <div>
-                <div class="footer-logo"><img src="https://cdn.jsdelivr.net/gh/sssfh26/Gaushala/logo.png" alt="Logo"></div>
+                <div class="footer-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/sssfh26/Gaushala/logo.png" alt="Logo" onerror="this.outerHTML='<h2 style=\'color:var(--gold-color);\'>गौशाला</h2>'">
+                </div>
                 <p class="footer-text">हमारा उद्देश्य बेसहारा और बीमार गौमाताओं की निःस्वार्थ सेवा करना है। आपके सहयोग से ही यह पुण्य कार्य संभव है।</p>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
             </div>
             <div>
                 <div class="footer-title">संपर्क करें (Contact Us)</div>
-                <p class="footer-text"><i class="fa-solid fa-location-dot"></i> Village Mota Vadala, Rajkot Kalavad Road, Dist. Jamnagar, Gujarat - 361162</p>
-                <p class="footer-text"><i class="fa-solid fa-phone"></i> +91-9466590166</p>
+                <p class="footer-text" style="margin-bottom: 10px;"><i class="fa-solid fa-location-dot"></i> Village Mota Vadala, Rajkot Kalavad Road, Dist. Jamnagar, Gujarat - 361162</p>
+                <p class="footer-text" style="margin-bottom: 10px;"><i class="fa-solid fa-phone"></i> +91-9466590166</p>
                 <p class="footer-text"><i class="fa-solid fa-envelope"></i> info@srkgaushala.org</p>
             </div>
+            <div class="footer-links">
+                <div class="footer-title">क्विक लिंक्स (Quick Links)</div>
+                <a href="#"><i class="fa-solid fa-angle-right"></i> डोनर सूची (Donors List)</a>
+                <a href="#"><i class="fa-solid fa-angle-right"></i> समाचार (News)</a>
+                <a href="#"><i class="fa-solid fa-angle-right"></i> गोपनीयता नीति (Privacy Policy)</a>
+                <a href="#"><i class="fa-solid fa-angle-right"></i> नियम व शर्तें (T&C)</a>
+            </div>
         </div>
-        <div class="copyright">© 2025 Shri Ram Krishna Gaushala. All Rights Reserved.</div>
+        <div class="copyright">
+            © 2025 Shri Ram Krishna Gaushala. All Rights Reserved.
+        </div>
     </footer>
 
     <!-- Mobile Bottom Magic Nav -->
     <div class="magic-nav">
         <ul>
-            <li class="list"><a href="#"><span class="icon"><i class="fa-solid fa-house"></i></span><span class="text">होम</span></a></li>
-            <li class="list active"><a href="#"><span class="icon"><i class="fa-solid fa-hand-holding-heart"></i></span><span class="text">दान करें</span></a></li>
-            <li class="list"><a href="#"><span class="icon"><i class="fa-solid fa-award"></i></span><span class="text">सर्टिफिकेट</span></a></li>
+            <li class="list"><a href="index.html"><span class="icon"><i class="fa-solid fa-house"></i></span><span class="text">होम</span></a></li>
+            <li class="list active" onclick="switchTab('donate')"><a href="#"><span class="icon"><i class="fa-solid fa-hand-holding-heart"></i></span><span class="text">दान करें</span></a></li>
+            <li class="list" onclick="switchTab('fetch')"><a href="#"><span class="icon"><i class="fa-solid fa-file-invoice"></i></span><span class="text">रसीद</span></a></li>
             <li class="list"><a href="#"><span class="icon"><i class="fa-solid fa-user"></i></span><span class="text">प्रोफाइल</span></a></li>
             <div class="magic-indicator"></div>
         </ul>
@@ -402,30 +791,48 @@
         <div id="pdf_address" class="pdf-abs"></div>
         <div id="pdf_amount" class="pdf-abs"></div>
         
-        <!-- 👇 यहाँ Manager के Sign की Image Link डालें 👇 -->
-        <img id="manager_sign" src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Stylized_signature_sample.png" alt="Sign">
+        <!-- 👇 RAW URL FOR SIGNATURE 👇 crossorigin="anonymous" jaruri hai image load ke liye -->
+        <img id="manager_sign" src="https://raw.githubusercontent.com/sssfh26/Gaushala/67f3b913c0f724b241f01b1baa7358079bad798b/sign_mangal.png" alt="Sign" crossorigin="anonymous">
     </div>
 
     <!-- Scripts -->
     <script>
-        // Drawer & Menu Logic
+        // Drawer Logic
         const drawer = document.getElementById('endDrawer');
         const overlay = document.getElementById('drawerOverlay');
         function openDrawer() { drawer.style.right = '0'; overlay.style.display = 'block'; document.body.style.overflow = 'hidden'; }
         function closeDrawer() { drawer.style.right = '-320px'; overlay.style.display = 'none'; document.body.style.overflow = 'auto'; }
 
+        // Magic Nav Logic
         document.querySelectorAll('.magic-nav .list').forEach(item => { item.addEventListener('click', function() { document.querySelectorAll('.magic-nav .list').forEach(i => i.classList.remove('active')); this.classList.add('active'); }); });
         document.querySelectorAll('.magic-nav-top .list-top').forEach(item => { item.addEventListener('click', function() { document.querySelectorAll('.magic-nav-top .list-top').forEach(i => i.classList.remove('active')); this.classList.add('active'); }); });
 
+        // TAB Switcher Logic
+        function switchTab(tabName) {
+            if(tabName === 'donate') {
+                document.getElementById('tab-donate').classList.add('active');
+                document.getElementById('tab-fetch').classList.remove('active');
+                document.getElementById('registration-section').style.display = 'block';
+                document.getElementById('fetch-receipt-section').style.display = 'none';
+                document.getElementById('payment-section').style.display = 'none';
+            } else if(tabName === 'fetch') {
+                document.getElementById('tab-fetch').classList.add('active');
+                document.getElementById('tab-donate').classList.remove('active');
+                document.getElementById('fetch-receipt-section').style.display = 'block';
+                document.getElementById('registration-section').style.display = 'none';
+                document.getElementById('payment-section').style.display = 'none';
+            }
+        }
+
         // ==========================================
-        // LOGIC FOR FORMS & AUTO PAYMENT
+        // MAIN APPLICATION LOGIC 
         // ==========================================
         const googleSheetUrl = "https://script.google.com/macros/s/AKfycbyCxpyY9jxeNBZ-8tVaqKn5LpFmSSWpz6UnDLGKXVITCxuSGyph_UKjIU2tdrfXxN7rkg/exec";
         
         let isMobileVerified = false;
         let globalDonorData = {};
 
-        // 1. Send OTP
+        // --- REGISTRATION LOGIC ---
         function sendOtp() {
             const mobile = document.getElementById('r_mobile').value;
             if (mobile.length !== 10) { Swal.fire({ icon: 'error', text: 'Please enter a valid 10-digit mobile number' }); return; }
@@ -435,7 +842,6 @@
             Swal.fire({ icon: 'success', text: 'OTP Sent! (Use 123456)', timer: 2000, showConfirmButton: false });
         }
 
-        // 2. Verify OTP
         function verifyOtp() {
             const otp = document.getElementById('r_otp').value;
             if (otp === "123456") {
@@ -449,10 +855,8 @@
             }
         }
 
-        // 3. Register Donor
         function registerDonor() {
             if (!isMobileVerified) { Swal.fire({ icon: 'error', text: 'Please Verify your Mobile Number first!' }); return; }
-
             const ids = ['r_name', 'r_mobile', 'r_father', 'r_address', 'r_city', 'r_dist', 'r_state', 'r_pin'];
             for(let id of ids) { if(!document.getElementById(id).value) { Swal.fire({ icon: 'warning', text: 'All fields are required!' }); return; } }
 
@@ -499,7 +903,6 @@
             });
         }
 
-        // 4. Open Razorpay 
         function openRazorpay() {
             const amount = document.getElementById('p_amount').value;
             if (!amount || amount <= 0) { Swal.fire('Error', 'Please enter valid amount', 'error'); return; }
@@ -522,14 +925,8 @@
             rzp.open();
         }
 
-        // 5. Verify & Show Download Button
         function autoVerifyPayment(amount, utr) {
-            Swal.fire({
-                title: 'Verifying Payment...',
-                html: 'Please wait while we update our records.<br><b>Do not close this page.</b>',
-                allowOutsideClick: false,
-                didOpen: () => { Swal.showLoading(); }
-            });
+            Swal.fire({ title: 'Verifying Payment...', html: 'Please wait...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); } });
 
             globalDonorData.amount = amount;
             globalDonorData.utr = utr;
@@ -541,24 +938,59 @@
             .then(res => res.text())
             .then(data => {
                 Swal.fire({
-                    icon: 'success', 
-                    title: 'Payment Verified!',
-                    html: `Thank you for donating ₹${amount}.<br>Payment ID: <b>${utr}</b><br><br>Please click below to download your receipt.`,
+                    icon: 'success', title: 'Payment Verified!',
+                    html: `Thank you for donating ₹${amount}.<br>Payment ID: <b>${utr}</b>`,
                     confirmButtonText: '<i class="fa-solid fa-download"></i> Download Receipt',
-                    confirmButtonColor: '#005B60',
-                    allowOutsideClick: false
+                    confirmButtonColor: '#005B60', allowOutsideClick: false
                 }).then((result) => {
-                    if (result.isConfirmed) {
-                        generateAndDownloadPDF(); 
-                    }
+                    if (result.isConfirmed) generateAndDownloadPDF(); 
                 });
             })
-            .catch(err => {
-                Swal.fire('Warning', 'Payment received, but failed to update sheet. Support contact: +91-9466590166', 'warning');
+            .catch(err => Swal.fire('Warning', 'Payment received, but failed to update sheet.', 'warning'));
+        }
+
+        // --- FETCH OLD RECEIPT LOGIC ---
+        // Requires the doGet function in your Google Apps Script
+        function fetchOldReceipt() {
+            const n = document.getElementById('f_name').value;
+            const f = document.getElementById('f_father').value;
+            const m = document.getElementById('f_mobile').value;
+
+            if(!n || !f || !m) { Swal.fire('Error', 'कृपया सभी जानकारी भरें!', 'warning'); return; }
+
+            document.getElementById('fetch-text').style.display = 'none';
+            document.getElementById('fetch-loader').style.display = 'inline-block';
+            document.getElementById('btn-fetch').style.pointerEvents = 'none';
+
+            const searchUrl = `${googleSheetUrl}?action=search&mobile=${m}&name=${n}&father=${f}`;
+
+            fetch(searchUrl)
+            .then(res => res.json())
+            .then(data => {
+                if(data.status === 'success') {
+                    globalDonorData = data.data; 
+                    
+                    Swal.fire({
+                        icon: 'success', title: 'Record Found!',
+                        text: `Donor ID: ${globalDonorData.donorId}\nAmount: ₹${globalDonorData.amount}`,
+                        confirmButtonText: '<i class="fa-solid fa-download"></i> Download PDF',
+                        confirmButtonColor: '#28a745'
+                    }).then((result) => {
+                        if (result.isConfirmed) generateAndDownloadPDF();
+                    });
+                } else {
+                    Swal.fire('Not Found', data.message, 'error');
+                }
+            })
+            .catch(err => Swal.fire('Error', 'Network Issue / Script not configured', 'error'))
+            .finally(() => {
+                document.getElementById('fetch-text').style.display = 'inline-block';
+                document.getElementById('fetch-loader').style.display = 'none';
+                document.getElementById('btn-fetch').style.pointerEvents = 'auto';
             });
         }
 
-        // 6. Generate Landscape PDF & Redirect to index.html
+        // --- GENERATE PDF (LANDSCAPE with GITHUB IMAGE) ---
         function generateAndDownloadPDF() {
             document.getElementById('pdf_id').innerText = globalDonorData.donorId;
             document.getElementById('pdf_date').innerText = globalDonorData.date;
@@ -571,33 +1003,24 @@
             const element = document.getElementById('pdf-template');
             element.style.display = 'block'; 
             
-            // Set for 800x500 Landscape Format (Matching your image)
             var opt = {
                 margin:       0,
                 filename:     `Receipt_${globalDonorData.donorId}.pdf`,
                 image:        { type: 'jpeg', quality: 1.0 },
-                html2canvas:  { scale: 2, useCORS: true },
+                html2canvas:  { scale: 2, useCORS: true, allowTaint: true }, // Added allowTaint for GitHub images
                 jsPDF:        { unit: 'px', format: [800, 500], orientation: 'landscape' }
             };
 
-            Swal.fire({
-                title: 'Generating PDF...',
-                allowOutsideClick: false,
-                didOpen: () => { Swal.showLoading(); }
-            });
+            Swal.fire({ title: 'Generating PDF...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); }});
 
             html2pdf().set(opt).from(element).save().then(() => {
                 element.style.display = 'none';
-                
                 Swal.fire({
-                    icon: 'success',
-                    title: 'Downloaded!',
-                    text: 'Your receipt has been saved successfully.',
-                    confirmButtonText: 'Go to Home',
-                    confirmButtonColor: '#28a745',
-                    allowOutsideClick: false
+                    icon: 'success', title: 'Downloaded!',
+                    text: 'आपकी रसीद डाउनलोड हो चुकी है!',
+                    confirmButtonText: 'Go to Home', confirmButtonColor: '#28a745', allowOutsideClick: false
                 }).then(() => {
-                    // 👇 Redirect to index.html 👇
+                    // Redirects to index.html as requested
                     window.location.href = "index.html";
                 });
             }).catch(err => {
