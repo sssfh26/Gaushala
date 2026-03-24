@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Shri Ram Krishna Gaushala - Donor Registration</title>
+    
+    <!-- Premium Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- External Libraries for Payment & PDF -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- For Beautiful Alerts -->
+    
+    <style>
+        /* ========================================= */
+        /* --- ORIGINAL COLOR PALETTE & STYLES --- */
+        /* ========================================= */
+        :root {
+            --dark-peacock: #005B60;
+            --light-peacock: #E0F2F1;
+            --accent-peacock: #00897B;
+            --gold-color: #D4AF37;
+            --bg-color: #F4F7F6;
+            --card-bg: #FFFFFF;
+            --text-main: #2C3E50;
+            --text-muted: #546E7A;
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(0, 91, 96, 0.2);
+            --premium-glow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--light-peacock); color: var(--text-main); overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* --- Official App Bar --- */
+        .app-bar {
+            position: fixed; top: 0; width: 100%; height: 100px;
+            background: rgba(0, 91, 96, 0.85) !important; backdrop-filter: blur(15px);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 20px; color: white; z-index: 1000; box-shadow: var(--premium-glow); border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .app-bar-left { display: flex; align-items: center; gap: 12px; }
+        .app-bar-left img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold-color); box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+        .app-bar-title { font-size: 18px; font-weight: 700; display: flex; flex-direction: column; line-height: 1.5; }
+        .app-bar-subtitle { font-size: 11px; color: var(--gold-color); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+        .app-bar-right { display: flex; align-items: center; gap: 18px; font-size: 18px; }
+        .menu-btn { cursor: pointer; font-size: 24px; transition: 0.2s; }
+
+        /* --- Drawer --- */
+        .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1001; display: none; }
+        .drawer { position: fixed; top: 0; right: -320px; width: 280px; height: 100%; background: rgba(0, 91, 96, 0.95); backdrop-filter: blur(20px); z-index: 1002; transition: 0.3s ease; box-shadow: -10px 0 40px rgba(0,0,0,0.4); }
+        .drawer-header { padding: 30px 20px; text-align: center; color: white; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .drawer-header img { width: 80px; height: 80px; margin-bottom: 10px; border-radius: 50%; border: 2px solid var(--gold-color); }
+        .drawer-item { padding: 15px 20px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: white; font-weight: 500; text-decoration: none; }
+        .drawer-item i { color: var(--gold-color); font-size: 20px; }
+
+        /* --- Footer & WhatsApp --- */
+        .footer { background: var(--dark-peacock); color: white; padding: 40px 20px 100px 20px; margin-top: 40px; }
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 30px; max-width: 900px; margin: 0 auto; }
+        .footer-logo img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold-color); }
+        .footer-text { font-size: 14px; opacity: 0.8; line-height: 1.6; margin-bottom: 10px; }
+        .footer-title { font-size: 18px; font-weight: bold; color: var(--gold-color); margin-bottom: 15px; }
+        .social-icons { display: flex; gap: 15px; margin-top: 15px; }
+        .social-icons a { color: white; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; transition: 0.3s; }
+        .footer-links a { display: block; color: white; text-decoration: none; margin-bottom: 10px; opacity: 0.8; }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 30px; padding-top: 20px; font-size: 13px; opacity: 0.7; }
+
+        .whatsapp-float { position: fixed; bottom: 105px; right: 20px; width: 60px; height: 60px; background-color: #25D366; color: #FFF; border-radius: 50%; text-align: center; font-size: 35px; box-shadow: 0px 4px 10px rgba(0,0,0,0.3); z-index: 1000; display: flex; justify-content: center; align-items: center; text-decoration: none; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+
+        /* --- Magic Navigations --- */
+        .magic-nav { position: fixed; bottom: 0; left: 0; width: 100%; height: 70px; background: var(--dark-peacock); display: flex; justify-content: center; align-items: center; border-top-left-radius: 20px; border-top-right-radius: 20px; box-shadow: 0 -5px 15px rgba(0,0,0,0.2); z-index: 999; }
+        .magic-nav ul { display: flex; width: 300px; position: relative; }
+        .magic-nav ul li { position: relative; list-style: none; width: 75px; height: 70px; z-index: 1; }
+        .magic-nav ul li a { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; text-align: center; font-weight: 500; text-decoration: none; }
+        .magic-nav ul li a .icon { position: relative; display: block; line-height: 75px; font-size: 1.4em; transition: 0.5s; color: rgba(255, 255, 255, 0.5); }
+        .magic-nav ul li.active a .icon { transform: translateY(-32px); color: var(--dark-peacock); }
+        .magic-nav ul li a .text { position: absolute; color: white; font-weight: 600; font-size: 0.70em; transition: 0.5s; opacity: 0; transform: translateY(20px); }
+        .magic-nav ul li.active a .text { opacity: 1; transform: translateY(12px); }
+        .magic-indicator { position: absolute; top: -35px; left: 2.5px; width: 70px; height: 70px; background: #E0F2F1; border-radius: 50%; border: 6px solid var(--accent-peacock); transition: 0.5s; }
+        .magic-indicator::before { content: ''; position: absolute; top: 50%; left: -22px; width: 20px; height: 20px; background: transparent; border-top-right-radius: 20px; box-shadow: 1px -10px 0 0 var(--accent-peacock); }
+        .magic-indicator::after { content: ''; position: absolute; top: 50%; right: -22px; width: 20px; height: 20px; background: transparent; border-top-left-radius: 20px; box-shadow: -1px -10px 0 0 var(--accent-peacock); }
+        .magic-nav ul li:nth-child(1).active ~ .magic-indicator { transform: translateX(calc(75px * 0)); }
+        .magic-nav ul li:nth-child(2).active ~ .magic-indicator { transform: translateX(calc(75px * 1)); }
+        .magic-nav ul li:nth-child(3).active ~ .magic-indicator { transform: translateX(calc(75px * 2)); }
+        .magic-nav ul li:nth-child(4).active ~ .magic-indicator { transform: translateX(calc(75px * 3)); }
+
+        .magic-nav-top { display: none; } 
+        @media (min-width: 769px) {
+            .magic-nav-top { display: flex; justify-content: center; align-items: center; height: 70px; margin-top: 15px; }
+            .magic-nav-top ul { display: flex; width: 400px; position: relative; }
+            .magic-nav-top ul li { position: relative; list-style: none; width: 100px; height: 70px; z-index: 1; }
+            .magic-nav-top ul li a { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; text-align: center; font-weight: 500; text-decoration: none; }
+            .magic-nav-top ul li a .icon { position: relative; display: block; line-height: 75px; font-size: 1.5em; transition: 0.5s; color: rgba(255, 255, 255, 0.6); }
+            .magic-nav-top ul li.active a .icon { transform: translateY(32px); color: var(--dark-peacock); }
+            .magic-nav-top ul li a .text { position: absolute; color: white; font-weight: 600; font-size: 0.8em; transition: 0.5s; opacity: 0; transform: translateY(-20px); }
+            .magic-nav-top ul li.active a .text { opacity: 1; transform: translateY(-12px); }
+            .magic-indicator-top { position: absolute; bottom: -35px; left: 15px; width: 70px; height: 70px; background: var(--light-peacock); border-radius: 50%; border: 6px solid var(--dark-peacock); transition: 0.5s; }
+            .magic-indicator-top::before { content: ''; position: absolute; top: 15px; left: -22px; width: 20px; height: 20px; background: transparent; border-bottom-right-radius: 20px; box-shadow: 1px 10px 0 0 var(--dark-peacock); }
+            .magic-indicator-top::after { content: ''; position: absolute; top: 15px; right: -22px; width: 20px; height: 20px; background: transparent; border-bottom-left-radius: 20px; box-shadow: -1px 10px 0 0 var(--dark-peacock); }
+            .magic-nav-top ul li:nth-child(1).active ~ .magic-indicator-top { transform: translateX(calc(100px * 0)); }
+            .magic-nav-top ul li:nth-child(2).active ~ .magic-indicator-top { transform: translateX(calc(100px * 1)); }
+            .magic-nav-top ul li:nth-child(3).active ~ .magic-indicator-top { transform: translateX(calc(100px * 2)); }
+            .magic-nav-top ul li:nth-child(4).active ~ .magic-indicator-top { transform: translateX(calc(100px * 3)); }
+            .menu-btn, .magic-nav { display: none; }
+            .whatsapp-float { bottom: 30px; }
+            .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+        }
+
+        /* ========================================= */
+        /* --- FORM & LOGIC SPECIFIC UI STYLES --- */
+        /* ========================================= */
+        .main-container { max-width: 700px; margin: 120px auto 40px auto; padding: 20px 15px; }
+        
+        .premium-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(0, 91, 96, 0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+            transition: 0.3s;
+        }
+
+        .section-title { font-size: 22px; font-weight: 700; color: var(--dark-peacock); margin-bottom: 20px; border-left: 5px solid var(--gold-color); padding-left: 12px; display: flex; align-items: center; gap: 10px;}
+
+        /* Form Inputs */
+        .input-group { position: relative; margin-bottom: 18px; width: 100%; }
+        .input-group i { position: absolute; left: 15px; top: 16px; color: var(--accent-peacock); font-size: 18px; }
+        .input-control {
+            width: 100%; padding: 15px 15px 15px 45px;
+            border-radius: 12px; border: 1.5px solid var(--glass-border);
+            background: white; font-size: 15px; color: var(--text-main);
+            outline: none; transition: 0.3s; font-weight: 500;
+        }
+        .input-control:focus { border-color: var(--dark-peacock); box-shadow: 0 0 10px rgba(0,91,96,0.1); }
+        .input-control[readonly] { background: #f0f0f0; color: #777; }
+
+        .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        /* Buttons */
+        .btn {
+            width: 100%; padding: 15px; border-radius: 12px; border: none;
+            font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s;
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+        }
+        .btn-primary { background: var(--dark-peacock); color: white; }
+        .btn-primary:hover { background: #00454a; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,91,96,0.3); }
+        
+        .btn-gold { background: linear-gradient(135deg, #D4AF37, #FFD700); color: black; }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); }
+
+        .btn-green { background: #28a745; color: white; }
+        .btn-blue { background: #007bff; color: white; }
+
+        .inline-btn-group { display: flex; gap: 10px; }
+        .inline-btn-group .input-group { flex: 1; margin-bottom: 0; }
+        .inline-btn-group .btn { width: auto; padding: 0 20px; white-space: nowrap; }
+
+        /* OTP Box */
+        .otp-box {
+            background: rgba(255, 165, 0, 0.1); border: 1px dashed orange;
+            padding: 15px; border-radius: 12px; margin-bottom: 18px; display: none;
+        }
+
+        /* Step Info */
+        .summary-box { background: #e3f2fd; border: 1px solid #90caf9; padding: 15px; border-radius: 12px; margin-bottom: 20px; }
+        .summary-box p { margin-bottom: 5px; color: var(--dark-peacock); font-weight: 500;}
+
+        /* Hidden Sections */
+        #payment-section { display: none; }
+
+        /* Receipt PDF Template (Hidden from UI, used for generating PDF) */
+        #pdf-template { display: none; padding: 40px; background: white; width: 800px; color: black; border: 2px solid var(--dark-peacock); }
+        .pdf-header { text-align: center; border-bottom: 2px solid var(--gold-color); padding-bottom: 15px; margin-bottom: 20px; }
+        .pdf-header h1 { color: var(--dark-peacock); font-size: 28px; }
+        .pdf-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 16px; }
+        .pdf-amount { background: #e0f2f1; padding: 15px; font-size: 20px; font-weight: bold; text-align: center; border: 1px dashed var(--dark-peacock); margin: 20px 0; }
+
+        /* Loader */
+        .loader { border: 3px solid #f3f3f3; border-top: 3px solid white; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: none; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+     <!-- App Bar -->
+    <header class="app-bar">
+        <div class="app-bar-left">
+            <img src="https://cdn.jsdelivr.net/gh/sssfh26/Gaushala/logo.png" alt="Logo">
+            <div class="app-bar-title">
+                श्री राम कृष्णा गौशाला सेवा समिति
+                <span class="app-bar-subtitle">Cheritable Trust(Reg. No. 372)</span>
+            </div>
+        </div>
+        
+        <!-- ========================================== -->
+        <!-- MAGIC TOP NAVIGATION MENU (FOR DESKTOP) -->
+        <!-- ========================================== -->
+        <div class="magic-nav-top">
+            <ul>
+                <li class="list-top active">
+                    <a href="#">
+                        <span class="icon"><i class="fa-solid fa-house"></i></span>
+                        <span class="text">होम</span>
+                    </a>
+                </li>
+                <li class="list-top">
+                    <a href="#about">
+                        <span class="icon"><i class="fa-solid fa-circle-info"></i></span>
+                        <span class="text">हमारे बारे में</span>
+                    </a>
+                </li>
+                <li class="list-top">
+                    <a href="#">
+                        <span class="icon"><i class="fa-solid fa-id-card-clip"></i></span>
+                        <span class="text">सदस्य</span>
+                    </a>
+                </li>
+                <li class="list-top">
+                    <a href="#contact">
+                        <span class="icon"><i class="fa-solid fa-headset"></i></span>
+                        <span class="text">संपर्क</span>
+                    </a>
+                </li>
+                <div class="magic-indicator-top"></div>
+            </ul>
+        </div>
+
+        <div class="app-bar-right">
+            <div style="font-size: 16px; font-weight: 600;"><i class="fa-solid fa-paw"></i> 0</div>
+            <i class="fa-solid fa-bars menu-btn" onclick="openDrawer()"></i>
+        </div>
+    </header>
+
+    <!-- Side Drawer -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+    <aside class="drawer" id="endDrawer">
+        <div class="drawer-header">
+            <img src="https://cdn.jsdelivr.net/gh/sssfh26/Gaushala/logo.png" alt="Logo">
+            <div style="font-size: 18px; font-weight: bold;">श्री राम कृष्ण गौशाला</div>
+        </div>
+        <div class="drawer-content">
+            <a href="#about" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-circle-info"></i> हमारे बारे में (About)</a>
+            <a href="#contact" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-phone"></i> संपर्क करें (Contact)</a>
+            <a href="#" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-user-gear"></i> सदस्य विवरण (Members)</a>
+            <a href="#" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-bell"></i> सूचनाएं (Notifications)</a>
+        </div>
+    </aside>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/919466590166" target="_blank" class="whatsapp-float">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+
+    <!-- MAIN CONTENT (Registration & Payment Forms) -->
+    <main class="main-container">
+        
+        <!-- ========================================== -->
+        <!-- STEP 1: DONOR REGISTRATION SECTION         -->
+        <!-- ========================================== -->
+        <div id="registration-section" class="premium-card">
+            <div class="section-title"><i class="fa-solid fa-user-plus"></i> डोनर पंजीकरण (Register as Donor)</div>
+            
+            <form id="regForm" onsubmit="event.preventDefault();">
+                <div class="input-group">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="r_name" class="input-control" placeholder="पूरा नाम (Full Name) *" required>
+                </div>
+
+                <div class="inline-btn-group" style="margin-bottom: 18px;">
+                    <div class="input-group">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                        <input type="tel" id="r_mobile" class="input-control" placeholder="मोबाइल नंबर (Mobile) *" maxlength="10" required>
+                    </div>
+                    <button type="button" id="btn-send-otp" class="btn btn-primary" onclick="sendOtp()">Send OTP</button>
+                    <button type="button" id="btn-verified" class="btn btn-green" style="display:none; pointer-events:none;"><i class="fa-solid fa-check"></i></button>
+                </div>
+
+                <!-- OTP Box -->
+                <div class="otp-box" id="otp-container">
+                    <div class="inline-btn-group">
+                        <div class="input-group">
+                            <i class="fa-solid fa-key"></i>
+                            <input type="text" id="r_otp" class="input-control" placeholder="Enter 6-digit OTP (123456)" maxlength="6">
+                        </div>
+                        <button type="button" class="btn btn-green" onclick="verifyOtp()">Verify</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa-solid fa-person-cane"></i>
+                    <input type="text" id="r_father" class="input-control" placeholder="पिता का नाम (Father's Name) *" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa-solid fa-home"></i>
+                    <input type="text" id="r_address" class="input-control" placeholder="पूरा पता (Full Address) *" required>
+                </div>
+
+                <div class="row-2">
+                    <div class="input-group">
+                        <i class="fa-solid fa-city"></i>
+                        <input type="text" id="r_city" class="input-control" placeholder="शहर (City) *" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-map"></i>
+                        <input type="text" id="r_dist" class="input-control" placeholder="जिला (District) *" required>
+                    </div>
+                </div>
+
+                <div class="row-2">
+                    <div class="input-group">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <input type="text" id="r_state" class="input-control" placeholder="राज्य (State) *" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-map-pin"></i>
+                        <input type="tel" id="r_pin" class="input-control" placeholder="पिन कोड (Pincode) *" maxlength="6" required>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-gold" id="btn-save-details" onclick="registerDonor()">
+                    <span id="save-text">सेव करें और आगे बढ़ें (Save & Continue)</span>
+                    <div class="loader" id="save-loader"></div>
+                </button>
+            </form>
+        </div>
+
+
+        <!-- ========================================== -->
+        <!-- STEP 2: PAYMENT SECTION                    -->
+        <!-- ========================================== -->
+        <div id="payment-section" class="premium-card">
+            <div class="section-title"><i class="fa-solid fa-indian-rupee-sign"></i> सुरक्षित दान करें (Make Payment)</div>
+            
+            <div class="summary-box">
+                <p><i class="fa-solid fa-id-badge"></i> <b>Donor ID:</b> <span id="lbl_donorId"></span></p>
+                <p><i class="fa-solid fa-user"></i> <b>Name:</b> <span id="lbl_name"></span></p>
+                <p><i class="fa-solid fa-phone"></i> <b>Mobile:</b> <span id="lbl_mobile"></span></p>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+                <input type="number" id="p_amount" class="input-control" placeholder="दान राशि (Enter Amount) ₹ *" required>
+            </div>
+
+            <button type="button" class="btn btn-blue" onclick="openRazorpay()" style="margin-bottom: 20px;">
+                <i class="fa-solid fa-shield-halved"></i> Pay securely with Razorpay
+            </button>
+
+            <div class="section-title" style="font-size: 18px; border-left-color: #28a745;">पेमेंट वेरीफाई करें (Verify Payment)</div>
+            
+            <div class="input-group">
+                <i class="fa-solid fa-receipt"></i>
+                <input type="text" id="p_utr" class="input-control" placeholder="Payment ID / UTR Number (Auto-filled) *" required>
+            </div>
+
+            <button type="button" class="btn btn-primary" id="btn-verify-pay" onclick="verifyPayment()">
+                <span id="verify-text">Verify & Generate Receipt</span>
+                <div class="loader" id="verify-loader"></div>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer" id="contact">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/sssfh26/Gaushala/logo.png" alt="Logo" onerror="this.outerHTML='<h2 style=\'color:var(--gold-color);\'>गौशाला</h2>'">
+                </div>
+                <p class="footer-text">हमारा उद्देश्य बेसहारा और बीमार गौमाताओं की निःस्वार्थ सेवा करना है। आपके सहयोग से ही यह पुण्य कार्य संभव है।</p>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div>
+                <div class="footer-title">संपर्क करें (Contact Us)</div>
+                <p class="footer-text" style="margin-bottom: 10px;"><i class="fa-solid fa-location-dot"></i> Village Mota Vadala, Rajkot Kalavad Road, Dist. Jamnagar, Gujarat - 361162</p>
+                <p class="footer-text" style="margin-bottom: 10px;"><i class="fa-solid fa-phone"></i> +91-9466590166</p>
+                <p class="footer-text"><i class="fa-solid fa-envelope"></i> info@srkgaushala.org</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-title">क्विक लिंक्स (Quick Links)</div>
+                <a href="#"><i class="fa-solid fa-angle-right"></i> डोनर सूची (Donors List)</a>
+                <a href="#"><i class="fa-solid fa-angle-right"></i> समाचार (News)</a>
+                <a href="#"><i class="fa-solid fa-angle-right"></i> गोपनीयता नीति (Privacy Policy)</a>
+                <a href="#"><i class="fa-solid fa-angle-right"></i> नियम व शर्तें (T&C)</a>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Shri Ram Krishna Gaushala. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="magic-nav">
+        <ul>
+            <li class="list"><a href="#"><span class="icon"><i class="fa-solid fa-house"></i></span><span class="text">होम</span></a></li>
+            <li class="list active"><a href="#"><span class="icon"><i class="fa-solid fa-hand-holding-heart"></i></span><span class="text">दान करें</span></a></li>
+            <li class="list"><a href="#"><span class="icon"><i class="fa-solid fa-award"></i></span><span class="text">सर्टिफिकेट</span></a></li>
+            <li class="list"><a href="#"><span class="icon"><i class="fa-solid fa-user"></i></span><span class="text">प्रोफाइल</span></a></li>
+            <div class="magic-indicator"></div>
+        </ul>
+    </div>
+
+    <!-- Hidden PDF Template -->
+    <div id="pdf-template">
+        <div class="pdf-header">
+            <h1>Shri Ram Krishna Gaushala</h1>
+            <p>Village Mota Vadala, Dist. Jamnagar, Gujarat - 361162</p>
+            <h2 style="margin-top: 15px; color:#555;">DONATION RECEIPT</h2>
+        </div>
+        <div class="pdf-row"><b>Receipt No:</b> <span id="pdf_id"></span></div>
+        <div class="pdf-row"><b>Date:</b> <span id="pdf_date"></span></div>
+        <div class="pdf-row"><b>Transaction ID (UTR):</b> <span id="pdf_utr"></span></div>
+        <hr style="margin: 20px 0; border: 1px solid #ddd;">
+        <div class="pdf-row"><b>Received with thanks from:</b> <span id="pdf_name"></span></div>
+        <div class="pdf-row"><b>Son/Daughter of:</b> <span id="pdf_father"></span></div>
+        <div class="pdf-row" style="flex-direction: column; gap: 5px;">
+            <b>Address:</b> 
+            <span id="pdf_address"></span>
+        </div>
+        <div class="pdf-amount">Amount Donated: INR <span id="pdf_amount"></span>/-</div>
+        <div style="margin-top: 50px; text-align: right;">
+            <p style="color:var(--dark-peacock); font-size:18px; font-weight:bold;">Manager Sign</p>
+            <div style="width: 150px; height: 1px; background: black; margin: 5px 0 5px auto;"></div>
+            <p style="font-size: 12px;">Authorized Signatory</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- Drawer Logic ---
+        function openDrawer() { document.getElementById('endDrawer').style.right = '0'; document.getElementById('drawerOverlay').style.display = 'block'; }
+        function closeDrawer() { document.getElementById('endDrawer').style.right = '-320px'; document.getElementById('drawerOverlay').style.display = 'none'; }
+
+        // --- Magic Nav Logic ---
+        document.querySelectorAll('.magic-nav .list').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.magic-nav .list').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        document.querySelectorAll('.magic-nav-top .list-top').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.magic-nav-top .list-top').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // ==========================================
+        // --- APPLICATION LOGIC (PORTED FROM DART) ---
+        // ==========================================
+        const googleSheetUrl = "https://script.google.com/macros/s/AKfycbyCxpyY9jxeNBZ-8tVaqKn5LpFmSSWpz6UnDLGKXVITCxuSGyph_UKjIU2tdrfXxN7rkg/exec";
+        
+        let isMobileVerified = false;
+        let globalDonorData = {};
+
+        // 1. Send OTP
+        function sendOtp() {
+            const mobile = document.getElementById('r_mobile').value;
+            if (mobile.length !== 10) {
+                Swal.fire({ icon: 'error', title: 'Invalid Number', text: 'Please enter a valid 10-digit mobile number' });
+                return;
+            }
+            document.getElementById('otp-container').style.display = 'block';
+            document.getElementById('btn-send-otp').innerText = 'Sent';
+            document.getElementById('btn-send-otp').style.background = 'gray';
+            Swal.fire({ icon: 'success', title: 'OTP Sent!', text: 'Use 123456 for testing.', timer: 2000, showConfirmButton: false });
+        }
+
+        // 2. Verify OTP
+        function verifyOtp() {
+            const otp = document.getElementById('r_otp').value;
+            if (otp === "123456") {
+                isMobileVerified = true;
+                document.getElementById('otp-container').style.display = 'none';
+                document.getElementById('btn-send-otp').style.display = 'none';
+                document.getElementById('btn-verified').style.display = 'block';
+                document.getElementById('r_mobile').setAttribute('readonly', true);
+                Swal.fire({ icon: 'success', title: 'Verified', text: 'Mobile Number Verified!', timer: 1500, showConfirmButton: false });
+            } else {
+                Swal.fire({ icon: 'error', title: 'Invalid OTP', text: 'Try again.' });
+            }
+        }
+
+        // 3. Register Donor (Save to Google Sheet)
+        function registerDonor() {
+            if (!isMobileVerified) {
+                Swal.fire({ icon: 'warning', title: 'Verification Required', text: 'Please Verify your Mobile Number first!' });
+                return;
+            }
+
+            // Validation
+            const ids = ['r_name', 'r_mobile', 'r_father', 'r_address', 'r_city', 'r_dist', 'r_state', 'r_pin'];
+            for(let id of ids) {
+                if(!document.getElementById(id).value) {
+                    Swal.fire({ icon: 'error', title: 'Incomplete', text: 'Please fill all fields!' });
+                    return;
+                }
+            }
+
+            // UI Loading
+            document.getElementById('save-text').style.display = 'none';
+            document.getElementById('save-loader').style.display = 'inline-block';
+            document.getElementById('btn-save-details').style.pointerEvents = 'none';
+
+            // Generate Data
+            const donorId = "SRKG-" + Math.floor(Date.now() / 1000).toString().slice(-6);
+            const date = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).replace(/ /g, '-');
+            
+            globalDonorData = {
+                donorId: donorId, date: date,
+                name: document.getElementById('r_name').value,
+                mobile: document.getElementById('r_mobile').value,
+                fatherName: document.getElementById('r_father').value,
+                address: document.getElementById('r_address').value,
+                city: document.getElementById('r_city').value,
+                district: document.getElementById('r_dist').value,
+                state: document.getElementById('r_state').value,
+                pincode: document.getElementById('r_pin').value,
+                amount: "Payment Pending", utr: "Pending"
+            };
+
+            // Convert to URLSearchParams for Google Apps Script
+            const formData = new URLSearchParams();
+            Object.keys(globalDonorData).forEach(key => formData.append(key, globalDonorData[key]));
+
+            fetch(googleSheetUrl, { method: 'POST', body: formData })
+            .then(res => res.text())
+            .then(data => {
+                Swal.fire({
+                    icon: 'success', title: 'Registration Successful!',
+                    html: `Your details are saved.<br><br><b>Donor ID: <span style="color:#005B60;">${donorId}</span></b>`,
+                    confirmButtonText: 'Proceed to Pay', confirmButtonColor: '#005B60'
+                }).then(() => {
+                    // Switch UI
+                    document.getElementById('registration-section').style.display = 'none';
+                    document.getElementById('payment-section').style.display = 'block';
+                    
+                    // Populate Payment Summary
+                    document.getElementById('lbl_donorId').innerText = globalDonorData.donorId;
+                    document.getElementById('lbl_name').innerText = globalDonorData.name;
+                    document.getElementById('lbl_mobile').innerText = globalDonorData.mobile;
+                    window.scrollTo(0,0);
+                });
+            })
+            .catch(err => { console.error(err); Swal.fire('Error', 'Something went wrong', 'error'); })
+            .finally(() => {
+                document.getElementById('save-text').style.display = 'inline-block';
+                document.getElementById('save-loader').style.display = 'none';
+                document.getElementById('btn-save-details').style.pointerEvents = 'auto';
+            });
+        }
+
+        // 4. Open Razorpay Checkout
+        function openRazorpay() {
+            const amount = document.getElementById('p_amount').value;
+            if (!amount || amount <= 0) {
+                Swal.fire('Error', 'Please enter a valid amount', 'error'); return;
+            }
+
+            var options = {
+                "key": "rzp_live_SN93mK9sPlj8oJ",
+                "amount": amount * 100, 
+                "currency": "INR",
+                "name": "Shri Ram Krishna Gaushala",
+                "description": "Donation",
+                "image": "https://cdn.jsdelivr.net/gh/sssfh26/Gaushala/logo.png",
+                "prefill": { "name": globalDonorData.name, "contact": globalDonorData.mobile },
+                "theme": { "color": "#005B60" },
+                "handler": function (response) {
+                    Swal.fire('Success', 'Payment Successful!', 'success');
+                    document.getElementById('p_utr').value = response.razorpay_payment_id;
+                }
+            };
+            var rzp = new Razorpay(options);
+            rzp.on('payment.failed', function (response){
+                Swal.fire('Failed', response.error.description, 'error');
+            });
+            rzp.open();
+        }
+
+        // 5. Verify Payment & Final Save
+        function verifyPayment() {
+            const amount = document.getElementById('p_amount').value;
+            const utr = document.getElementById('p_utr').value;
+
+            if(!utr || !amount) {
+                Swal.fire('Error', 'Enter Amount and Payment ID (UTR)', 'error'); return;
+            }
+
+            document.getElementById('verify-text').style.display = 'none';
+            document.getElementById('verify-loader').style.display = 'inline-block';
+            document.getElementById('btn-verify-pay').style.pointerEvents = 'none';
+
+            globalDonorData.amount = amount;
+            globalDonorData.utr = utr;
+
+            const formData = new URLSearchParams();
+            Object.keys(globalDonorData).forEach(key => formData.append(key, globalDonorData[key]));
+
+            fetch(googleSheetUrl, { method: 'POST', body: formData })
+            .then(res => res.text())
+            .then(data => {
+                Swal.fire({
+                    icon: 'success', title: 'Donation Verified!',
+                    html: `Thank you for your donation of ₹${amount}.<br>Payment ID: ${utr}`,
+                    showCancelButton: true, confirmButtonText: '<i class="fa fa-download"></i> Download PDF',
+                    cancelButtonText: 'Done', confirmButtonColor: '#005B60', cancelButtonColor: '#28a745'
+                }).then((result) => {
+                    if (result.isConfirmed) downloadPDF();
+                    else location.reload(); // Reset App
+                });
+            })
+            .catch(err => { console.error(err); Swal.fire('Error', 'Could not verify payment', 'error'); })
+            .finally(() => {
+                document.getElementById('verify-text').style.display = 'inline-block';
+                document.getElementById('verify-loader').style.display = 'none';
+                document.getElementById('btn-verify-pay').style.pointerEvents = 'auto';
+            });
+        }
+
+        // 6. Generate & Download PDF (Replaces Flutter PDF package)
+        function downloadPDF() {
+            // Fill hidden template
+            document.getElementById('pdf_id').innerText = globalDonorData.donorId;
+            document.getElementById('pdf_date').innerText = globalDonorData.date;
+            document.getElementById('pdf_utr').innerText = globalDonorData.utr;
+            document.getElementById('pdf_name').innerText = globalDonorData.name;
+            document.getElementById('pdf_father').innerText = globalDonorData.fatherName;
+            document.getElementById('pdf_address').innerText = `${globalDonorData.address}, ${globalDonorData.city}, ${globalDonorData.district}, ${globalDonorData.state} - ${globalDonorData.pincode}`;
+            document.getElementById('pdf_amount').innerText = globalDonorData.amount;
+
+            // Generate
+            const element = document.getElementById('pdf-template');
+            element.style.display = 'block'; // Temporarily show to capture
+            
+            var opt = {
+                margin:       0.5,
+                filename:     `Receipt_${globalDonorData.donorId}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'in', format: 'a5', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                element.style.display = 'none'; // Hide again
+                setTimeout(() => location.reload(), 2000); // Reset app after download
+            });
+        }
+    </script>
+</body>
+</html>
