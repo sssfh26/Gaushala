@@ -40,12 +40,12 @@
 
         /* --- Official App Bar --- */
         .app-bar {
-            position: fixed; top: 0; width: 100%; height: 150px;
+            position: fixed; top: 0; width: 100%; height: 100px;
             background: var(--dark-peacock);
             display: flex; align-items: center; justify-content: space-between;
             padding: 0 20px; color: white; z-index: 1000;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            border-bottom: 3px solid var(--gold-color);
+            border-bottom: 3px solid var(--light-peacock);
         }
         .app-bar-left { display: flex; align-items: center; gap: 12px; }
         
@@ -69,6 +69,14 @@
             width: 100%; height: 100%; object-fit: cover;
             position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0;
         }
+.carousel-slide {
+    animation: zoomEffect 5s ease-in-out infinite;
+}
+
+@keyframes zoomEffect {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
         .carousel-slide.active { opacity: 1; }
 
         /* --- Main Layout --- */
@@ -87,7 +95,7 @@
         }
         .icon-circle {
             width: 55px; height: 55px; border-radius: 50%;
-            background: var(--light-peacock); display: flex;
+            background: var(--accent-peacock); display: flex;
             justify-content: center; align-items: center; font-size: 22px;
             color: var(--dark-peacock); border: 1px solid rgba(0,91,96,0.2);
         }
@@ -142,10 +150,10 @@
 
         .donor-container { border: 2px solid rgba(212, 175, 55, 0.5); border-radius: 12px; background: white; overflow: hidden; margin-bottom: 25px; }
         .donor-header { background: rgba(212, 175, 55, 0.2); padding: 15px; text-align: center; font-weight: bold; color: var(--dark-peacock); font-size: 18px; }
-        .donor-header i { color: var(--gold-color); margin: 0 5px; }
+        .donor-header i { color: var(--accent-peacock); margin: 0 5px; }
         .donor-item { display: flex; align-items: center; justify-content: space-between; padding: 15px; border-bottom: 1px solid #eee; }
         .donor-left { display: flex; align-items: center; gap: 15px; }
-        .donor-img { width: 50px; height: 50px; border-radius: 50%; background: var(--light-peacock); overflow: hidden; }
+        .donor-img { width: 50px; height: 50px; border-radius: 50%; background: var(--accent-peacock); overflow: hidden; }
         .donor-img img { width: 100%; height: 100%; object-fit: cover; }
         .donor-name { font-weight: bold; font-size: 16px; color: var(--dark-peacock); }
         .donor-amount { color: var(--dark-peacock); font-weight: bold; font-size: 16px; }
@@ -162,9 +170,9 @@
         .footer-title { font-size: 18px; font-weight: bold; color: var(--gold-color); margin-bottom: 15px; }
         .social-icons { display: flex; gap: 15px; margin-top: 15px; }
         .social-icons a { color: white; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 18px; text-decoration: none; transition: 0.3s; }
-        .social-icons a:hover { background: var(--gold-color); color: var(--dark-peacock); transform: translateY(-3px); }
+        .social-icons a:hover { background: var(--light-peacock); color: var(--dark-peacock); transform: translateY(-3px); }
         .footer-links a { display: block; color: white; text-decoration: none; margin-bottom: 10px; opacity: 0.8; }
-        .footer-links a:hover { color: var(--gold-color); opacity: 1; }
+        .footer-links a:hover { color: var(--light-peacock); opacity: 1; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 30px; padding-top: 20px; font-size: 13px; opacity: 0.7; }
 
         .whatsapp-float {
@@ -197,48 +205,80 @@
         .magic-nav ul li a { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; text-align: center; font-weight: 500; text-decoration: none; }
         .magic-nav ul li a .icon { position: relative; display: block; line-height: 75px; font-size: 1.4em; text-align: center; transition: 0.5s; color: rgba(255, 255, 255, 0.5); }
         .magic-nav ul li.active a .icon { transform: translateY(-32px); color: var(--dark-peacock); }
-        .magic-nav ul li a .text { position: absolute; color: var(--gold-color); font-weight: 600; font-size: 0.70em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; transform: translateY(20px); }
+        .magic-nav ul li a .text { position: absolute; color: var(--light-peacock); font-weight: 600; font-size: 0.70em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; transform: translateY(20px); }
         .magic-nav ul li.active a .text { opacity: 1; transform: translateY(12px); }
         
         .magic-indicator {
             position: absolute; top: -35px; left: 2.5px; width: 70px; height: 70px;
-            background: var(--gold-color); border-radius: 50%;
-            border: 6px solid var(--light-peacock); transition: 0.5s;
+            background: var(--light-peacock); border-radius: 50%;
+            border: 6px solid var(--accent-peacock); transition: 0.5s;
         }
-        .magic-indicator::before { content: ''; position: absolute; top: 50%; left: -22px; width: 20px; height: 20px; background: transparent; border-top-right-radius: 20px; box-shadow: 1px -10px 0 0 var(--light-peacock); }
-        .magic-indicator::after { content: ''; position: absolute; top: 50%; right: -22px; width: 20px; height: 20px; background: transparent; border-top-left-radius: 20px; box-shadow: -1px -10px 0 0 var(--light-peacock); }
+        .magic-indicator::before { content: ''; position: absolute; top: 50%; left: -22px; width: 20px; height: 20px; background: transparent; border-top-right-radius: 20px; box-shadow: 1px -10px 0 0 var(--accent-peacock); }
+        .magic-indicator::after { content: ''; position: absolute; top: 50%; right: -22px; width: 20px; height: 20px; background: transparent; border-top-left-radius: 20px; box-shadow: -1px -10px 0 0 var(--accent-peacock); }
 
         .magic-nav ul li:nth-child(1).active ~ .magic-indicator { transform: translateX(calc(75px * 0)); }
         .magic-nav ul li:nth-child(2).active ~ .magic-indicator { transform: translateX(calc(75px * 1)); }
         .magic-nav ul li:nth-child(3).active ~ .magic-indicator { transform: translateX(calc(75px * 2)); }
         .magic-nav ul li:nth-child(4).active ~ .magic-indicator { transform: translateX(calc(75px * 3)); }
 
+
         /* ========================================= */
-        /* --- MAGIC TOP NAVIGATION (DESKTOP)    --- */
+        /* --- MAGIC TOP NAV (DESKTOP) - DOWNWARD--- */
         /* ========================================= */
-        .magic-nav-top { display: none; } /* Hidden on mobile by default */
+        .magic-nav-top { display: none; } 
         
         @media (min-width: 769px) {
             .magic-nav-top {
                 display: flex; justify-content: center; align-items: center;
-                height: 70px; margin-top: 15px; /* Adjusting to fit vertically in app-bar */
+                height: 70px; margin-top: 15px;
             }
             .magic-nav-top ul { display: flex; width: 400px; position: relative; }
             .magic-nav-top ul li { position: relative; list-style: none; width: 100px; height: 70px; z-index: 1; }
             .magic-nav-top ul li a { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; text-align: center; font-weight: 500; text-decoration: none; }
-            .magic-nav-top ul li a .icon { position: relative; display: block; line-height: 75px; font-size: 1.5em; transition: 0.5s; color: rgba(255, 255, 255, 0.6); }
-            .magic-nav-top ul li.active a .icon { transform: translateY(-32px); color: var(--dark-peacock); }
-            .magic-nav-top ul li a .text { position: absolute; color: var(--gold-color); font-weight: 600; font-size: 0.8em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; transform: translateY(20px); }
-            .magic-nav-top ul li.active a .text { opacity: 1; transform: translateY(12px); }
+            
+            .magic-nav-top ul li a .icon { 
+                position: relative; display: block; line-height: 75px; font-size: 1.5em; transition: 0.5s; color: rgba(255, 255, 255, 0.6); 
+            }
+            /* ICON ANIMATES DOWNWARD */
+            .magic-nav-top ul li.active a .icon { 
+                transform: translateY(32px); 
+                color: var(--dark-peacock); 
+            }
 
+            .magic-nav-top ul li a .text { 
+                position: absolute; color: var(--light-peacock); font-weight: 600; font-size: 0.8em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; 
+                transform: translateY(-20px); /* Faded higher up */
+            }
+            /* TEXT APPEARS ABOVE */
+            .magic-nav-top ul li.active a .text { 
+                opacity: 1; transform: translateY(-12px); 
+            }
+
+            /* GOLD CIRCLE MOVES TO THE BOTTOM */
             .magic-indicator-top {
-                position: absolute; top: -35px; left: 15px; /* (100 - 70) / 2 = 15px */
-                width: 70px; height: 70px; background: var(--gold-color); border-radius: 50%;
-                border: 6px solid var(--dark-peacock); /* Match top bar background */
+                position: absolute; 
+                bottom: -35px; /* Sits at the bottom edge */
+                left: 15px; 
+                width: 70px; height: 70px; background: var(--light-peacock); border-radius: 50%;
+                border: 6px solid var(--dark-peacock); 
                 transition: 0.5s;
             }
-            .magic-indicator-top::before { content: ''; position: absolute; top: 50%; left: -22px; width: 20px; height: 20px; background: transparent; border-top-right-radius: 20px; box-shadow: 1px -10px 0 0 var(--dark-peacock); }
-            .magic-indicator-top::after { content: ''; position: absolute; top: 50%; right: -22px; width: 20px; height: 20px; background: transparent; border-top-left-radius: 20px; box-shadow: -1px -10px 0 0 var(--dark-peacock); }
+
+            /* INVERTED CUTOUT EFFECTS */
+            .magic-indicator-top::before { 
+                content: ''; position: absolute; 
+                top: 15px; 
+                left: -22px; width: 20px; height: 20px; background: transparent; 
+                border-bottom-right-radius: 20px; /* Curve reversed */
+                box-shadow: 1px 10px 0 0 var(--dark-peacock); /* Shadow goes down */
+            }
+            .magic-indicator-top::after { 
+                content: ''; position: absolute; 
+                top: 15px; 
+                right: -22px; width: 20px; height: 20px; background: transparent; 
+                border-bottom-left-radius: 20px; /* Curve reversed */
+                box-shadow: -1px 10px 0 0 var(--dark-peacock); /* Shadow goes down */
+            }
 
             .magic-nav-top ul li:nth-child(1).active ~ .magic-indicator-top { transform: translateX(calc(100px * 0)); }
             .magic-nav-top ul li:nth-child(2).active ~ .magic-indicator-top { transform: translateX(calc(100px * 1)); }
@@ -257,159 +297,159 @@
             border-radius: 50%; object-fit: cover; border: 2px solid #D4AF37; 
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
-        /* =========================
-   💎 PREMIUM UI UPGRADE
-   Paste at END of CSS
-========================= */
-
-:root {
-    --glass-bg: rgba(255, 255, 255, 0.08);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --premium-glow: 0 8px 30px rgba(0,0,0,0.25);
-    --soft-glow: 0 0 15px rgba(255,255,255,0.2);
-}
-
-/* 🔥 APP BAR (Glass Effect) */
-.app-bar {
-    background: rgba(0, 91, 96, 0.75) !important;
-    backdrop-filter: blur(15px);
-    box-shadow: var(--premium-glow);
-    border-bottom: 1px solid var(--glass-border);
-}
-
-/* 🔥 SIDEBAR / DRAWER */
-.drawer {
-    background: rgba(0, 91, 96, 0.9) !important;
-    backdrop-filter: blur(20px);
-    box-shadow: 10px 0 40px rgba(0,0,0,0.4);
-}
-
-/* 🔥 CARDS PREMIUM */
-.premium-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--premium-glow);
-    transition: 0.3s;
-}
-
-.premium-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 45px rgba(0,0,0,0.35);
-}
-
-/* 🔥 BUTTONS */
-button, .btn, .read-more-btn {
-    background: linear-gradient(135deg, #D4AF37, #FFD700);
-    border: none;
-    color: black;
-    border-radius: 30px;
-    padding: 10px 20px;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-button:hover, .btn:hover, .read-more-btn:hover {
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
-    transform: scale(1.05);
-}
-
-/* 🔥 MENU GLOW */
-.desktop-menu a {
-    position: relative;
-}
-
-.desktop-menu a:hover {
-    text-shadow: 0 0 10px rgba(255,255,255,0.8);
-}
-
-/* 🔥 UNDERLINE ANIMATION */
-.desktop-menu a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: 0%;
-    height: 3px;
-    background: #FFD700;
-    transition: 0.3s;
-    border-radius: 5px;
-}
-
-.desktop-menu a:hover::after {
-    width: 100%;
-}
-
-/* 🔥 ICON GLOW */
-i {
-    transition: 0.3s;
-}
-
-i:hover {
-    text-shadow: 0 0 12px rgba(255,255,255,0.9);
-}
-
-/* 🔥 LOGO GLOW + PERFECT CIRCLE */
-img[src*="logo"] {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 0 15px rgba(255,255,255,0.3);
-    transition: 0.3s;
-}
-
-img[src*="logo"]:hover {
-    box-shadow: 0 0 25px rgba(255,255,255,0.7);
-}
-
-/* 🔥 SIDEBAR LOGO FIX */
-.drawer-header img {
-    width: 60px !important;
-    height: 60px !important;
-    border-radius: 50% !important;
-    object-fit: cover !important;
-}
-
-/* 🔥 FOOTER LOGO FIX */
-.footer-logo img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-/* 🔥 MAGIC NAV PREMIUM */
-.magic-nav ul li a .text,
-.magic-nav-top ul li a .text {
-    color: white !important;
-}
-
-.magic-nav ul li.active a .icon {
-    color: white !important;
-}
-
-.magic-indicator {
-    background: lightgreen !important;
-}
-
-/* 🔥 SCROLLBAR PREMIUM */
-::-webkit-scrollbar {
-    width: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(#D4AF37, #FFD700);
-    border-radius: 10px;
-}
-
-/* 🔥 SMOOTH ANIMATION GLOBAL */
-* {
-    scroll-behavior: smooth;
-}
         
-        @media (min-width: 769px) {
+                      /* =========================
+           💎 PREMIUM UI UPGRADE
+           Paste at END of CSS
+        ========================= */
+        
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --premium-glow: 0 8px 30px rgba(0,0,0,0.25);
+            --soft-glow: 0 0 15px rgba(255,255,255,0.2);
+        }
+        
+        /* 🔥 APP BAR (Glass Effect) */
+        .app-bar {
+            background: rgba(0, 91, 96, 0.75) !important;
+            backdrop-filter: blur(15px);
+            box-shadow: var(--premium-glow);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        /* 🔥 SIDEBAR / DRAWER */
+        .drawer {
+            background: rgba(0, 91, 96, 0.9) !important;
+            backdrop-filter: blur(20px);
+            box-shadow: 10px 0 40px rgba(0,0,0,0.4);
+        }
+        
+        /* 🔥 CARDS PREMIUM */
+        .premium-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--premium-glow);
+            transition: 0.3s;
+        }
+        
+        .premium-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.35);
+        }
+        
+        /* 🔥 BUTTONS */
+        button, .btn, .read-more-btn {
+            background: linear-gradient(135deg, #D4AF37, #FFD700);
+            border: none;
+            color: black;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        
+        button:hover, .btn:hover, .read-more-btn:hover {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+            transform: scale(1.05);
+        }
+        
+        /* 🔥 MENU GLOW */
+        .desktop-menu a {
+            position: relative;
+        }
+        
+        .desktop-menu a:hover {
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+        }
+        
+        /* 🔥 UNDERLINE ANIMATION */
+        .desktop-menu a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0%;
+            height: 3px;
+            background: #FFD700;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+        
+        .desktop-menu a:hover::after {
+            width: 100%;
+        }
+        
+        /* 🔥 ICON GLOW */
+        i {
+            transition: 0.3s;
+        }
+        
+        i:hover {
+            text-shadow: 0 0 12px rgba(255,255,255,0.9);
+        }
+        
+        /* 🔥 LOGO GLOW + PERFECT CIRCLE */
+        img[src*="logo"] {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(255,255,255,0.3);
+            transition: 0.3s;
+        }
+        
+        img[src*="logo"]:hover {
+            box-shadow: 0 0 25px rgba(255,255,255,0.7);
+        }
+        
+        /* 🔥 SIDEBAR LOGO FIX */
+        .drawer-header img {
+            width: 60px !important;
+            height: 60px !important;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+        }
+        
+        /* 🔥 FOOTER LOGO FIX */
+        .footer-logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        /* 🔥 MAGIC NAV PREMIUM */
+        .magic-nav ul li a .text,
+        .magic-nav-top ul li a .text {
+            color: white !important;
+        }
+        
+        .magic-nav ul li.active a .icon {
+            color: white !important;
+        }
+        
+        .magic-indicator {
+            background: lightgreen !important;
+        }
+        
+        /* 🔥 SCROLLBAR PREMIUM */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(#D4AF37, #FFD700);
+            border-radius: 10px;
+        }
+        
+        /* 🔥 SMOOTH ANIMATION GLOBAL */
+        * {
+            scroll-behavior: smooth;
+        }
+                @media (min-width: 769px) {
             .hero-banner { height: 500px; }
             .menu-btn { display: none; }
             .magic-nav { display: none; } /* Hide mobile bottom nav on Desktop */
@@ -428,8 +468,8 @@ img[src*="logo"]:hover {
         <div class="app-bar-left">
             <img src="https://cdn.jsdelivr.net/gh/sssfh26/Gaushala/logo.png" alt="Logo">
             <div class="app-bar-title">
-                श्री राम कृष्ण गौशाला
-                <span class="app-bar-subtitle">Official Portal</span>
+                श्री राम कृष्णा गौशाला सेवा समिति
+                <span class="app-bar-subtitle">Cheritable Trust(Reg. No. 372)</span>
             </div>
         </div>
         
