@@ -547,26 +547,26 @@ Put your HTML text here<!DOCTYPE html>
         <!-- ========================================== -->
         <div class="magic-nav-top">
             <ul>
-                <li class="list-top active">
-                    <a href="#">
+                <li class="list-top">
+                    <a href="index.html">
                         <span class="icon"><i class="fa-solid fa-house"></i></span>
                         <span class="text">होम</span>
                     </a>
                 </li>
-                <li class="list-top">
-                    <a href="#about">
-                        <span class="icon"><i class="fa-solid fa-circle-info"></i></span>
-                        <span class="text">हमारे बारे में</span>
+                <li class="list-top active">
+                    <a href="#">
+                        <span class="icon"><i class="fa-solid fa-hand-holding-heart"></i></span>
+                        <span class="text">दान दें</span>
                     </a>
                 </li>
                 <li class="list-top">
-                    <a href="#">
-                        <span class="icon"><i class="fa-solid fa-id-card-clip"></i></span>
+                    <a href="index.html#members">
+                        <span class="icon"><i class="fa-solid fa-users"></i></span>
                         <span class="text">सदस्य</span>
                     </a>
                 </li>
                 <li class="list-top">
-                    <a href="#contact">
+                    <a href="index.html#contact">
                         <span class="icon"><i class="fa-solid fa-headset"></i></span>
                         <span class="text">संपर्क</span>
                     </a>
@@ -581,18 +581,59 @@ Put your HTML text here<!DOCTYPE html>
         </div>
     </header>
 
-    <!-- Side Drawer -->
+    <!-- ========================================== -->
+    <!-- Side Drawer (Left Menu) FIXED CODE         -->
+    <!-- ========================================== -->
+    <style>
+        /* डार्क बैकग्राउंड पर टेक्स्ट दिखाने के लिए CSS Fix */
+        .drawer-item {
+            color: white !important; /* टेक्स्ट को सफ़ेद किया गया है */
+            font-size: 16px;
+        }
+        .drawer-item i {
+            color: #FFD700 !important; /* आइकॉन्स को गोल्डन किया गया है */
+        }
+        /* एक्टिव (दान दें) बटन का डिज़ाइन */
+        .drawer-item.active-menu {
+            background: rgba(255, 255, 255, 0.15) !important;
+            border-left: 5px solid #FFD700 !important;
+            font-weight: bold;
+        }
+    </style>
+
     <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
     <aside class="drawer" id="endDrawer">
         <div class="drawer-header">
             <img src="https://cdn.jsdelivr.net/gh/sssfh26/Gaushala/logo.png" alt="Logo">
-            <div style="font-size: 18px; font-weight: bold;">श्री राम कृष्ण गौशाला</div>
+            <div style="font-size: 18px; font-weight: bold; margin-top: 10px; color: white;">श्री राम कृष्ण गौशाला</div>
         </div>
-        <div class="drawer-content">
-            <a href="#about" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-circle-info"></i> हमारे बारे में (About)</a>
-            <a href="#contact" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-phone"></i> संपर्क करें (Contact)</a>
-            <a href="#" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-user-gear"></i> सदस्य विवरण (Members)</a>
-            <a href="#" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-bell"></i> सूचनाएं (Notifications)</a>
+        
+        <div class="drawer-content" style="padding-top: 10px;">
+            
+            <!-- 1. होम (Home) -->
+            <a href="index.html" class="drawer-item" onclick="closeDrawer()">
+                <i class="fa-solid fa-house" style="width: 30px; text-align: center;"></i> 
+                <span>होम (Home)</span>
+            </a>
+            
+            <!-- 2. दान दें (Donate) - यह Highlighted रहेगा -->
+            <a href="donor.html" class="drawer-item active-menu" onclick="closeDrawer()">
+                <i class="fa-solid fa-hand-holding-heart" style="width: 30px; text-align: center;"></i> 
+                <span>दान दें (Donate)</span>
+            </a>
+            
+            <!-- 3. सदस्य (Members) -->
+            <a href="index.html#members" class="drawer-item" onclick="closeDrawer()">
+                <i class="fa-solid fa-users" style="width: 30px; text-align: center;"></i> 
+                <span>सदस्य (Members)</span>
+            </a>
+            
+            <!-- 4. संपर्क करें (Contact Us) -->
+            <a href="#contact" class="drawer-item" onclick="closeDrawer()">
+                <i class="fa-solid fa-headset" style="width: 30px; text-align: center;"></i> 
+                <span>संपर्क करें (Contact)</span>
+            </a>
+
         </div>
     </aside>
 
@@ -772,9 +813,13 @@ Put your HTML text here<!DOCTYPE html>
     <div class="magic-nav">
         <ul>
             <li class="list"><a href="index.html"><span class="icon"><i class="fa-solid fa-house"></i></span><span class="text">होम</span></a></li>
-            <li class="list active" onclick="switchTab('donate')"><a href="#"><span class="icon"><i class="fa-solid fa-hand-holding-heart"></i></span><span class="text">दान करें</span></a></li>
-            <li class="list" onclick="switchTab('fetch')"><a href="#"><span class="icon"><i class="fa-solid fa-file-invoice"></i></span><span class="text">रसीद</span></a></li>
-            <li class="list"><a href="#"><span class="icon"><i class="fa-solid fa-user"></i></span><span class="text">प्रोफाइल</span></a></li>
+            
+            <li class="list active"><a href="#"><span class="icon"><i class="fa-solid fa-hand-holding-heart"></i></span><span class="text">दान दें</span></a></li>
+            
+            <li class="list"><a href="index.html#members"><span class="icon"><i class="fa-solid fa-users"></i></span><span class="text">सदस्य</span></a></li>
+            
+            <li class="list"><a href="index.html#contact"><span class="icon"><i class="fa-solid fa-headset"></i></span><span class="text">संपर्क</span></a></li>
+            
             <div class="magic-indicator"></div>
         </ul>
     </div>
