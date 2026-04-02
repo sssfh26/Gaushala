@@ -579,12 +579,13 @@
             <div class="p-content-wrapper">
                 
                 <div class="p-header">
-                    <img class="p-logo pdf-no-style" src="https://cdn.jsdelivr.net/gh/sssfh26/Gaushala/logo.png" alt="Gaushala Logo" crossorigin="anonymous">
-                    <div class="p-title-section">
-                        <h1>Shri Ram Krishan Gaushala Sewa Samiti Charitable Trust</h1>
-                        <p>Salamkhera Road Dhangar, Fatehabad (HR)</p>
-                    </div>
-                </div>
+    <img class="p-logo pdf-no-style" src="https://cdn.jsdelivr.net/gh/sssfh26/Gaushala/logo.png" alt="Gaushala Logo" crossorigin="anonymous">
+    <div class="p-title-section">
+        <div style="font-size: 11px; font-weight: bold; color: #1a5620; margin-bottom: 2px; text-transform: uppercase;">Reg. No. 372</div>
+        <h1>Shri Ram Krishan Gaushala Sewa Samiti Charitable Trust</h1>
+        <p>Salamkhera Road Dhangar, Fatehabad (HR)</p>
+    </div>
+</div>
 
                 <div class="p-row">
                     <div class="p-field w-45">
@@ -916,7 +917,7 @@ function downloadAllReceipts() {
     Swal.fire({ title: 'सभी रसीदें बन रही हैं...', html: 'कृपया प्रतीक्षा करें...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); }});
 
     var opt = {
-        margin:       [0.2, 0.2, 0, 0.0], // Top, Right, Bottom, Left
+        margin:       [0.5, 0, 0, 0.5], // Top, Right, Bottom, Left
         filename:     `All_Receipts_${multipleDonationsData[0].mobile}.pdf`,
         image:        { type: 'jpeg', quality: 1.0 },
         html2canvas:  { scale: 2, useCORS: true, allowTaint: true, scrollY: 0, scrollX: 0 },
