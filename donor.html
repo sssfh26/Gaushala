@@ -1,20 +1,20 @@
-Put your HTML text here<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Shri Ram Krishna Gaushala - Official Portal</title>
     
-    <!-- Premium Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- ORIGINAL COLOR PALETTE --- */
+        /* ======================================================== */
+        /* --- ORIGINAL MAIN WEBSITE CSS (NO CHANGES HERE) -------- */
+        /* ======================================================== */
         :root {
             --dark-peacock: #005B60;
             --light-peacock: #E0F2F1;
@@ -38,9 +38,8 @@ Put your HTML text here<!DOCTYPE html>
             overflow-x: hidden;
         }
 
-        /* --- Official App Bar --- */
         .app-bar {
-            position: fixed; top: 0; width: 100%; height: 100px;
+            position: fixed; top: 0; width: 100%; height: 130px;
             background: var(--dark-peacock);
             display: flex; align-items: center; justify-content: space-between;
             padding: 0 20px; color: white; z-index: 1000;
@@ -50,11 +49,7 @@ Put your HTML text here<!DOCTYPE html>
         .app-bar-left { display: flex; align-items: center; gap: 12px; }
         
         .app-bar-left img {
-            width: 100px;
-            height: 100px;
-            border-radius: 100%;
-            object-fit: cover;
-            border: 2px solid white;
+            width: 100px; height: 100px; border-radius: 100%; object-fit: cover; border: 2px solid white;
         }
         .app-bar-title { font-size: 18px; font-weight: 700; display: flex; flex-direction: column; line-height: 1.7; }
         .app-bar-subtitle { font-size: 11px; color: var(--card-bg); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
@@ -62,246 +57,12 @@ Put your HTML text here<!DOCTYPE html>
         .app-bar-right { display: flex; align-items: center; gap: 18px; font-size: 18px; }
         .menu-btn { cursor: pointer; font-size: 24px; transition: 0.2s; }
 
-        /* --- Hero Section --- */
-        .hero-section { margin-top: 70px; width: 100%; }
-        .hero-banner { width: 100%; position: relative; overflow: hidden; background: #ccc; }
-        .carousel-slide {
-            width: 100%; height: 100%; object-fit: cover;
-            position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0;
-        }
-.carousel-slide {
-    animation: zoomEffect 5s ease-in-out infinite;
-}
-
-@keyframes zoomEffect {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.1); }
-}
-        .carousel-slide.active { opacity: 1; }
-
-        /* --- Main Layout --- */
         .main-container { max-width: 900px; margin: 0 auto; padding: 20px 15px; }
 
-        /* --- Top Navigation Icons --- */
-        .top-nav {
-            display: grid; grid-template-columns: repeat(4, 1fr);
-            background: var(--card-bg); padding: 20px 15px;
-            border-radius: 16px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            margin-bottom: 25px; border: 1px solid rgba(0,91,96,0.1);
-        }
-        .top-nav-item {
-            display: flex; flex-direction: column; align-items: center;
-            color: var(--dark-peacock); gap: 8px; cursor: pointer; transition: 0.3s;
-        }
-        .icon-circle {
-            width: 55px; height: 55px; border-radius: 50%;
-            background: var(--accent-peacock); display: flex;
-            justify-content: center; align-items: center; font-size: 22px;
-            color: var(--dark-peacock); border: 1px solid rgba(0,91,96,0.2);
-        }
-        .top-nav-item span { font-size: 14px; font-weight: 600; text-align: center; }
-
-        .section-title { font-size: 18px; font-weight: 700; color: var(--dark-peacock); margin-bottom: 12px; border-left: 4px solid var(--accent-peacock); padding-left: 10px; }
-
-        .premium-card {
-            background: var(--card-bg); border-radius: 16px; padding: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); margin-bottom: 25px;
-            border: 1px solid rgba(0,91,96,0.1);
-        }
-
-        .about-text { max-height: 300px; overflow-y: auto; padding-right: 10px; line-height: 1.8; }
-
-        .search-box {
-            display: flex; align-items: center; background: var(--card-bg);
-            border-radius: 12px; padding: 15px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            border: 1px solid rgba(0,91,96,0.2); margin-bottom: 25px;
-        }
-        .search-box input { border: none; outline: none; width: 100%; margin-left: 12px; font-size: 15px; color: var(--dark-peacock); }
-        .search-box i { color: var(--accent-peacock); font-size: 18px; }
-
-        .video-card h3 { font-size: 18px; color: var(--dark-peacock); line-height: 1.6; font-weight: 700; text-align: center; margin-bottom: 20px; }
-        .video-wrapper {
-            width: 100%; max-width: 350px; aspect-ratio: 9/9; margin: 0 auto 25px auto;
-            border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); background: #000;
-        }
-        .video-wrapper video { width: 100%; height: 100%; object-fit: cover; }
-        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .btn-theme { padding: 12px 24px; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; color: white; }
-        .btn-dark { background: var(--dark-peacock); }
-        .btn-orange { background: #E65100; }
-
-        .slider-wrapper { margin-bottom: 30px; }
-        .promo-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: 15px; padding-bottom: 10px; }
-        .promo-slider::-webkit-scrollbar { display: none; }
-        .promo-slide { min-width: 100%; scroll-snap-align: center; border-radius: 20px; padding: 30px 20px; color: white; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .promo-slide h3 { font-size: 20px; font-weight: 700; margin-bottom: 5px; }
-        .promo-slide p { font-size: 13px; opacity: 0.9; margin-bottom: 20px; }
-        .promo-slide img { width: 100%; max-width: 200px; border-radius: 8px; margin-bottom: 20px; }
-        
-        .bg-teal { background: linear-gradient(to bottom right, var(--dark-peacock), var(--accent-peacock)); }
-        .bg-orange { background: linear-gradient(to right, #F57C00, #E64A19); }
-        .bg-blue { background: linear-gradient(to right, #1565C0, #2196F3); }
-
-        .btn-white { background: white; color: var(--dark-peacock); padding: 10px 20px; border-radius: 5px; border: none; font-weight: bold; cursor: pointer; }
-        
-        .slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: 5px; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; background: #ccc; cursor: pointer; transition: 0.3s; }
-        .dot.active { background: var(--dark-peacock); width: 25px; border-radius: 5px; }
-
-        .donor-container { border: 2px solid rgba(212, 175, 55, 0.5); border-radius: 12px; background: white; overflow: hidden; margin-bottom: 25px; }
-        .donor-header { background: rgba(212, 175, 55, 0.2); padding: 15px; text-align: center; font-weight: bold; color: var(--dark-peacock); font-size: 18px; }
-        .donor-header i { color: var(--accent-peacock); margin: 0 5px; }
-        .donor-item { display: flex; align-items: center; justify-content: space-between; padding: 15px; border-bottom: 1px solid #eee; }
-        .donor-left { display: flex; align-items: center; gap: 15px; }
-        .donor-img { width: 50px; height: 50px; border-radius: 50%; background: var(--accent-peacock); overflow: hidden; }
-        .donor-img img { width: 100%; height: 100%; object-fit: cover; }
-        .donor-name { font-weight: bold; font-size: 16px; color: var(--dark-peacock); }
-        .donor-amount { color: var(--dark-peacock); font-weight: bold; font-size: 16px; }
-        .view-all-btn { display: block; width: 100%; text-align: center; padding: 15px; color: var(--accent-peacock); font-weight: bold; text-decoration: none; }
-
-        .stats-row { display: flex; justify-content: space-evenly; text-align: center; margin-bottom: 25px; }
-        .stat-item h2 { color: var(--dark-peacock); font-size: 24px; }
-        .stat-item p { color: var(--accent-peacock); font-size: 14px; font-weight: 600; }
-
-        .footer { background: var(--dark-peacock); color: white; padding: 40px 20px 100px 20px; margin-top: 20px; }
-        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 30px; max-width: 900px; margin: 0 auto; }
-        .footer-logo img, .drawer-header img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; background: white; padding: 3px; }
-        .footer-text { font-size: 14px; opacity: 0.8; line-height: 1.6; }
-        .footer-title { font-size: 18px; font-weight: bold; color: var(--gold-color); margin-bottom: 15px; }
-        .social-icons { display: flex; gap: 15px; margin-top: 15px; }
-        .social-icons a { color: white; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 18px; text-decoration: none; transition: 0.3s; }
-        .social-icons a:hover { background: var(--light-peacock); color: var(--dark-peacock); transform: translateY(-3px); }
-        .footer-links a { display: block; color: white; text-decoration: none; margin-bottom: 10px; opacity: 0.8; }
-        .footer-links a:hover { color: var(--light-peacock); opacity: 1; }
-        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 30px; padding-top: 20px; font-size: 13px; opacity: 0.7; }
-
-        .whatsapp-float {
-            position: fixed; bottom: 105px; right: 20px; width: 55px; height: 55px;
-            background-color: #25D366; color: #FFF; border-radius: 50%;
-            text-align: center; font-size: 30px; box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
-            z-index: 1000; display: flex; justify-content: center; align-items: center;
-            text-decoration: none; animation: bounce 2s infinite;
-        }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
-
-        .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1001; display: none; }
-        .drawer { position: fixed; top: 0; right: -320px; width: 280px; height: 100%; background: white; z-index: 1002; transition: 0.3s ease; }
-        .drawer-header { background: var(--dark-peacock); padding: 30px 20px; text-align: center; color: white; }
-        .drawer-header img { height: 60px; margin-bottom: 10px; background: white; padding: 2px; border-radius: 5px; }
-        .drawer-item { padding: 15px 20px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #eee; color: var(--dark-peacock); font-weight: 500; text-decoration: none; }
-        .drawer-item i { color: var(--accent-peacock); font-size: 20px; }
-
-        /* ========================================= */
-        /* --- MAGIC BOTTOM NAVIGATION (MOBILE)  --- */
-        /* ========================================= */
-        .magic-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%; height: 70px;
-            background: var(--dark-peacock); display: flex; justify-content: center;
-            align-items: center; border-top-left-radius: 20px; border-top-right-radius: 20px;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.1); z-index: 999;
-        }
-        .magic-nav ul { display: flex; width: 300px; position: relative; }
-        .magic-nav ul li { position: relative; list-style: none; width: 75px; height: 70px; z-index: 1; }
-        .magic-nav ul li a { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; text-align: center; font-weight: 500; text-decoration: none; }
-        .magic-nav ul li a .icon { position: relative; display: block; line-height: 75px; font-size: 1.4em; text-align: center; transition: 0.5s; color: rgba(255, 255, 255, 0.5); }
-        .magic-nav ul li.active a .icon { transform: translateY(-32px); color: var(--dark-peacock); }
-        .magic-nav ul li a .text { position: absolute; color: var(--light-peacock); font-weight: 600; font-size: 0.70em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; transform: translateY(20px); }
-        .magic-nav ul li.active a .text { opacity: 1; transform: translateY(12px); }
-        
-        .magic-indicator {
-            position: absolute; top: -35px; left: 2.5px; width: 70px; height: 70px;
-            background: var(--light-peacock); border-radius: 50%;
-            border: 6px solid var(--accent-peacock); transition: 0.5s;
-        }
-        .magic-indicator::before { content: ''; position: absolute; top: 50%; left: -22px; width: 20px; height: 20px; background: transparent; border-top-right-radius: 20px; box-shadow: 1px -10px 0 0 var(--accent-peacock); }
-        .magic-indicator::after { content: ''; position: absolute; top: 50%; right: -22px; width: 20px; height: 20px; background: transparent; border-top-left-radius: 20px; box-shadow: -1px -10px 0 0 var(--accent-peacock); }
-
-        .magic-nav ul li:nth-child(1).active ~ .magic-indicator { transform: translateX(calc(75px * 0)); }
-        .magic-nav ul li:nth-child(2).active ~ .magic-indicator { transform: translateX(calc(75px * 1)); }
-        .magic-nav ul li:nth-child(3).active ~ .magic-indicator { transform: translateX(calc(75px * 2)); }
-        .magic-nav ul li:nth-child(4).active ~ .magic-indicator { transform: translateX(calc(75px * 3)); }
-
-
-        /* ========================================= */
-        /* --- MAGIC TOP NAV (DESKTOP) - DOWNWARD--- */
-        /* ========================================= */
-        .magic-nav-top { display: none; } 
-        
-        @media (min-width: 769px) {
-            .magic-nav-top {
-                display: flex; justify-content: center; align-items: center;
-                height: 70px; margin-top: 15px;
-            }
-            .magic-nav-top ul { display: flex; width: 400px; position: relative; }
-            .magic-nav-top ul li { position: relative; list-style: none; width: 100px; height: 70px; z-index: 1; }
-            .magic-nav-top ul li a { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; text-align: center; font-weight: 500; text-decoration: none; }
-            
-            .magic-nav-top ul li a .icon { 
-                position: relative; display: block; line-height: 75px; font-size: 1.5em; transition: 0.5s; color: rgba(255, 255, 255, 0.6); 
-            }
-            /* ICON ANIMATES DOWNWARD */
-            .magic-nav-top ul li.active a .icon { 
-                transform: translateY(32px); 
-                color: var(--dark-peacock); 
-            }
-
-            .magic-nav-top ul li a .text { 
-                position: absolute; color: var(--light-peacock); font-weight: 600; font-size: 0.8em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; 
-                transform: translateY(-20px); /* Faded higher up */
-            }
-            /* TEXT APPEARS ABOVE */
-            .magic-nav-top ul li.active a .text { 
-                opacity: 1; transform: translateY(-12px); 
-            }
-
-            /* GOLD CIRCLE MOVES TO THE BOTTOM */
-            .magic-indicator-top {
-                position: absolute; 
-                bottom: -35px; /* Sits at the bottom edge */
-                left: 15px; 
-                width: 70px; height: 70px; background: var(--light-peacock); border-radius: 50%;
-                border: 6px solid var(--dark-peacock); 
-                transition: 0.5s;
-            }
-
-            /* INVERTED CUTOUT EFFECTS */
-            .magic-indicator-top::before { 
-                content: ''; position: absolute; 
-                top: 15px; 
-                left: -22px; width: 20px; height: 20px; background: transparent; 
-                border-bottom-right-radius: 20px; /* Curve reversed */
-                box-shadow: 1px 10px 0 0 var(--dark-peacock); /* Shadow goes down */
-            }
-            .magic-indicator-top::after { 
-                content: ''; position: absolute; 
-                top: 15px; 
-                right: -22px; width: 20px; height: 20px; background: transparent; 
-                border-bottom-left-radius: 20px; /* Curve reversed */
-                box-shadow: -1px 10px 0 0 var(--dark-peacock); /* Shadow goes down */
-            }
-
-            .magic-nav-top ul li:nth-child(1).active ~ .magic-indicator-top { transform: translateX(calc(100px * 0)); }
-            .magic-nav-top ul li:nth-child(2).active ~ .magic-indicator-top { transform: translateX(calc(100px * 1)); }
-            .magic-nav-top ul li:nth-child(3).active ~ .magic-indicator-top { transform: translateX(calc(100px * 2)); }
-            .magic-nav-top ul li:nth-child(4).active ~ .magic-indicator-top { transform: translateX(calc(100px * 3)); }
-        }
-
-        /* Responsive Settings */
-        @media (max-width: 768px) {
-            .hero-section { padding: 15px; margin-top: 70px; }
-            .hero-banner { border-radius: 12px; aspect-ratio: 16/9; }
-            .magic-nav-top { display: none; }
-        }
-        
-        img[src*="logo.png"] {
+        img[src*="logo.png"]:not(.pdf-no-style) {
             border-radius: 50%; object-fit: cover; border: 2px solid #D4AF37; 
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
-        
-                      /* =========================
-           💎 PREMIUM UI UPGRADE
-           Paste at END of CSS
-        ========================= */
         
         :root {
             --glass-bg: rgba(255, 255, 255, 0.08);
@@ -310,157 +71,66 @@ Put your HTML text here<!DOCTYPE html>
             --soft-glow: 0 0 15px rgba(255,255,255,0.2);
         }
         
-        /* 🔥 APP BAR (Glass Effect) */
-        .app-bar {
-            background: rgba(0, 91, 96, 0.75) !important;
-            backdrop-filter: blur(15px);
-            box-shadow: var(--premium-glow);
-            border-bottom: 1px solid var(--glass-border);
-        }
+        .app-bar { background: rgba(0, 91, 96, 0.75) !important; backdrop-filter: blur(15px); box-shadow: var(--premium-glow); border-bottom: 1px solid var(--glass-border); }
+        .drawer { background: rgba(0, 91, 96, 0.9) !important; backdrop-filter: blur(20px); box-shadow: 10px 0 40px rgba(0,0,0,0.4); }
         
-        /* 🔥 SIDEBAR / DRAWER */
-        .drawer {
-            background: rgba(0, 91, 96, 0.9) !important;
-            backdrop-filter: blur(20px);
-            box-shadow: 10px 0 40px rgba(0,0,0,0.4);
-        }
+        button, .btn { background: linear-gradient(135deg, #D4AF37, #FFD700); border: none; color: black; border-radius: 30px; padding: 10px 20px; font-weight: 600; transition: 0.3s; }
+        button:hover, .btn:hover { box-shadow: 0 0 20px rgba(212, 175, 55, 0.8); transform: scale(1.05); }
         
-        /* 🔥 CARDS PREMIUM */
-        .premium-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--premium-glow);
-            transition: 0.3s;
-        }
+        .drawer-header img { width: 60px !important; height: 60px !important; border-radius: 50% !important; object-fit: cover !important; }
+        /* --- FOOTER CSS --- */
+.footer {
+    background-color: var(--dark-peacock);
+    color: white;
+    padding: 40px 20px 100px 20px; /* नीचे 100px की पैडिंग दी है ताकि मोबाइल में मैजिक नैव के पीछे कंटेंट ना छुपे */
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+.footer-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--gold-color);
+}
+.footer-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #E0F2F1;
+}
+.social-icons { display: flex; gap: 15px; margin-top: 15px; }
+.social-icons a {
+    width: 35px; height: 35px;
+    background: rgba(255,255,255,0.1);
+    display: flex; justify-content: center; align-items: center;
+    border-radius: 50%; color: white; text-decoration: none; transition: 0.3s;
+}
+.social-icons a:hover { background: var(--gold-color); transform: translateY(-3px); }
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { color: #E0F2F1; text-decoration: none; font-size: 14px; transition: 0.3s; }
+.footer-links a:hover { color: var(--gold-color); padding-left: 5px; }
+.copyright {
+    text-align: center; margin-top: 30px; padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px; color: #ccc;
+}
+        .footer-logo img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
         
-        .premium-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 45px rgba(0,0,0,0.35);
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(#D4AF37, #FFD700); border-radius: 10px; }
         
-        /* 🔥 BUTTONS */
-        button, .btn, .read-more-btn {
-            background: linear-gradient(135deg, #D4AF37, #FFD700);
-            border: none;
-            color: black;
-            border-radius: 30px;
-            padding: 10px 20px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        
-        button:hover, .btn:hover, .read-more-btn:hover {
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
-            transform: scale(1.05);
-        }
-        
-        /* 🔥 MENU GLOW */
-        .desktop-menu a {
-            position: relative;
-        }
-        
-        .desktop-menu a:hover {
-            text-shadow: 0 0 10px rgba(255,255,255,0.8);
-        }
-        
-        /* 🔥 UNDERLINE ANIMATION */
-        .desktop-menu a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 0%;
-            height: 3px;
-            background: #FFD700;
-            transition: 0.3s;
-            border-radius: 5px;
-        }
-        
-        .desktop-menu a:hover::after {
-            width: 100%;
-        }
-        
-        /* 🔥 ICON GLOW */
-        i {
-            transition: 0.3s;
-        }
-        
-        i:hover {
-            text-shadow: 0 0 12px rgba(255,255,255,0.9);
-        }
-        
-        /* 🔥 LOGO GLOW + PERFECT CIRCLE */
-        img[src*="logo"] {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 0 15px rgba(255,255,255,0.3);
-            transition: 0.3s;
-        }
-        
-        img[src*="logo"]:hover {
-            box-shadow: 0 0 25px rgba(255,255,255,0.7);
-        }
-        
-        /* 🔥 SIDEBAR LOGO FIX */
-        .drawer-header img {
-            width: 60px !important;
-            height: 60px !important;
-            border-radius: 50% !important;
-            object-fit: cover !important;
-        }
-        
-        /* 🔥 FOOTER LOGO FIX */
-        .footer-logo img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        
-        /* 🔥 MAGIC NAV PREMIUM */
-        .magic-nav ul li a .text,
-        .magic-nav-top ul li a .text {
-            color: white !important;
-        }
-        
-        .magic-nav ul li.active a .icon {
-            color: white !important;
-        }
-        
-        .magic-indicator {
-            background: lightgreen !important;
-        }
-        
-        /* 🔥 SCROLLBAR PREMIUM */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(#D4AF37, #FFD700);
-            border-radius: 10px;
-        }
-        
-        /* 🔥 SMOOTH ANIMATION GLOBAL */
-        * {
-            scroll-behavior: smooth;
-        }
-                @media (min-width: 769px) {
-            .hero-banner { height: 500px; }
+        * { scroll-behavior: smooth; }
+
+        @media (min-width: 769px) {
             .menu-btn { display: none; }
-            .magic-nav { display: none; } /* Hide mobile bottom nav on Desktop */
+            .magic-nav { display: none; } 
             .whatsapp-float { bottom: 30px; } 
             .footer { padding-bottom: 40px; }
             .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
-            .promo-slide { min-width: calc(33.333% - 10px); }
-            .slider-dots { display: none; }
         }
 
-        /* --- Main Content & Forms --- */
         .main-container { max-width: 800px; margin: 120px auto 40px auto; padding: 20px 15px; }
         .section-title { font-size: 20px; font-weight: 700; color: var(--dark-peacock); margin-bottom: 20px; border-left: 5px solid var(--gold-color); padding-left: 10px; display: flex; align-items: center; gap: 10px; }
         
@@ -480,10 +150,8 @@ Put your HTML text here<!DOCTYPE html>
         .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         
         .btn-custom { width: 100%; padding: 15px; border-radius: 12px; border: none; font-size: 16px; font-weight: bold; cursor: pointer; color: white; background: var(--dark-peacock); display: flex; justify-content: center; align-items: center; gap: 8px; transition: 0.3s; }
-        .btn-custom:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,91,96,0.3); }
         .btn-green { background: #28a745; }
         .btn-blue { background: #007bff; }
-        .btn-gold { background: linear-gradient(135deg, #D4AF37, #FFD700); color: black; }
         
         .inline-btn-group { display: flex; gap: 10px; margin-bottom: 15px; }
         .inline-btn-group .input-group { flex: 1; margin-bottom: 0; }
@@ -495,82 +163,211 @@ Put your HTML text here<!DOCTYPE html>
         .loader { border: 3px solid #f3f3f3; border-top: 3px solid white; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: none; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* ========================================= */
-        /* --- AMAZING PDF TEMPLATE (LANDSCAPE) --- */
-        /* ========================================= */
-        #pdf-template { 
-            display: none; 
-            width: 800px; 
-            height: 500px; 
-            
-            /* 👇 GITHUB RAW URL FOR RECEIPT BACKGROUND 👇 */
-            background-image: url('https://raw.githubusercontent.com/sssfh26/Gaushala/67f3b913c0f724b241f01b1baa7358079bad798b/Receipt.png'); 
-            
-            background-size: 100% 100%; 
-            background-repeat: no-repeat;
-            position: relative; 
+        .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1001; display: none; }
+        .drawer { position: fixed; top: 0; right: -320px; width: 280px; height: 100%; background: white; z-index: 1002; transition: 0.3s ease; }
+        .drawer-header { background: var(--dark-peacock); padding: 30px 20px; text-align: center; color: white; }
+        .drawer-header img { height: 60px; margin-bottom: 10px; background: white; padding: 2px; border-radius: 5px; }
+        .drawer-item { padding: 15px 20px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #eee; color: white !important; font-weight: 500; text-decoration: none; font-size: 16px;}
+        .drawer-item i { color: #FFD700 !important; font-size: 20px;}
+        .drawer-item.active-menu { background: rgba(255, 255, 255, 0.15) !important; border-left: 5px solid #FFD700 !important; font-weight: bold; }
+
+        /* Magic Navigation Code */
+        .magic-nav { position: fixed; bottom: 0; left: 0; width: 100%; height: 70px; background: var(--dark-peacock); display: flex; justify-content: center; align-items: center; border-top-left-radius: 20px; border-top-right-radius: 20px; box-shadow: 0 -5px 15px rgba(0,0,0,0.1); z-index: 999; }
+        .magic-nav ul { display: flex; width: 300px; position: relative; }
+        .magic-nav ul li { position: relative; list-style: none; width: 75px; height: 70px; z-index: 1; }
+        .magic-nav ul li a { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; text-align: center; font-weight: 500; text-decoration: none; }
+        .magic-nav ul li a .icon { position: relative; display: block; line-height: 75px; font-size: 1.4em; text-align: center; transition: 0.5s; color: rgba(255, 255, 255, 0.5); }
+        .magic-nav ul li.active a .icon { transform: translateY(-32px); color: white !important; }
+        .magic-nav ul li a .text { position: absolute; color: white !important; font-weight: 600; font-size: 0.70em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; transform: translateY(20px); }
+        .magic-nav ul li.active a .text { opacity: 1; transform: translateY(12px); }
+        .magic-indicator { position: absolute; top: -35px; left: 2.5px; width: 70px; height: 70px; background: lightgreen !important; border-radius: 50%; border: 6px solid var(--accent-peacock); transition: 0.5s; }
+        .magic-nav ul li:nth-child(1).active ~ .magic-indicator { transform: translateX(calc(75px * 0)); }
+        .magic-nav ul li:nth-child(2).active ~ .magic-indicator { transform: translateX(calc(75px * 1)); }
+        .magic-nav ul li:nth-child(3).active ~ .magic-indicator { transform: translateX(calc(75px * 2)); }
+        .magic-nav ul li:nth-child(4).active ~ .magic-indicator { transform: translateX(calc(75px * 3)); }
+        .magic-indicator::before { content: ''; position: absolute; top: 50%; left: -22px; width: 20px; height: 20px; background: transparent; border-top-right-radius: 20px; box-shadow: 1px -10px 0 0 var(--accent-peacock); }
+        .magic-indicator::after { content: ''; position: absolute; top: 50%; right: -22px; width: 20px; height: 20px; background: transparent; border-top-left-radius: 20px; box-shadow: -1px -10px 0 0 var(--accent-peacock); }
+
+        .magic-nav-top { display: none; } 
+        @media (min-width: 769px) {
+            .magic-nav-top { display: flex; justify-content: center; align-items: center; height: 70px; margin-top: 15px; }
+            .magic-nav-top ul { display: flex; width: 400px; position: relative; }
+            .magic-nav-top ul li { position: relative; list-style: none; width: 100px; height: 70px; z-index: 1; }
+            .magic-nav-top ul li a { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; text-align: center; font-weight: 500; text-decoration: none; }
+            .magic-nav-top ul li a .icon { position: relative; display: block; line-height: 75px; font-size: 1.5em; transition: 0.5s; color: rgba(255, 255, 255, 0.6); }
+            .magic-nav-top ul li.active a .icon { transform: translateY(32px); color: var(--dark-peacock); }
+            .magic-nav-top ul li a .text { position: absolute; color: white !important; font-weight: 600; font-size: 0.8em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; transform: translateY(-20px); }
+            .magic-nav-top ul li.active a .text { opacity: 1; transform: translateY(-12px); }
+            .magic-indicator-top { position: absolute; bottom: -35px; left: 15px; width: 70px; height: 70px; background: var(--light-peacock); border-radius: 50%; border: 6px solid var(--dark-peacock); transition: 0.5s; }
+            .magic-nav-top ul li:nth-child(1).active ~ .magic-indicator-top { transform: translateX(calc(100px * 0)); }
+            .magic-nav-top ul li:nth-child(2).active ~ .magic-indicator-top { transform: translateX(calc(100px * 1)); }
+            .magic-nav-top ul li:nth-child(3).active ~ .magic-indicator-top { transform: translateX(calc(100px * 2)); }
+            .magic-nav-top ul li:nth-child(4).active ~ .magic-indicator-top { transform: translateX(calc(100px * 3)); }
+            .magic-indicator-top::before { content: ''; position: absolute; top: 15px; left: -22px; width: 20px; height: 20px; background: transparent; border-bottom-right-radius: 20px; box-shadow: 1px 10px 0 0 var(--dark-peacock); }
+            .magic-indicator-top::after { content: ''; position: absolute; top: 15px; right: -22px; width: 20px; height: 20px; background: transparent; border-bottom-left-radius: 20px; box-shadow: -1px 10px 0 0 var(--dark-peacock); }
+        }
+
+        .whatsapp-float { position: fixed; bottom: 105px; right: 20px; width: 55px; height: 55px; background-color: #25D366; color: #FFF; border-radius: 50%; text-align: center; font-size: 30px; box-shadow: 0px 4px 10px rgba(0,0,0,0.3); z-index: 1000; display: flex; justify-content: center; align-items: center; text-decoration: none; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+
+        /* ======================================================== */
+        /* --- YOUR NEW 6x4 RECEIPT CSS (ISOLATED/SCOPED) --------- */
+        /* ======================================================== */
+        
+        #pdf-page-wrapper {
+            position: fixed; 
+            top: 0; 
+            left: -9999px; /* Screen से बाहर रखा गया है ताकि पेज खराब न हो */
+            z-index: 1050; /* Sweetalert के पीछे */
+            background-color: #ffffff; /* वाइट बैकग्राउंड ताकि ब्लैंक न हो */
+            padding: 20px;
+        }
+
+        .print-receipt-container {
+            width: 6in;       /* चौड़ाई 6 इंच */
+            height: 3.5in;      /* ऊंचाई 3.5 इंच */
+            background-color: #eaf3e5; 
+            border: 6px solid #4a7c41; 
+            border-radius: 4px;
+            padding: 15px 20px; 
+            position: relative;
+            overflow: hidden; 
+            box-shadow: none; /* Print me jarurat nahi */
+            font-family: 'Times New Roman', Times, serif;
+            color: #000;
+            box-sizing: border-box;
+        }
+
+        .print-receipt-container * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .print-receipt-container .p-watermark-feather {
+            position: absolute;
+            top: -100px;       
+            left: 10%;         
+            height: 450px;     
+            width: auto;
+            opacity: 0.12;     
+            z-index: 1;
+            transform: rotate(72deg); 
+            pointer-events: none;
+            border: none !important; border-radius: 0 !important; box-shadow: none !important;
+        }
+
+        .print-receipt-container .p-watermark-center {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px; 
+            opacity: 0.10; 
+            z-index: 1;
+            pointer-events: none;
+            border: none !important; border-radius: 0 !important; box-shadow: none !important;
+        }
+
+        .print-receipt-container .p-content-wrapper { position: relative; z-index: 2; }
+
+        .print-receipt-container .p-header { display: flex; align-items: center; margin-bottom: 15px; }
+
+        .print-receipt-container .p-logo {
+            width: 60px; height: auto; margin-right: 15px; background-color: transparent;
+            border: none !important; border-radius: 0 !important; box-shadow: none !important;
+        }
+
+        .print-receipt-container .p-title-section { text-align: center; flex-grow: 1; margin-top: -5px; }
+        .print-receipt-container .p-title-section h1 {
+            color: #1a5620; font-size: 16px; font-weight: bold; letter-spacing: -0.5px;
+            margin-bottom: 4px; white-space: nowrap; transform: scaleY(1.15); 
+        }
+        .print-receipt-container .p-title-section p { font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #000; }
+
+        .print-receipt-container .p-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: baseline; /* flex-end की जगह baseline से टेक्स्ट एकदम सीध में रहेगा */
+            margin-bottom: 15px; 
+            gap: 10px;
+        }
+        .print-receipt-container .p-field { 
+            display: flex; 
+            align-items: baseline; /* यहाँ भी baseline ज़रूरी है */
+        }
+
+        .print-receipt-container .full-width { width: 100%; }
+        .print-receipt-container .w-45 { width: 45%; }
+        .print-receipt-container .w-55 { width: 55%; }
+
+        .print-receipt-container .p-label { font-size: 14px; font-weight: bold; white-space: nowrap; margin-right: 10px; }
+        .print-receipt-container .center-label { text-align: center; line-height: 1.2; }
+
+        .print-receipt-container .p-dots {
+            flex-grow: 1;
+            border-bottom: 2px dotted #333; /* gradient की जगह सिंपल बॉर्डर, जो कभी अलाइनमेंट खराब नहीं करेगा */
             color: #000; 
             font-family: 'Poppins', sans-serif; 
-            font-weight: 700; 
-            font-size: 16px;
+            font-size: 14px; 
+            font-weight: 600; 
+            text-transform: capitalize;
+            text-align: center; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            padding: 0 5px;
+            margin-left: 5px;
+            line-height: 1.2;
+            height: auto; /* पुरानी 14px height हटा दी गई है ताकि टेक्स्ट न कटे */
+            background: none;
         }
-        .pdf-abs { position: absolute; }
+        .print-receipt-container .flex-grow { flex-grow: 1; }
+
+        .print-receipt-container .p-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 30px; }
+
+        .print-receipt-container .amount-box {
+            background-color: #266b26; color: #fff; border-radius: 50px; padding: 8px 15px;
+            display: flex; align-items: flex-end; width: 180px; border: 2px solid #fff;
+            box-shadow: 0 0 0 1px #eaf3e5; font-size: 14px; font-weight: bold;
+        }
+                .print-receipt-container .amount-box .p-dots { 
+            border-bottom: 2px dotted #fff; 
+            color: #fff; 
+            margin-left: 10px; 
+        }
+
+        .print-receipt-container .manager-box {
+            background-color: #df6c35; color: #fff; border-radius: 50px; padding: 8px 25px;
+            font-size: 14px; font-weight: bold; font-family: Arial, sans-serif;
+            border: 2px solid #fff; box-shadow: 0 0 0 1px #eaf3e5; text-align: center; position: relative;
+        }
         
-        /* Positioning on Dotted Lines */
-       /* Positioning on Dotted Lines */
-        #pdf_id { top: 180px; left: 170px; color: #005B60; }
-        #pdf_date { top: 180px; left: 560px; color: #005B60; }
-        #pdf_name { top: 238px; left: 390px; font-size: 18px; color: #000; text-transform: capitalize; }
-        #pdf_father { top: 295px; left: 190px; }
-        #pdf_utr { top: 295px; left: 580px; font-size: 14px; color: #28a745; }
-        #pdf_address { top: 350px; left: 140px; width: 620px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        #pdf_amount { top: 446px; left: 100px; color: white; font-size: 18px; letter-spacing: 1px; }
-        
-        /* 👇 GITHUB RAW URL FOR MANAGER SIGNATURE 👇 */
-        #manager_sign { position: absolute; bottom: 40px; right: 50px; height: 60px; z-index: 10; mix-blend-mode: multiply; }
+        .print-receipt-container .manager-sign {
+            position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%);
+            height: 40px; mix-blend-mode: multiply; z-index: 10;
+            border: none !important; border-radius: 0 !important; box-shadow: none !important;
+        }
+
     </style>
 </head>
 <body>
 
-   <!-- App Bar -->
-    <header class="app-bar">
+   <header class="app-bar">
         <div class="app-bar-left">
             <img src="https://cdn.jsdelivr.net/gh/sssfh26/Gaushala/logo.png" alt="Logo">
             <div class="app-bar-title">
                 श्री राम कृष्णा गौशाला सेवा समिति
-                <span class="app-bar-subtitle">Cheritable Trust(Reg. No. 372)</span>
+                <span class="app-bar-subtitle">Charitable Trust(Reg. No. 372)</span>
             </div>
         </div>
         
-        <!-- ========================================== -->
-        <!-- MAGIC TOP NAVIGATION MENU (FOR DESKTOP) -->
-        <!-- ========================================== -->
         <div class="magic-nav-top">
             <ul>
-                <li class="list-top">
-                    <a href="index.html">
-                        <span class="icon"><i class="fa-solid fa-house"></i></span>
-                        <span class="text">होम</span>
-                    </a>
-                </li>
-                <li class="list-top active">
-                    <a href="#">
-                        <span class="icon"><i class="fa-solid fa-hand-holding-heart"></i></span>
-                        <span class="text">दान दें</span>
-                    </a>
-                </li>
-                <li class="list-top">
-                    <a href="index.html#members">
-                        <span class="icon"><i class="fa-solid fa-users"></i></span>
-                        <span class="text">सदस्य</span>
-                    </a>
-                </li>
-                <li class="list-top">
-                    <a href="index.html#contact">
-                        <span class="icon"><i class="fa-solid fa-headset"></i></span>
-                        <span class="text">संपर्क</span>
-                    </a>
-                </li>
+                <li class="list-top"><a href="index.html"><span class="icon"><i class="fa-solid fa-house"></i></span><span class="text">होम</span></a></li>
+                <li class="list-top active"><a href="#"><span class="icon"><i class="fa-solid fa-hand-holding-heart"></i></span><span class="text">दान दें</span></a></li>
+                <li class="list-top"><a href="index.html#members"><span class="icon"><i class="fa-solid fa-users"></i></span><span class="text">सदस्य</span></a></li>
+                <li class="list-top"><a href="index.html#contact"><span class="icon"><i class="fa-solid fa-headset"></i></span><span class="text">संपर्क</span></a></li>
                 <div class="magic-indicator-top"></div>
             </ul>
         </div>
@@ -581,26 +378,6 @@ Put your HTML text here<!DOCTYPE html>
         </div>
     </header>
 
-    <!-- ========================================== -->
-    <!-- Side Drawer (Left Menu) FIXED CODE         -->
-    <!-- ========================================== -->
-    <style>
-        /* डार्क बैकग्राउंड पर टेक्स्ट दिखाने के लिए CSS Fix */
-        .drawer-item {
-            color: white !important; /* टेक्स्ट को सफ़ेद किया गया है */
-            font-size: 16px;
-        }
-        .drawer-item i {
-            color: #FFD700 !important; /* आइकॉन्स को गोल्डन किया गया है */
-        }
-        /* एक्टिव (दान दें) बटन का डिज़ाइन */
-        .drawer-item.active-menu {
-            background: rgba(255, 255, 255, 0.15) !important;
-            border-left: 5px solid #FFD700 !important;
-            font-weight: bold;
-        }
-    </style>
-
     <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
     <aside class="drawer" id="endDrawer">
         <div class="drawer-header">
@@ -609,50 +386,24 @@ Put your HTML text here<!DOCTYPE html>
         </div>
         
         <div class="drawer-content" style="padding-top: 10px;">
-            
-            <!-- 1. होम (Home) -->
-            <a href="index.html" class="drawer-item" onclick="closeDrawer()">
-                <i class="fa-solid fa-house" style="width: 30px; text-align: center;"></i> 
-                <span>होम (Home)</span>
-            </a>
-            
-            <!-- 2. दान दें (Donate) - यह Highlighted रहेगा -->
-            <a href="donor.html" class="drawer-item active-menu" onclick="closeDrawer()">
-                <i class="fa-solid fa-hand-holding-heart" style="width: 30px; text-align: center;"></i> 
-                <span>दान दें (Donate)</span>
-            </a>
-            
-            <!-- 3. सदस्य (Members) -->
-            <a href="index.html#members" class="drawer-item" onclick="closeDrawer()">
-                <i class="fa-solid fa-users" style="width: 30px; text-align: center;"></i> 
-                <span>सदस्य (Members)</span>
-            </a>
-            
-            <!-- 4. संपर्क करें (Contact Us) -->
-            <a href="#contact" class="drawer-item" onclick="closeDrawer()">
-                <i class="fa-solid fa-headset" style="width: 30px; text-align: center;"></i> 
-                <span>संपर्क करें (Contact)</span>
-            </a>
-
+            <a href="index.html" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-house" style="width: 30px; text-align: center;"></i> <span>होम (Home)</span></a>
+            <a href="donor.html" class="drawer-item active-menu" onclick="closeDrawer()"><i class="fa-solid fa-hand-holding-heart" style="width: 30px; text-align: center;"></i> <span>दान दें (Donate)</span></a>
+            <a href="index.html#members" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-users" style="width: 30px; text-align: center;"></i> <span>सदस्य (Members)</span></a>
+            <a href="#contact" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-headset" style="width: 30px; text-align: center;"></i> <span>संपर्क करें (Contact)</span></a>
         </div>
     </aside>
 
-    <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/919466590166" target="_blank" class="whatsapp-float">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
-    <!-- MAIN CONTENT -->
+    
     <main class="main-container">
 
-        <!-- TAB SWITCHER -->
         <div class="tab-switcher">
             <button class="tab-btn active" id="tab-donate" onclick="switchTab('donate')"><i class="fa-solid fa-hand-holding-heart"></i> नया दान करें</button>
             <button class="tab-btn" id="tab-fetch" onclick="switchTab('fetch')"><i class="fa-solid fa-download"></i> रसीद निकालें</button>
         </div>
 
-        <!-- ============================================== -->
-        <!-- STEP 1: Registration Form (DONATE)             -->
-        <!-- ============================================== -->
         <div id="registration-section" class="card-box">
             <div class="section-title"><i class="fa-solid fa-user-plus"></i> डोनर पंजीकरण (Register as Donor)</div>
             
@@ -720,9 +471,6 @@ Put your HTML text here<!DOCTYPE html>
             </form>
         </div>
 
-        <!-- ============================================== -->
-        <!-- STEP 2: Payment Section (DONATE)               -->
-        <!-- ============================================== -->
         <div id="payment-section" class="card-box" style="display:none;">
             <div class="section-title"><i class="fa-solid fa-indian-rupee-sign"></i> सुरक्षित दान करें (Make Payment)</div>
             
@@ -745,9 +493,6 @@ Put your HTML text here<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- ============================================== -->
-        <!-- NEW SECTION: FETCH RECEIPT                     -->
-        <!-- ============================================== -->
         <div id="fetch-receipt-section" class="card-box" style="display:none;">
             <div class="section-title" style="border-left-color: #28a745;"><i class="fa-solid fa-file-invoice"></i> पुरानी रसीद निकालें</div>
             <p style="margin-bottom: 20px; font-size: 14px; color: grey;">अपनी पुरानी रसीद डाउनलोड करने के लिए कृपया अपना नाम, पिता का नाम और मोबाइल नंबर भरें (डेटा बिल्कुल सही होना चाहिए)।</p>
@@ -771,11 +516,17 @@ Put your HTML text here<!DOCTYPE html>
                     <div class="loader" id="fetch-loader"></div>
                 </button>
             </form>
+
+            <div id="receipt-results" style="display:none; margin-top: 25px;">
+                <h4 style="color: var(--dark-peacock); margin-bottom: 15px; border-bottom: 2px solid #ccc; padding-bottom: 5px;">
+                    <i class="fa-solid fa-clock-rotate-left"></i> आपके पिछले दान (Past Donations)
+                </h4>
+                <div id="receipt-list"></div>
+            </div>
         </div>
 
     </main>
 
-       <!-- Footer Section -->
     <footer class="footer" id="contact">
         <div class="footer-grid">
             <div>
@@ -809,51 +560,90 @@ Put your HTML text here<!DOCTYPE html>
         </div>
     </footer>
 
-    <!-- Mobile Bottom Magic Nav -->
     <div class="magic-nav">
         <ul>
             <li class="list"><a href="index.html"><span class="icon"><i class="fa-solid fa-house"></i></span><span class="text">होम</span></a></li>
-            
             <li class="list active"><a href="#"><span class="icon"><i class="fa-solid fa-hand-holding-heart"></i></span><span class="text">दान दें</span></a></li>
-            
             <li class="list"><a href="index.html#members"><span class="icon"><i class="fa-solid fa-users"></i></span><span class="text">सदस्य</span></a></li>
-            
             <li class="list"><a href="index.html#contact"><span class="icon"><i class="fa-solid fa-headset"></i></span><span class="text">संपर्क</span></a></li>
-            
             <div class="magic-indicator"></div>
         </ul>
     </div>
 
-    <!-- ============================================== -->
-    <!-- PDF TEMPLATE (BACKGROUND IMAGE LAYER)          -->
-    <!-- ============================================== -->
-    <div id="pdf-template">
-        <!-- Text Overlays -->
-        <div id="pdf_id" class="pdf-abs"></div>
-        <div id="pdf_date" class="pdf-abs"></div>
-        <div id="pdf_name" class="pdf-abs"></div>
-        <div id="pdf_father" class="pdf-abs"></div>
-        <div id="pdf_utr" class="pdf-abs"></div>
-        <div id="pdf_address" class="pdf-abs"></div>
-        <div id="pdf_amount" class="pdf-abs"></div>
-        
-        <!-- 👇 RAW URL FOR SIGNATURE 👇 crossorigin="anonymous" jaruri hai image load ke liye -->
-        <img id="manager_sign" src="https://raw.githubusercontent.com/sssfh26/Gaushala/67f3b913c0f724b241f01b1baa7358079bad798b/sign_mangal.png" alt="Sign" crossorigin="anonymous">
+    <div id="pdf-page-wrapper">
+        <div class="print-receipt-container" id="rcpt-capture-area">
+            
+            <img class="p-watermark-feather pdf-no-style" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Peacock_feather_2.png/800px-Peacock_feather_2.png" alt="feather watermark" crossorigin="anonymous">
+            <img class="p-watermark-center pdf-no-style" src="https://cdn.jsdelivr.net/gh/sssfh26/Gaushala/logo.png" alt="center watermark logo" crossorigin="anonymous">
+
+            <div class="p-content-wrapper">
+                
+                <div class="p-header">
+                    <img class="p-logo pdf-no-style" src="https://cdn.jsdelivr.net/gh/sssfh26/Gaushala/logo.png" alt="Gaushala Logo" crossorigin="anonymous">
+                    <div class="p-title-section">
+                        <h1>Shri Ram Krishan Gaushala Sewa Samiti Charitable Trust</h1>
+                        <p>Salamkhera Road Dhangar, Fatehabad (HR)</p>
+                    </div>
+                </div>
+
+                <div class="p-row">
+                    <div class="p-field w-45">
+                        <span class="p-label">Receipt No.</span>
+                        <span class="p-dots flex-grow" id="p_rcpt_id"></span>
+                    </div>
+                    <div class="p-field w-45">
+                        <span class="p-label">Date</span>
+                        <span class="p-dots flex-grow" id="p_rcpt_date"></span> 
+                    </div>
+                </div>
+
+                <div class="p-row">
+                    <div class="p-field full-width">
+                        <span class="p-label">Received with thanks From Mr/Mrs.</span>
+                        <span class="p-dots flex-grow" id="p_rcpt_name"></span>
+                    </div>
+                </div>
+
+                <div class="p-row">
+                    <div class="p-field w-45">
+                        <span class="p-label">S/D/W/o.</span>
+                        <span class="p-dots flex-grow" id="p_rcpt_father"></span>
+                    </div>
+                    <div class="p-field w-55">
+                        <span class="p-label center-label">Transaction ID</span>
+                        <span class="p-dots flex-grow" id="p_rcpt_utr" style="color: #28a745;"></span>
+                    </div>
+                </div>
+
+                <div class="p-row">
+                    <div class="p-field full-width">
+                        <span class="p-label">Address</span>
+                        <span class="p-dots flex-grow" id="p_rcpt_address"></span>
+                    </div>
+                </div>
+
+                <div class="p-footer">
+                    <div class="amount-box">
+                        Rs. : <span class="p-dots flex-grow" id="p_rcpt_amount"></span>
+                    </div>
+                    <div class="manager-box">
+                        <img class="manager-sign pdf-no-style" src="https://raw.githubusercontent.com/sssfh26/Gaushala/67f3b913c0f724b241f01b1baa7358079bad798b/sign_mangal.png" alt="Sign" crossorigin="anonymous">
+                        Manager
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Scripts -->
     <script>
-        // Drawer Logic
         const drawer = document.getElementById('endDrawer');
         const overlay = document.getElementById('drawerOverlay');
         function openDrawer() { drawer.style.right = '0'; overlay.style.display = 'block'; document.body.style.overflow = 'hidden'; }
         function closeDrawer() { drawer.style.right = '-320px'; overlay.style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-        // Magic Nav Logic
         document.querySelectorAll('.magic-nav .list').forEach(item => { item.addEventListener('click', function() { document.querySelectorAll('.magic-nav .list').forEach(i => i.classList.remove('active')); this.classList.add('active'); }); });
         document.querySelectorAll('.magic-nav-top .list-top').forEach(item => { item.addEventListener('click', function() { document.querySelectorAll('.magic-nav-top .list-top').forEach(i => i.classList.remove('active')); this.classList.add('active'); }); });
 
-        // TAB Switcher Logic
         function switchTab(tabName) {
             if(tabName === 'donate') {
                 document.getElementById('tab-donate').classList.add('active');
@@ -870,15 +660,12 @@ Put your HTML text here<!DOCTYPE html>
             }
         }
 
-        // ==========================================
-        // MAIN APPLICATION LOGIC 
-        // ==========================================
         const googleSheetUrl = "https://script.google.com/macros/s/AKfycbztreTtH2ZzH5Irosuwqpawr-Annf59ikgf8e0UgwfjVA9DWsY3LTPKD_INHl6_60HRTg/exec";
         
         let isMobileVerified = false;
         let globalDonorData = {};
+        let multipleDonationsData = []; 
 
-        // --- REGISTRATION LOGIC ---
         function sendOtp() {
             const mobile = document.getElementById('r_mobile').value;
             if (mobile.length !== 10) { Swal.fire({ icon: 'error', text: 'Please enter a valid 10-digit mobile number' }); return; }
@@ -995,18 +782,24 @@ Put your HTML text here<!DOCTYPE html>
             .catch(err => Swal.fire('Warning', 'Payment received, but failed to update sheet.', 'warning'));
         }
 
-        // --- FETCH OLD RECEIPT LOGIC ---
-        // Requires the doGet function in your Google Apps Script
         function fetchOldReceipt() {
-            const n = document.getElementById('f_name').value;
-            const f = document.getElementById('f_father').value;
-            const m = document.getElementById('f_mobile').value;
+            const n = document.getElementById('f_name').value.trim().toLowerCase();
+            const f = document.getElementById('f_father').value.trim().toLowerCase();
+            const m = document.getElementById('f_mobile').value.trim();
 
-            if(!n || !f || !m) { Swal.fire('Error', 'कृपया सभी जानकारी भरें!', 'warning'); return; }
+            if(!n || !f || !m) { 
+                Swal.fire('Error', 'कृपया सभी जानकारी भरें!', 'warning'); 
+                return; 
+            }
 
             document.getElementById('fetch-text').style.display = 'none';
             document.getElementById('fetch-loader').style.display = 'inline-block';
             document.getElementById('btn-fetch').style.pointerEvents = 'none';
+
+            const resultsBox = document.getElementById('receipt-results');
+            const listContainer = document.getElementById('receipt-list');
+            if (resultsBox) resultsBox.style.display = 'none';
+            if (listContainer) listContainer.innerHTML = '';
 
             const searchUrl = `${googleSheetUrl}?action=search&mobile=${m}&name=${n}&father=${f}`;
 
@@ -1014,21 +807,49 @@ Put your HTML text here<!DOCTYPE html>
             .then(res => res.json())
             .then(data => {
                 if(data.status === 'success') {
-                    globalDonorData = data.data; 
+                    multipleDonationsData = data.data; 
+                    
+                    let htmlList = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <span style="font-weight:bold; color:var(--dark-peacock);">कुल रसीदें: ${multipleDonationsData.length}</span>
+                    <button onclick="downloadAllReceipts()" style="background: #005B60; color: white; border: none; padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                        <i class="fa-solid fa-file-pdf"></i> सभी एक साथ डाउनलोड करें
+                    </button>
+                </div>`;
+                    multipleDonationsData.forEach((record, index) => {
+                        htmlList += `
+                        <div style="background: #f8f9fa; border: 1px solid #ddd; border-left: 5px solid #28a745; padding: 15px; border-radius: 8px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                            <div>
+                                <div style="font-weight: bold; color: #005B60; font-size: 16px;">₹${record.amount}/-</div>
+                                <div style="font-size: 13px; color: #555; margin-top: 3px;"><i class="fa-regular fa-calendar"></i> ${record.date}</div>
+                                <div style="font-size: 12px; color: grey;">ID: ${record.donorId}</div>
+                            </div>
+                            <button onclick="downloadSpecificReceipt(${index})" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer;">
+                                <i class="fa-solid fa-download"></i> PDF
+                            </button>
+                        </div>`;
+                    });
+
+                    if (listContainer && resultsBox) {
+                        listContainer.innerHTML = htmlList;
+                        resultsBox.style.display = 'block';
+                    }
                     
                     Swal.fire({
-                        icon: 'success', title: 'Record Found!',
-                        text: `Donor ID: ${globalDonorData.donorId}\nAmount: ₹${globalDonorData.amount}`,
-                        confirmButtonText: '<i class="fa-solid fa-download"></i> Download PDF',
-                        confirmButtonColor: '#28a745'
-                    }).then((result) => {
-                        if (result.isConfirmed) generateAndDownloadPDF();
+                        icon: 'success', 
+                        title: 'रिकॉर्ड मिल गया!',
+                        text: `आपके द्वारा किए गए कुल ${multipleDonationsData.length} दान मिले हैं। नीचे लिस्ट में से डाउनलोड करें।`,
+                        timer: 3000, 
+                        showConfirmButton: false
                     });
+
                 } else {
-                    Swal.fire('Not Found', data.message, 'error');
+                    Swal.fire('Not Found', 'कोई रिकॉर्ड नहीं मिला। कृपया जानकारी जांचें।', 'error');
                 }
             })
-            .catch(err => Swal.fire('Error', 'Network Issue / Script not configured', 'error'))
+            .catch(err => {
+                Swal.fire('Error', 'Network Issue / Script not configured', 'error');
+            })
             .finally(() => {
                 document.getElementById('fetch-text').style.display = 'inline-block';
                 document.getElementById('fetch-loader').style.display = 'none';
@@ -1036,49 +857,154 @@ Put your HTML text here<!DOCTYPE html>
             });
         }
 
-        // --- GENERATE PDF (LANDSCAPE with GITHUB IMAGE) ---
-        function generateAndDownloadPDF() {
-            document.getElementById('pdf_id').innerText = globalDonorData.donorId;
-            document.getElementById('pdf_date').innerText = globalDonorData.date;
-            document.getElementById('pdf_utr').innerText = globalDonorData.utr;
-            document.getElementById('pdf_name').innerText = globalDonorData.name;
-            document.getElementById('pdf_father').innerText = globalDonorData.fatherName;
-            document.getElementById('pdf_address').innerText = `${globalDonorData.address}, ${globalDonorData.city}, ${globalDonorData.district}, ${globalDonorData.state} - ${globalDonorData.pincode}`;
-            document.getElementById('pdf_amount').innerText = globalDonorData.amount + "/-";
+        function downloadSpecificReceipt(index) {
+            globalDonorData = multipleDonationsData[index]; 
+            generateAndDownloadPDF(); 
+        }
+// =======================================================
+// 🚨 BULK DOWNLOAD (सभी रसीदें एक PDF में) - 100% WORKING 🚨
+// =======================================================
+function downloadAllReceipts() {
+    if (!multipleDonationsData || multipleDonationsData.length === 0) return;
 
-            const element = document.getElementById('pdf-template');
-            element.style.display = 'block'; 
+    window.scrollTo(0, 0); // पेज को टॉप पर लाएं
+
+    // 1. उसी पुराने wrapper को चुनें जो सिंगल रसीद में काम कर रहा है
+    const wrapper = document.getElementById('pdf-page-wrapper');
+    const template = document.getElementById('rcpt-capture-area');
+
+    // 2. सभी रसीदों को रखने के लिए एक नया डिब्बा बनाएं
+    const bulkContainer = document.createElement('div');
+    bulkContainer.id = 'bulk-receipt-container';
+
+    // 3. लूप चलाकर रसीदें कॉपी करें
+    multipleDonationsData.forEach((record, index) => {
+        const clone = template.cloneNode(true);
+        clone.id = 'rcpt-clone-' + index;
+        
+        // डेटा भरें
+        clone.querySelector('#p_rcpt_id').innerText = record.donorId;
+        clone.querySelector('#p_rcpt_date').innerText = record.date;
+        clone.querySelector('#p_rcpt_name').innerText = record.name;
+        clone.querySelector('#p_rcpt_father').innerText = record.fatherName;
+        clone.querySelector('#p_rcpt_utr').innerText = record.utr;
+        clone.querySelector('#p_rcpt_address').innerText = `${record.address}, ${record.city}, ${record.district}, ${record.state} - ${record.pincode}`;
+        clone.querySelector('#p_rcpt_amount').innerText = record.amount + "/-";
+
+        bulkContainer.appendChild(clone);
+
+        // हर 3 रसीद के बाद एक नया पेज (Page Break) लगाएँ
+        if ((index + 1) % 3 === 0 && index < multipleDonationsData.length - 1) {
+            const pageBreak = document.createElement('div');
+            pageBreak.classList.add('html2pdf__page-break'); 
+            bulkContainer.appendChild(pageBreak);
+        } 
+        // अगर 3 पूरी नहीं हुई हैं, तो उसी पेज पर रसीदों के बीच में थोड़ी जगह और कैंची से काटने का निशान (Dashed line) लगा दें
+        else if (index < multipleDonationsData.length - 1) {
+            const divider = document.createElement('div');
+            divider.style.height = '15px';
+            divider.style.borderBottom = '2px dashed #ccc'; // कैंची से काटने के लिए निशान
+            divider.style.marginBottom = '15px';
+            bulkContainer.appendChild(divider);
+        }
+    });
+
+    // 4. नए डिब्बे को मेन wrapper में डालें और स्क्रीन के सामने लाएं
+    wrapper.appendChild(bulkContainer);
+    wrapper.style.left = '0px';
+
+    Swal.fire({ title: 'सभी रसीदें बन रही हैं...', html: 'कृपया प्रतीक्षा करें...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); }});
+
+    var opt = {
+        margin:       [0.2, 0.2, 0, 0.0], // Top, Right, Bottom, Left
+        filename:     `All_Receipts_${multipleDonationsData[0].mobile}.pdf`,
+        image:        { type: 'jpeg', quality: 1.0 },
+        html2canvas:  { scale: 2, useCORS: true, allowTaint: true, scrollY: 0, scrollX: 0 },
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    // 5. PDF जनरेट करें
+    setTimeout(() => {
+        // ध्यान दें: यहाँ हम bulkContainer को प्रिंट कर रहे हैं
+        html2pdf().set(opt).from(bulkContainer).save().then(() => {
+            wrapper.style.left = '-9999px'; // वापस छुपा दें
+            wrapper.removeChild(bulkContainer); // कचरा साफ़ कर दें
+            Swal.fire('Downloaded!', 'आपकी सभी रसीदें एक ही PDF फ़ाइल में डाउनलोड हो गई हैं!', 'success');
+        }).catch(err => {
+            wrapper.style.left = '-9999px';
+            wrapper.removeChild(bulkContainer);
+            Swal.fire('Error', 'PDF बनाने में कोई समस्या आई', 'error');
+        });
+    }, 1500); 
+}
+        // =======================================================
+        // 🚨 6x4 RECEIPT PDF GENERATION LOGIC 🚨
+        // =======================================================
+        function generateAndDownloadPDF() {
+            // Data Setup (New IDs for 6x4 format)
+            document.getElementById('p_rcpt_id').innerText = globalDonorData.donorId;
+            document.getElementById('p_rcpt_date').innerText = globalDonorData.date;
+            document.getElementById('p_rcpt_name').innerText = globalDonorData.name;
+            document.getElementById('p_rcpt_father').innerText = globalDonorData.fatherName;
+            document.getElementById('p_rcpt_utr').innerText = globalDonorData.utr;
+            document.getElementById('p_rcpt_address').innerText = `${globalDonorData.address}, ${globalDonorData.city}, ${globalDonorData.district}, ${globalDonorData.state} - ${globalDonorData.pincode}`;
+            document.getElementById('p_rcpt_amount').innerText = globalDonorData.amount + "/-";
+
+            const wrapper = document.getElementById('pdf-page-wrapper');
+            const element = document.getElementById('rcpt-capture-area');
             
-            var opt = {
-                margin:       0,
+            // Screen के सामने लायें ताकि ब्लैंक न आये
+            wrapper.style.left = '0px';
+
+            Swal.fire({ title: 'रसीद बन रही है...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); }});
+
+            setTimeout(() => {
+                var opt = {
+                margin:       [0.2, 0.2, 0, 0.0], // [Top, Right, Bottom, Left] - यहाँ ऊपर और बाईं तरफ 0.5 इंच की जगह दी गई है
                 filename:     `Receipt_${globalDonorData.donorId}.pdf`,
                 image:        { type: 'jpeg', quality: 1.0 },
-                html2canvas:  { scale: 2, useCORS: true, allowTaint: true }, // Added allowTaint for GitHub images
-                jsPDF:        { unit: 'px', format: [800, 500], orientation: 'landscape' }
-            };
+                html2canvas:  { 
+                    scale: 2, 
+                    useCORS: true, 
+                    allowTaint: true,
+                    scrollY: 0,
+                    scrollX: 0
+                },
+                   
+            // 🚨 PORTRAIT SETUP (A4 PAGE) 🚨
+                 jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' } 
+                };
 
-            Swal.fire({ title: 'Generating PDF...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); }});
-
-            html2pdf().set(opt).from(element).save().then(() => {
-                element.style.display = 'none';
-                Swal.fire({
-                    icon: 'success', title: 'Downloaded!',
-                    text: 'आपकी रसीद डाउनलोड हो चुकी है!',
-                    confirmButtonText: 'Go to Home', confirmButtonColor: '#28a745', allowOutsideClick: false
-                }).then(() => {
-                    // Redirects to index.html as requested
-                    window.location.href = "index.html";
+                html2pdf().set(opt).from(element).save().then(() => {
+                    wrapper.style.left = '-9999px'; // वापस छुपा दें
+                    Swal.fire({
+                        icon: 'success', title: 'Downloaded!',
+                        text: 'आपकी रसीद डाउनलोड हो चुकी है!',
+                        confirmButtonText: 'ओके (OK)', confirmButtonColor: '#28a745', allowOutsideClick: false
+                    }).then(() => {
+                        // अगर नया दान किया है (donate टैब एक्टिव है), तभी होम पर भेजें
+                        if (document.getElementById('tab-donate').classList.contains('active')) {
+                            window.location.href = "index.html";
+                        }
+                    });
+                }).catch(err => {
+                    wrapper.style.left = '-9999px';
+                    Swal.fire('Error', 'Failed to generate PDF', 'error');
                 });
-            }).catch(err => {
-                element.style.display = 'none';
-                Swal.fire('Error', 'Failed to generate PDF', 'error');
-            });
+            }, 1000); 
         }
+
+        window.addEventListener('load', function() {
+            if (window.location.hash) {
+                history.replaceState(null, null, window.location.pathname);
+            }
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+            }, 50);
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </body>
 </html>
