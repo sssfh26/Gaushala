@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Shri Ram Krishna Gaushala - Official Portal</title>
     
-    <!-- Premium Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -24,6 +22,10 @@
             --card-bg: #FFFFFF;
             --text-main: #2C3E50;
             --text-muted: #546E7A;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --premium-glow: 0 8px 30px rgba(0,0,0,0.25);
+            --soft-glow: 0 0 15px rgba(255,255,255,0.2);
         }
 
         * {
@@ -40,12 +42,13 @@
 
         /* --- Official App Bar --- */
         .app-bar {
-            position: fixed; top: 0; width: 100%; height: 100px;
-            background: var(--dark-peacock);
+            position: fixed; top: 0; width: 100%; height: 130px;
+            background: rgba(0, 91, 96, 0.75) !important; 
+            backdrop-filter: blur(15px);
             display: flex; align-items: center; justify-content: space-between;
             padding: 0 20px; color: white; z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            border-bottom: 3px solid var(--light-peacock);
+            box-shadow: var(--premium-glow);
+            border-bottom: 1px solid var(--glass-border);
         }
         .app-bar-left { display: flex; align-items: center; gap: 12px; }
         
@@ -55,6 +58,7 @@
             border-radius: 100%;
             object-fit: cover;
             border: 2px solid white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
         .app-bar-title { font-size: 18px; font-weight: 700; display: flex; flex-direction: column; line-height: 1.7; }
         .app-bar-subtitle { font-size: 11px; color: var(--card-bg); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
@@ -63,20 +67,17 @@
         .menu-btn { cursor: pointer; font-size: 24px; transition: 0.2s; }
 
         /* --- Hero Section --- */
-        .hero-section { margin-top: 70px; width: 100%; }
+        .hero-section { margin-top: 130px; width: 100%; }
         .hero-banner { width: 100%; position: relative; overflow: hidden; background: #ccc; }
         .carousel-slide {
             width: 100%; height: 100%; object-fit: cover;
             position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0;
+            animation: zoomEffect 5s ease-in-out infinite;
         }
-.carousel-slide {
-    animation: zoomEffect 5s ease-in-out infinite;
-}
-
-@keyframes zoomEffect {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.1); }
-}
+        @keyframes zoomEffect {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
         .carousel-slide.active { opacity: 1; }
 
         /* --- Main Layout --- */
@@ -104,10 +105,12 @@
         .section-title { font-size: 18px; font-weight: 700; color: var(--dark-peacock); margin-bottom: 12px; border-left: 4px solid var(--accent-peacock); padding-left: 10px; }
 
         .premium-card {
-            background: var(--card-bg); border-radius: 16px; padding: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); margin-bottom: 25px;
-            border: 1px solid rgba(0,91,96,0.1);
+            background: var(--glass-bg); backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 25px;
+            box-shadow: var(--premium-glow); margin-bottom: 25px;
+            border: 1px solid var(--glass-border); transition: 0.3s;
         }
+        .premium-card:hover { transform: translateY(-5px); box-shadow: 0 15px 45px rgba(0,0,0,0.35); }
 
         .about-text { max-height: 300px; overflow-y: auto; padding-right: 10px; line-height: 1.8; }
 
@@ -125,10 +128,17 @@
             border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); background: #000;
         }
         .video-wrapper video { width: 100%; height: 100%; object-fit: cover; }
+        
         .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .btn-theme { padding: 12px 24px; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; color: white; }
-        .btn-dark { background: var(--dark-peacock); }
-        .btn-orange { background: #E65100; }
+        button, .btn, .read-more-btn, .btn-theme {
+            background: linear-gradient(135deg, #D4AF37, #FFD700);
+            border: none; color: black; border-radius: 30px;
+            padding: 12px 24px; font-weight: 600; cursor: pointer;
+            transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;
+        }
+        button:hover, .btn:hover, .read-more-btn:hover, .btn-theme:hover {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.8); transform: scale(1.05);
+        }
 
         .slider-wrapper { margin-bottom: 30px; }
         .promo-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: 15px; padding-bottom: 10px; }
@@ -141,8 +151,7 @@
         .bg-teal { background: linear-gradient(to bottom right, var(--dark-peacock), var(--accent-peacock)); }
         .bg-orange { background: linear-gradient(to right, #F57C00, #E64A19); }
         .bg-blue { background: linear-gradient(to right, #1565C0, #2196F3); }
-
-        .btn-white { background: white; color: var(--dark-peacock); padding: 10px 20px; border-radius: 5px; border: none; font-weight: bold; cursor: pointer; }
+        .btn-white { background: white !important; color: var(--dark-peacock) !important; }
         
         .slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: 5px; }
         .dot { width: 10px; height: 10px; border-radius: 50%; background: #ccc; cursor: pointer; transition: 0.3s; }
@@ -163,16 +172,17 @@
         .stat-item h2 { color: var(--dark-peacock); font-size: 24px; }
         .stat-item p { color: var(--accent-peacock); font-size: 14px; font-weight: 600; }
 
+        /* --- Footer Section --- */
         .footer { background: var(--dark-peacock); color: white; padding: 40px 20px 100px 20px; margin-top: 20px; }
         .footer-grid { display: grid; grid-template-columns: 1fr; gap: 30px; max-width: 900px; margin: 0 auto; }
-        .footer-logo img, .drawer-header img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; background: white; padding: 3px; }
+        .footer-logo img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
         .footer-text { font-size: 14px; opacity: 0.8; line-height: 1.6; }
         .footer-title { font-size: 18px; font-weight: bold; color: var(--gold-color); margin-bottom: 15px; }
         .social-icons { display: flex; gap: 15px; margin-top: 15px; }
         .social-icons a { color: white; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 18px; text-decoration: none; transition: 0.3s; }
-        .social-icons a:hover { background: var(--light-peacock); color: var(--dark-peacock); transform: translateY(-3px); }
-        .footer-links a { display: block; color: white; text-decoration: none; margin-bottom: 10px; opacity: 0.8; }
-        .footer-links a:hover { color: var(--light-peacock); opacity: 1; }
+        .social-icons a:hover { background: var(--gold-color); transform: translateY(-3px); }
+        .footer-links a { display: block; color: white; text-decoration: none; margin-bottom: 10px; font-size: 14px; transition: 0.3s; }
+        .footer-links a:hover { color: var(--gold-color); padding-left: 5px; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 30px; padding-top: 20px; font-size: 13px; opacity: 0.7; }
 
         .whatsapp-float {
@@ -182,14 +192,15 @@
             z-index: 1000; display: flex; justify-content: center; align-items: center;
             text-decoration: none; animation: bounce 2s infinite;
         }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
 
+        /* --- Sidebar Drawer Premium (Updated to match Member1/Donor1) --- */
         .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1001; display: none; }
-        .drawer { position: fixed; top: 0; right: -320px; width: 280px; height: 100%; background: white; z-index: 1002; transition: 0.3s ease; }
+        .drawer { position: fixed; top: 0; right: -320px; width: 280px; height: 100%; background: rgba(0, 91, 96, 0.9) !important; backdrop-filter: blur(20px); box-shadow: 10px 0 40px rgba(0,0,0,0.4); z-index: 1002; transition: 0.3s ease; display: flex; flex-direction: column;}
         .drawer-header { background: var(--dark-peacock); padding: 30px 20px; text-align: center; color: white; }
-        .drawer-header img { height: 60px; margin-bottom: 10px; background: white; padding: 2px; border-radius: 5px; }
-        .drawer-item { padding: 15px 20px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #eee; color: var(--dark-peacock); font-weight: 500; text-decoration: none; }
-        .drawer-item i { color: var(--accent-peacock); font-size: 20px; }
+        .drawer-header img { width: 60px !important; height: 60px !important; border-radius: 50% !important; object-fit: cover !important; margin-bottom: 10px; background: white; padding: 2px; }
+        .drawer-item { padding: 15px 20px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); color: white !important; font-weight: 500; text-decoration: none; font-size: 16px; cursor: pointer; transition: 0.3s;}
+        .drawer-item:hover { background: rgba(255, 255, 255, 0.15); border-left: 5px solid #FFD700; }
+        .drawer-item i { color: #FFD700 !important; font-size: 20px;}
 
         /* ========================================= */
         /* --- MAGIC BOTTOM NAVIGATION (MOBILE)  --- */
@@ -204,13 +215,13 @@
         .magic-nav ul li { position: relative; list-style: none; width: 75px; height: 70px; z-index: 1; }
         .magic-nav ul li a { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; text-align: center; font-weight: 500; text-decoration: none; }
         .magic-nav ul li a .icon { position: relative; display: block; line-height: 75px; font-size: 1.4em; text-align: center; transition: 0.5s; color: rgba(255, 255, 255, 0.5); }
-        .magic-nav ul li.active a .icon { transform: translateY(-32px); color: var(--dark-peacock); }
-        .magic-nav ul li a .text { position: absolute; color: var(--light-peacock); font-weight: 600; font-size: 0.70em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; transform: translateY(20px); }
+        .magic-nav ul li.active a .icon { transform: translateY(-32px); color: white !important; }
+        .magic-nav ul li a .text { position: absolute; color: white !important; font-weight: 600; font-size: 0.70em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; transform: translateY(20px); }
         .magic-nav ul li.active a .text { opacity: 1; transform: translateY(12px); }
         
         .magic-indicator {
             position: absolute; top: -35px; left: 2.5px; width: 70px; height: 70px;
-            background: var(--light-peacock); border-radius: 50%;
+            background: lightgreen !important; border-radius: 50%;
             border: 6px solid var(--accent-peacock); transition: 0.5s;
         }
         .magic-indicator::before { content: ''; position: absolute; top: 50%; left: -22px; width: 20px; height: 20px; background: transparent; border-top-right-radius: 20px; box-shadow: 1px -10px 0 0 var(--accent-peacock); }
@@ -239,45 +250,41 @@
             .magic-nav-top ul li a .icon { 
                 position: relative; display: block; line-height: 75px; font-size: 1.5em; transition: 0.5s; color: rgba(255, 255, 255, 0.6); 
             }
-            /* ICON ANIMATES DOWNWARD */
             .magic-nav-top ul li.active a .icon { 
                 transform: translateY(32px); 
                 color: var(--dark-peacock); 
             }
 
             .magic-nav-top ul li a .text { 
-                position: absolute; color: var(--light-peacock); font-weight: 600; font-size: 0.8em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; 
-                transform: translateY(-20px); /* Faded higher up */
+                position: absolute; color: white !important; font-weight: 600; font-size: 0.8em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; 
+                transform: translateY(-20px);
             }
-            /* TEXT APPEARS ABOVE */
             .magic-nav-top ul li.active a .text { 
                 opacity: 1; transform: translateY(-12px); 
             }
 
-            /* GOLD CIRCLE MOVES TO THE BOTTOM */
             .magic-indicator-top {
                 position: absolute; 
-                bottom: -35px; /* Sits at the bottom edge */
+                bottom: -35px;
                 left: 15px; 
                 width: 70px; height: 70px; background: var(--light-peacock); border-radius: 50%;
                 border: 6px solid var(--dark-peacock); 
                 transition: 0.5s;
             }
 
-            /* INVERTED CUTOUT EFFECTS */
             .magic-indicator-top::before { 
                 content: ''; position: absolute; 
                 top: 15px; 
                 left: -22px; width: 20px; height: 20px; background: transparent; 
-                border-bottom-right-radius: 20px; /* Curve reversed */
-                box-shadow: 1px 10px 0 0 var(--dark-peacock); /* Shadow goes down */
+                border-bottom-right-radius: 20px; 
+                box-shadow: 1px 10px 0 0 var(--dark-peacock); 
             }
             .magic-indicator-top::after { 
                 content: ''; position: absolute; 
                 top: 15px; 
                 right: -22px; width: 20px; height: 20px; background: transparent; 
-                border-bottom-left-radius: 20px; /* Curve reversed */
-                box-shadow: -1px 10px 0 0 var(--dark-peacock); /* Shadow goes down */
+                border-bottom-left-radius: 20px; 
+                box-shadow: -1px 10px 0 0 var(--dark-peacock); 
             }
 
             .magic-nav-top ul li:nth-child(1).active ~ .magic-indicator-top { transform: translateX(calc(100px * 0)); }
@@ -288,7 +295,7 @@
 
         /* Responsive Settings */
         @media (max-width: 768px) {
-            .hero-section { padding: 15px; margin-top: 70px; }
+            .hero-section { padding: 15px; margin-top: 100px; }
             .hero-banner { border-radius: 12px; aspect-ratio: 16/9; }
             .magic-nav-top { display: none; }
         }
@@ -298,160 +305,14 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
         
-                      /* =========================
-           💎 PREMIUM UI UPGRADE
-           Paste at END of CSS
-        ========================= */
-        
-        :root {
-            --glass-bg: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --premium-glow: 0 8px 30px rgba(0,0,0,0.25);
-            --soft-glow: 0 0 15px rgba(255,255,255,0.2);
-        }
-        
-        /* 🔥 APP BAR (Glass Effect) */
-        .app-bar {
-            background: rgba(0, 91, 96, 0.75) !important;
-            backdrop-filter: blur(15px);
-            box-shadow: var(--premium-glow);
-            border-bottom: 1px solid var(--glass-border);
-        }
-        
-        /* 🔥 SIDEBAR / DRAWER */
-        .drawer {
-            background: rgba(0, 91, 96, 0.9) !important;
-            backdrop-filter: blur(20px);
-            box-shadow: 10px 0 40px rgba(0,0,0,0.4);
-        }
-        
-        /* 🔥 CARDS PREMIUM */
-        .premium-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--premium-glow);
-            transition: 0.3s;
-        }
-        
-        .premium-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 45px rgba(0,0,0,0.35);
-        }
-        
-        /* 🔥 BUTTONS */
-        button, .btn, .read-more-btn {
-            background: linear-gradient(135deg, #D4AF37, #FFD700);
-            border: none;
-            color: black;
-            border-radius: 30px;
-            padding: 10px 20px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        
-        button:hover, .btn:hover, .read-more-btn:hover {
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
-            transform: scale(1.05);
-        }
-        
-        /* 🔥 MENU GLOW */
-        .desktop-menu a {
-            position: relative;
-        }
-        
-        .desktop-menu a:hover {
-            text-shadow: 0 0 10px rgba(255,255,255,0.8);
-        }
-        
-        /* 🔥 UNDERLINE ANIMATION */
-        .desktop-menu a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 0%;
-            height: 3px;
-            background: #FFD700;
-            transition: 0.3s;
-            border-radius: 5px;
-        }
-        
-        .desktop-menu a:hover::after {
-            width: 100%;
-        }
-        
-        /* 🔥 ICON GLOW */
-        i {
-            transition: 0.3s;
-        }
-        
-        i:hover {
-            text-shadow: 0 0 12px rgba(255,255,255,0.9);
-        }
-        
-        /* 🔥 LOGO GLOW + PERFECT CIRCLE */
-        img[src*="logo"] {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 0 15px rgba(255,255,255,0.3);
-            transition: 0.3s;
-        }
-        
-        img[src*="logo"]:hover {
-            box-shadow: 0 0 25px rgba(255,255,255,0.7);
-        }
-        
-        /* 🔥 SIDEBAR LOGO FIX */
-        .drawer-header img {
-            width: 60px !important;
-            height: 60px !important;
-            border-radius: 50% !important;
-            object-fit: cover !important;
-        }
-        
-        /* 🔥 FOOTER LOGO FIX */
-        .footer-logo img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        
-        /* 🔥 MAGIC NAV PREMIUM */
-        .magic-nav ul li a .text,
-        .magic-nav-top ul li a .text {
-            color: white !important;
-        }
-        
-        .magic-nav ul li.active a .icon {
-            color: white !important;
-        }
-        
-        .magic-indicator {
-            background: lightgreen !important;
-        }
-        
         /* 🔥 SCROLLBAR PREMIUM */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(#D4AF37, #FFD700); border-radius: 10px; }
+        * { scroll-behavior: smooth; }
         
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(#D4AF37, #FFD700);
-            border-radius: 10px;
-        }
-        
-        /* 🔥 SMOOTH ANIMATION GLOBAL */
-        * {
-            scroll-behavior: smooth;
-        }
-                @media (min-width: 769px) {
+        @media (min-width: 769px) {
             .hero-banner { height: 500px; }
-            .menu-btn { display: none; }
+            .menu-btn { display: block; } /* Show menu on desktop too */
             .magic-nav { display: none; } /* Hide mobile bottom nav on Desktop */
             .whatsapp-float { bottom: 30px; } 
             .footer { padding-bottom: 40px; }
@@ -463,36 +324,32 @@
 </head>
 <body>
 
-    <!-- App Bar -->
     <header class="app-bar">
         <div class="app-bar-left">
             <img src="https://cdn.jsdelivr.net/gh/sssfh26/Gaushala/logo.png" alt="Logo">
             <div class="app-bar-title">
                 श्री राम कृष्णा गौशाला सेवा समिति
-                <span class="app-bar-subtitle">Cheritable Trust(Reg. No. 372)</span>
+                <span class="app-bar-subtitle">Charitable Trust(Reg. No. 372)</span>
             </div>
         </div>
         
-        <!-- ========================================== -->
-        <!-- MAGIC TOP NAVIGATION MENU (FOR DESKTOP) -->
-        <!-- ========================================== -->
         <div class="magic-nav-top">
             <ul>
                 <li class="list-top active">
-                    <a href="#">
+                    <a href="index.html">
                         <span class="icon"><i class="fa-solid fa-house"></i></span>
                         <span class="text">होम</span>
                     </a>
                 </li>
                 <li class="list-top">
-                    <a href="#about">
-                        <span class="icon"><i class="fa-solid fa-circle-info"></i></span>
-                        <span class="text">हमारे बारे में</span>
+                    <a href="donor.html">
+                        <span class="icon"><i class="fa-solid fa-hand-holding-heart"></i></span>
+                        <span class="text">दान दें</span>
                     </a>
                 </li>
                 <li class="list-top">
-                    <a href="#">
-                        <span class="icon"><i class="fa-solid fa-id-card-clip"></i></span>
+                    <a href="member.html">
+                        <span class="icon"><i class="fa-solid fa-users"></i></span>
                         <span class="text">सदस्य</span>
                     </a>
                 </li>
@@ -508,31 +365,32 @@
 
         <div class="app-bar-right">
             <div style="font-size: 16px; font-weight: 600;"><i class="fa-solid fa-paw"></i> 0</div>
-            <i class="fa-solid fa-bars menu-btn" onclick="openDrawer()"></i>
+            <div class="menu-btn" onclick="openDrawer()" style="display: flex; flex-direction: column; align-items: center; cursor: pointer;">
+                <i class="fa-solid fa-bars"></i>
+                <span style="font-size: 11px; font-weight: 600; margin-top: 3px;">Menu</span>
+            </div>
         </div>
     </header>
 
-    <!-- Side Drawer -->
     <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
     <aside class="drawer" id="endDrawer">
         <div class="drawer-header">
             <img src="https://cdn.jsdelivr.net/gh/sssfh26/Gaushala/logo.png" alt="Logo">
-            <div style="font-size: 18px; font-weight: bold;">श्री राम कृष्ण गौशाला</div>
+            <div style="font-size: 18px; font-weight: bold; margin-top: 10px; color: white;">श्री राम कृष्ण गौशाला</div>
         </div>
-        <div class="drawer-content">
-            <a href="#about" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-circle-info"></i> हमारे बारे में (About)</a>
-            <a href="#contact" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-phone"></i> संपर्क करें (Contact)</a>
-            <a href="#" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-user-gear"></i> सदस्य विवरण (Members)</a>
-            <a href="#" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-bell"></i> सूचनाएं (Notifications)</a>
+        <div class="drawer-content" style="padding-top: 10px;">
+            <a href="index.html" class="drawer-item"><i class="fa-solid fa-house" style="width: 30px; text-align: center;"></i> <span>होम (Home)</span></a>
+            <a href="donor.html" class="drawer-item"><i class="fa-solid fa-hand-holding-heart" style="width: 30px; text-align: center;"></i> <span>दान करें (Donate)</span></a>
+            <a href="member.html" class="drawer-item"><i class="fa-solid fa-users" style="width: 30px; text-align: center;"></i> <span>सदस्य बनें (Membership)</span></a>
+            <a href="#about" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-circle-info" style="width: 30px; text-align: center;"></i> <span>हमारे बारे में (About)</span></a>
+            <a href="#contact" class="drawer-item" onclick="closeDrawer()"><i class="fa-solid fa-phone" style="width: 30px; text-align: center;"></i> <span>संपर्क करें (Contact)</span></a>
         </div>
     </aside>
 
-    <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/919466590166" target="_blank" class="whatsapp-float">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- Hero Banners -->
     <div class="hero-section">
         <div class="hero-banner">
             <img src="https://raw.githubusercontent.com/sssfh26/Gaushala/76e6f6bb20f31fb9fc80a04bd24c2a44ffcd4aa4/banner1.jpg" class="carousel-slide active" onerror="this.style.background='#ddd'">
@@ -542,49 +400,40 @@
     </div>
 
     <main class="main-container">
-        <!-- Top Nav Icons -->
         <div class="top-nav">
-            <div class="top-nav-item"><div class="icon-circle"><i class="fa-solid fa-user-group"></i></div><span>डोनर्स</span></div>
-            <div class="top-nav-item"><div class="icon-circle"><i class="fa-solid fa-id-card"></i></div><span>मेंबर्स</span></div>
+            <div class="top-nav-item" onclick="window.location.href='donor.html'"><div class="icon-circle"><i class="fa-solid fa-user-group"></i></div><span>डोनर्स</span></div>
+            <div class="top-nav-item" onclick="window.location.href='member.html'"><div class="icon-circle"><i class="fa-solid fa-id-card"></i></div><span>मेंबर्स</span></div>
             <div class="top-nav-item"><div class="icon-circle"><i class="fa-solid fa-newspaper"></i></div><span>समाचार</span></div>
             <div class="top-nav-item"><div class="icon-circle"><i class="fa-solid fa-calendar-check"></i></div><span>गतिविधियां</span></div>
         </div>
 
-        <!-- About Us Section -->
         <div class="section-title" id="about">हमारे बारे में (About Us)</div>
         <div class="premium-card">
             <p class="about-text">
-                श्री राम कृष्ण गौशाला पिछले कई वर्षों से बेसहारा, बीमार और घायल गौमाताओं की निःस्वार्थ सेवा में समर्पित है। हमारा उद्देश्य केवल गायों को आश्रय देना नहीं है, बल्कि उन्हें चिकित्सा, उचित पोषण और एक सुरक्षित वातावरण प्रदान करना है। समाज के सहयोग से हम पर्यावरण और जीव-जंतुओं के संरक्षण के लिए निरंतर प्रयास कर रहे हैं। आपके एक छोटे से योगदान से किसी बेज़ुबान का जीवन संवर सकता है।<br><br>
-                गौशाला में प्रत्येक गौमाता की देखभाल बड़े स्नेह और ध्यान से की जाती है। हम यह सुनिश्चित करते हैं कि उन्हें समय पर उचित चिकित्सा सुविधा मिले। घायल और बीमार गायों का इलाज अनुभवी पशु चिकित्सकों की देखरेख में किया जाता है। कई बार ऐसी गायें भी आती हैं जिनकी हालत बहुत गंभीर होती है, लेकिन हमारे प्रयास और देखभाल से वे धीरे-धीरे स्वस्थ होने लगती हैं। यह देखना हमारे लिए अत्यंत संतोष और खुशी का विषय होता है कि एक असहाय जीव फिर से खड़ा हो पाता है और सामान्य जीवन जीने लगता है।<br><br>
-                हमारा यह प्रयास केवल गौसेवा तक सीमित नहीं है, बल्कि हम पर्यावरण संरक्षण और जीव-जंतुओं के प्रति संवेदनशीलता बढ़ाने के लिए भी कार्य कर रहे हैं। गौशाला के माध्यम से हम लोगों को यह संदेश देना चाहते हैं कि हमें केवल अपने लिए नहीं, बल्कि प्रकृति और अन्य जीवों के लिए भी जिम्मेदार होना चाहिए। जब हम किसी बेजुबान जीव की मदद करते हैं, तो हम केवल एक जीवन नहीं बचाते, बल्कि मानवता को भी मजबूत करते हैं।<br><br>
-                श्री राम कृष्ण गौशाला का सपना है कि भविष्य में हम और अधिक गायों को आश्रय दे सकें, बेहतर सुविधाएं प्रदान कर सकें और अपनी सेवा को और व्यापक बना सकें। इसके लिए हमें आपके सहयोग और समर्थन की आवश्यकता है। हम चाहते हैं कि अधिक से अधिक लोग इस नेक कार्य से जुड़ें और इस सेवा का हिस्सा बनें। अंत में, हम आपसे विनम्र निवेदन करते हैं कि इस पवित्र कार्य में अपना योगदान अवश्य दें। चाहे वह आर्थिक सहायता हो, सामग्री का दान हो या स्वयं आकर सेवा करना—हर प्रयास हमारे लिए अमूल्य है। आपका सहयोग किसी बेजुबान जीव के जीवन में नई रोशनी ला सकता है, उसे दर्द से राहत दे सकता है और उसे एक सुरक्षित और सम्मानजनक जीवन प्रदान कर सकता है। आइए, हम सब मिलकर करुणा और सेवा का यह दीप जलाए रखें और उन जीवों के लिए सहारा बनें, जो स्वयं अपनी पीड़ा कह नहीं सकते, लेकिन हमारी मदद के सच्चे हकदार हैं।
+                श्री राम कृष्ण गौशाला पिछले कई वर्षों से बेसहारा, बीमार और घायल गौमाताओं की निःस्वार्थ सेवा में समर्पित है। हमारा उद्देश्य केवल गायों को आश्रय देना नहीं है, बल्कि उन्हें चिकित्सा, उचित पोषण और एक सुरक्षित वातावरण प्रदान करना है। समाज के सहयोग से हम पर्यावरण और जीव-जंतुओं के संरक्षण के लिए निरंतर प्रयास कर रहे हैं। आपके एक छोटे से योगदान से किसी बेज़ुबान का जीवन संवर सकता है।<br><br>
+                गौशाला में प्रत्येक गौमाता की देखभाल बड़े स्नेह और ध्यान से की जाती है। हम यह सुनिश्चित करते हैं कि उन्हें समय पर उचित चिकित्सा सुविधा मिले। घायल और बीमार गायों का इलाज अनुभवी पशु चिकित्सकों की देखरेख में किया जाता है। कई बार ऐसी गायें भी आती हैं जिनकी हालत बहुत गंभीर होती है, लेकिन हमारे प्रयास और देखभाल से वे धीरे-धीरे स्वस्थ होने लगती हैं। यह देखना हमारे लिए अत्यंत संतोष और खुशी का विषय होता है कि एक असहाय जीव फिर से खड़ा हो पाता है और सामान्य जीवन जीने लगता है।<br><br>
+                हमारा यह प्रयास केवल गौसेवा तक सीमित नहीं है, बल्कि हम पर्यावरण संरक्षण और जीव-जंतुओं के प्रति संवेदनशीलता बढ़ाने के लिए भी कार्य कर रहे हैं। गौशाला के माध्यम से हम लोगों को यह संदेश देना चाहते हैं कि हमें केवल अपने लिए नहीं, बल्कि प्रकृति और अन्य जीवों के लिए भी जिम्मेदार होना चाहिए। जब हम किसी बेजुबान जीव की मदद करते हैं, तो हम केवल एक जीवन नहीं बचाते, बल्कि मानवता को भी मजबूत करते हैं।<br><br>
+                श्री राम कृष्ण गौशाला का सपना है कि भविष्य में हम और अधिक गायों को आश्रय दे सकें, बेहतर सुविधाएं प्रदान कर सकें और अपनी सेवा को और व्यापक बना सकें। इसके लिए हमें आपके सहयोग और समर्थन की आवश्यकता है। हम चाहते हैं कि अधिक से अधिक लोग इस नेक कार्य से जुड़ें और इस सेवा का हिस्सा बनें। अंत में, हम आपसे विनम्र निवेदन करते हैं कि इस पवित्र कार्य में अपना योगदान अवश्य दें। चाहे वह आर्थिक सहायता हो, सामग्री का दान हो या स्वयं आकर सेवा करना—हर प्रयास हमारे लिए अमूल्य है। आपका सहयोग किसी बेजुबान जीव के जीवन में नई रोशनी ला सकता है, उसे दर्द से राहत दे सकता है और उसे एक सुरक्षित और सम्मानजनक जीवन प्रदान कर सकता है। आइए, हम सब मिलकर करुणा और सेवा का यह दीप जलाए रखें और उन जीवों के लिए सहारा बनें, जो स्वयं अपनी पीड़ा कह नहीं सकते, लेकिन हमारी मदद के सच्चे हकदार हैं।
             </p>
         </div>
 
-        <!-- Search Bar -->
         <div class="section-title">खोजें (Search)</div>
         <div class="search-box">
             <i class="fa-solid fa-search"></i>
             <input type="text" placeholder="नाम या मोबाइल नंबर से खोजें...">
         </div>
 
-        <!-- Video Card -->
         <div class="premium-card video-card">
-            <h3>गौमाता की सेवा सबसे बड़ा धर्म है।<br>आइए, इस नेक कार्य में अपना योगदान दें!</h3>
+            <h3>गौमाता की सेवा सबसे बड़ा धर्म है।<br>आइए, इस नेक कार्य में अपना योगदान दें!</h3>
             <div class="video-wrapper">
                 <video src="https://raw.githubusercontent.com/sssfh26/Gaushala/dacfe4a73615e546c35617d34c1dc686b5a1c491/1.mp4" autoplay loop muted playsinline controls style="width:100%; height:auto;"></video>
             </div>
             <div class="btn-group">
-                <button class="btn-theme btn-dark"><i class="fa-solid fa-id-card"></i> मेंबर बनें</button>
-                <a href="donor.html">
-                    <button class="btn-theme btn-orange">
-                        <i class="fa-solid fa-hand-holding-heart"></i> दान करें
-                    </button>
-                </a>
+                <button class="btn-theme btn-dark" onclick="window.location.href='member.html'"><i class="fa-solid fa-id-card"></i> मेंबर बनें</button>
+                <button class="btn-theme btn-orange" onclick="window.location.href='donor.html'"><i class="fa-solid fa-hand-holding-heart"></i> दान करें</button>
             </div>
         </div>
 
-        <!-- Promo Slider -->
         <div class="section-title">महत्वपूर्ण सेवाएं</div>
         <div class="slider-wrapper">
             <div class="promo-slider" id="promoSlider">
@@ -598,13 +447,13 @@
                     <h3>Membership ID Card</h3>
                     <p>Thanks For becoming our Member</p>
                     <img src="assets/images/id.png" onerror="this.style.display='none'">
-                    <br><button class="btn-white"><i class="fa-solid fa-id-badge"></i> Get ID Card</button>
+                    <br><button class="btn-white" onclick="window.location.href='member.html'"><i class="fa-solid fa-id-badge"></i> Get ID Card</button>
                 </div>
                 <div class="promo-slide bg-blue">
                     <h3>Donation Receipt</h3>
                     <p>Official donation receipt</p>
                     <img src="assets/images/receipt.png" onerror="this.style.display='none'">
-                    <br><button class="btn-white"><i class="fa-solid fa-file-invoice"></i> Fetch Receipt</button>
+                    <br><button class="btn-white" onclick="window.location.href='donor.html'"><i class="fa-solid fa-file-invoice"></i> Fetch Receipt</button>
                 </div>
             </div>
             <div class="slider-dots" id="sliderDots">
@@ -614,7 +463,6 @@
             </div>
         </div>
 
-        <!-- Precious Donors -->
         <div class="donor-container">
             <div class="donor-header"><i class="fa-solid fa-star"></i> Precious Donors <i class="fa-solid fa-star"></i></div>
             <div class="donor-item">
@@ -631,10 +479,9 @@
                 </div>
                 <div class="donor-amount">₹ 5,267 <i class="fa-solid fa-hand-holding-heart" style="color:var(--accent-peacock);"></i></div>
             </div>
-            <a href="#" class="view-all-btn">सभी डोनर्स देखें ></a>
+            <a href="donor.html" class="view-all-btn">सभी डोनर्स देखें ></a>
         </div>
 
-        <!-- Statistics -->
         <div class="stats-row">
             <div class="stat-item"><h2>1000+</h2><p>डोनर्स</p></div>
             <div class="stat-item"><h2>8000+</h2><p>पशु और पक्षी</p></div>
@@ -643,7 +490,6 @@
 
     </main>
 
-    <!-- Footer Section -->
     <footer class="footer" id="contact">
         <div class="footer-grid">
             <div>
@@ -666,7 +512,7 @@
             </div>
             <div class="footer-links">
                 <div class="footer-title">क्विक लिंक्स (Quick Links)</div>
-                <a href="#"><i class="fa-solid fa-angle-right"></i> डोनर सूची (Donors List)</a>
+                <a href="donor.html"><i class="fa-solid fa-angle-right"></i> डोनर सूची (Donors List)</a>
                 <a href="#"><i class="fa-solid fa-angle-right"></i> समाचार (News)</a>
                 <a href="#"><i class="fa-solid fa-angle-right"></i> गोपनीयता नीति (Privacy Policy)</a>
                 <a href="#"><i class="fa-solid fa-angle-right"></i> नियम व शर्तें (T&C)</a>
@@ -677,40 +523,36 @@
         </div>
     </footer>
 
-    <!-- ========================================== -->
-    <!-- MAGIC BOTTOM NAVIGATION MENU (FOR MOBILE) -->
-    <!-- ========================================== -->
     <div class="magic-nav">
         <ul>
             <li class="list active">
-                <a href="#">
+                <a href="index.html">
                     <span class="icon"><i class="fa-solid fa-house"></i></span>
                     <span class="text">होम</span>
                 </a>
             </li>
             <li class="list">
-                <a href="#">
-                    <span class="icon"><i class="fa-solid fa-paw"></i></span>
-                    <span class="text">मेरा दान</span>
+                <a href="donor.html">
+                    <span class="icon"><i class="fa-solid fa-hand-holding-heart"></i></span>
+                    <span class="text">दान दें</span>
                 </a>
             </li>
             <li class="list">
-                <a href="#">
-                    <span class="icon"><i class="fa-solid fa-award"></i></span>
-                    <span class="text">सर्टिफिकेट</span>
+                <a href="member.html">
+                    <span class="icon"><i class="fa-solid fa-users"></i></span>
+                    <span class="text">सदस्य</span>
                 </a>
             </li>
             <li class="list">
-                <a href="#">
-                    <span class="icon"><i class="fa-solid fa-user"></i></span>
-                    <span class="text">प्रोफाइल</span>
+                <a href="#contact">
+                    <span class="icon"><i class="fa-solid fa-headset"></i></span>
+                    <span class="text">संपर्क</span>
                 </a>
             </li>
             <div class="magic-indicator"></div>
         </ul>
     </div>
 
-    <!-- Scripts -->
     <script>
         // Drawer Logic
         const drawer = document.getElementById('endDrawer');
@@ -741,22 +583,6 @@
             const slideWidth = promoSlider.clientWidth;
             promoSlider.scrollTo({ left: index * slideWidth, behavior: 'smooth' });
         }
-
-        // Magic Bottom Navigation Active Logic (Mobile)
-        const listItems = document.querySelectorAll('.magic-nav .list');
-        function activeLink() {
-            listItems.forEach((item) => item.classList.remove('active'));
-            this.classList.add('active');
-        }
-        listItems.forEach((item) => item.addEventListener('click', activeLink));
-
-        // Magic Top Navigation Active Logic (Desktop)
-        const listItemsTop = document.querySelectorAll('.magic-nav-top .list-top');
-        function activeLinkTop() {
-            listItemsTop.forEach((item) => item.classList.remove('active'));
-            this.classList.add('active');
-        }
-        listItemsTop.forEach((item) => item.addEventListener('click', activeLinkTop));
     </script>
 </body>
 </html>
