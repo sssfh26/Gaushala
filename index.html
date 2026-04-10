@@ -53,16 +53,11 @@
         .app-bar-left { display: flex; align-items: center; gap: 12px; }
         
         .app-bar-left img {
-            width: 100px;
-            height: 100px;
-            border-radius: 100%;
-            object-fit: cover;
-            border: 2px solid white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            width: 100px; height: 100px; border-radius: 100%;
+            object-fit: cover; border: 2px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
         .app-bar-title { font-size: 18px; font-weight: 700; display: flex; flex-direction: column; line-height: 1.7; }
         .app-bar-subtitle { font-size: 11px; color: var(--card-bg); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
-        
         .app-bar-right { display: flex; align-items: center; gap: 18px; font-size: 18px; }
         .menu-btn { cursor: pointer; font-size: 24px; transition: 0.2s; }
 
@@ -95,9 +90,8 @@
             color: var(--dark-peacock); gap: 8px; cursor: pointer; transition: 0.3s;
         }
         .icon-circle {
-            width: 55px; height: 55px; border-radius: 50%;
-            background: var(--accent-peacock); display: flex;
-            justify-content: center; align-items: center; font-size: 22px;
+            width: 55px; height: 55px; border-radius: 50%; background: var(--accent-peacock);
+            display: flex; justify-content: center; align-items: center; font-size: 22px;
             color: var(--dark-peacock); border: 1px solid rgba(0,91,96,0.2);
         }
         .top-nav-item span { font-size: 14px; font-weight: 600; text-align: center; }
@@ -106,12 +100,10 @@
 
         .premium-card {
             background: var(--glass-bg); backdrop-filter: blur(20px);
-            border-radius: 20px; padding: 25px;
-            box-shadow: var(--premium-glow); margin-bottom: 25px;
-            border: 1px solid var(--glass-border); transition: 0.3s;
+            border-radius: 20px; padding: 25px; box-shadow: var(--premium-glow);
+            margin-bottom: 25px; border: 1px solid var(--glass-border); transition: 0.3s;
         }
         .premium-card:hover { transform: translateY(-5px); box-shadow: 0 15px 45px rgba(0,0,0,0.35); }
-
         .about-text { max-height: 300px; overflow-y: auto; padding-right: 10px; line-height: 1.8; }
 
         .search-box {
@@ -193,7 +185,7 @@
             text-decoration: none; animation: bounce 2s infinite;
         }
 
-        /* --- Sidebar Drawer Premium (Updated to match Member1/Donor1) --- */
+        /* --- Sidebar Drawer --- */
         .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1001; display: none; }
         .drawer { position: fixed; top: 0; right: -320px; width: 280px; height: 100%; background: rgba(0, 91, 96, 0.9) !important; backdrop-filter: blur(20px); box-shadow: 10px 0 40px rgba(0,0,0,0.4); z-index: 1002; transition: 0.3s ease; display: flex; flex-direction: column;}
         .drawer-header { background: var(--dark-peacock); padding: 30px 20px; text-align: center; color: white; }
@@ -202,9 +194,7 @@
         .drawer-item:hover { background: rgba(255, 255, 255, 0.15); border-left: 5px solid #FFD700; }
         .drawer-item i { color: #FFD700 !important; font-size: 20px;}
 
-        /* ========================================= */
-        /* --- MAGIC BOTTOM NAVIGATION (MOBILE)  --- */
-        /* ========================================= */
+        /* --- MAGIC BOTTOM NAVIGATION --- */
         .magic-nav {
             position: fixed; bottom: 0; left: 0; width: 100%; height: 70px;
             background: var(--dark-peacock); display: flex; justify-content: center;
@@ -218,7 +208,6 @@
         .magic-nav ul li.active a .icon { transform: translateY(-32px); color: white !important; }
         .magic-nav ul li a .text { position: absolute; color: white !important; font-weight: 600; font-size: 0.70em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; transform: translateY(20px); }
         .magic-nav ul li.active a .text { opacity: 1; transform: translateY(12px); }
-        
         .magic-indicator {
             position: absolute; top: -35px; left: 2.5px; width: 70px; height: 70px;
             background: lightgreen !important; border-radius: 50%;
@@ -232,10 +221,6 @@
         .magic-nav ul li:nth-child(3).active ~ .magic-indicator { transform: translateX(calc(75px * 2)); }
         .magic-nav ul li:nth-child(4).active ~ .magic-indicator { transform: translateX(calc(75px * 3)); }
 
-
-        /* ========================================= */
-        /* --- MAGIC TOP NAV (DESKTOP) - DOWNWARD--- */
-        /* ========================================= */
         .magic-nav-top { display: none; } 
         
         @media (min-width: 769px) {
@@ -246,46 +231,16 @@
             .magic-nav-top ul { display: flex; width: 400px; position: relative; }
             .magic-nav-top ul li { position: relative; list-style: none; width: 100px; height: 70px; z-index: 1; }
             .magic-nav-top ul li a { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; text-align: center; font-weight: 500; text-decoration: none; }
-            
-            .magic-nav-top ul li a .icon { 
-                position: relative; display: block; line-height: 75px; font-size: 1.5em; transition: 0.5s; color: rgba(255, 255, 255, 0.6); 
-            }
-            .magic-nav-top ul li.active a .icon { 
-                transform: translateY(32px); 
-                color: var(--dark-peacock); 
-            }
-
-            .magic-nav-top ul li a .text { 
-                position: absolute; color: white !important; font-weight: 600; font-size: 0.8em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; 
-                transform: translateY(-20px);
-            }
-            .magic-nav-top ul li.active a .text { 
-                opacity: 1; transform: translateY(-12px); 
-            }
-
+            .magic-nav-top ul li a .icon { position: relative; display: block; line-height: 75px; font-size: 1.5em; transition: 0.5s; color: rgba(255, 255, 255, 0.6); }
+            .magic-nav-top ul li.active a .icon { transform: translateY(32px); color: var(--dark-peacock); }
+            .magic-nav-top ul li a .text { position: absolute; color: white !important; font-weight: 600; font-size: 0.8em; letter-spacing: 0.05em; transition: 0.5s; opacity: 0; transform: translateY(-20px); }
+            .magic-nav-top ul li.active a .text { opacity: 1; transform: translateY(-12px); }
             .magic-indicator-top {
-                position: absolute; 
-                bottom: -35px;
-                left: 15px; 
-                width: 70px; height: 70px; background: var(--light-peacock); border-radius: 50%;
-                border: 6px solid var(--dark-peacock); 
-                transition: 0.5s;
+                position: absolute; bottom: -35px; left: 15px; width: 70px; height: 70px; background: var(--light-peacock); border-radius: 50%;
+                border: 6px solid var(--dark-peacock); transition: 0.5s;
             }
-
-            .magic-indicator-top::before { 
-                content: ''; position: absolute; 
-                top: 15px; 
-                left: -22px; width: 20px; height: 20px; background: transparent; 
-                border-bottom-right-radius: 20px; 
-                box-shadow: 1px 10px 0 0 var(--dark-peacock); 
-            }
-            .magic-indicator-top::after { 
-                content: ''; position: absolute; 
-                top: 15px; 
-                right: -22px; width: 20px; height: 20px; background: transparent; 
-                border-bottom-left-radius: 20px; 
-                box-shadow: -1px 10px 0 0 var(--dark-peacock); 
-            }
+            .magic-indicator-top::before { content: ''; position: absolute; top: 15px; left: -22px; width: 20px; height: 20px; background: transparent; border-bottom-right-radius: 20px; box-shadow: 1px 10px 0 0 var(--dark-peacock); }
+            .magic-indicator-top::after { content: ''; position: absolute; top: 15px; right: -22px; width: 20px; height: 20px; background: transparent; border-bottom-left-radius: 20px; box-shadow: -1px 10px 0 0 var(--dark-peacock); }
 
             .magic-nav-top ul li:nth-child(1).active ~ .magic-indicator-top { transform: translateX(calc(100px * 0)); }
             .magic-nav-top ul li:nth-child(2).active ~ .magic-indicator-top { transform: translateX(calc(100px * 1)); }
@@ -293,33 +248,89 @@
             .magic-nav-top ul li:nth-child(4).active ~ .magic-indicator-top { transform: translateX(calc(100px * 3)); }
         }
 
-        /* Responsive Settings */
         @media (max-width: 768px) {
             .hero-section { padding: 15px; margin-top: 100px; }
             .hero-banner { border-radius: 12px; aspect-ratio: 16/9; }
             .magic-nav-top { display: none; }
         }
         
-        img[src*="logo.png"] {
-            border-radius: 50%; object-fit: cover; border: 2px solid #D4AF37; 
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        }
-        
-        /* 🔥 SCROLLBAR PREMIUM */
+        img[src*="logo.png"] { border-radius: 50%; object-fit: cover; border: 2px solid #D4AF37; box-shadow: 0 0 10px rgba(0,0,0,0.3); }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(#D4AF37, #FFD700); border-radius: 10px; }
         * { scroll-behavior: smooth; }
         
         @media (min-width: 769px) {
             .hero-banner { height: 500px; }
-            .menu-btn { display: block; } /* Show menu on desktop too */
-            .magic-nav { display: none; } /* Hide mobile bottom nav on Desktop */
+            .menu-btn { display: block; } 
+            .magic-nav { display: none; } 
             .whatsapp-float { bottom: 30px; } 
             .footer { padding-bottom: 40px; }
             .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
             .promo-slide { min-width: calc(33.333% - 10px); }
             .slider-dots { display: none; }
         }
+
+        /* --- UPDATES & GALLERY CSS --- */
+        #news-container::-webkit-scrollbar, #activities-container::-webkit-scrollbar { display: none; }
+        .update-card { flex: 0 0 auto; width: 280px; max-width: 80%; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); scroll-snap-align: start; border: 1px solid rgba(0,91,96,0.1); display: flex; flex-direction: column;}
+        .update-img { width: 100%; height: 160px; background: #eee; object-fit: cover; }
+        .update-body { padding: 15px; display: flex; flex-direction: column; flex-grow: 1;}
+        .update-badge { display: inline-block; padding: 4px 10px; font-size: 10px; font-weight: bold; border-radius: 20px; margin-bottom: 10px; width: fit-content;}
+        .badge-news { background: #e3f2fd; color: #00838f; }
+        .badge-activity { background: #fff3e0; color: #e65100; }
+        .update-title { font-size: 16px; font-weight: bold; color: var(--dark-peacock); margin-bottom: 8px; line-height: 1.4;}
+        .update-desc { font-size: 13px; color: #666; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 10px;}
+        .update-date { font-size: 11px; color: #999; margin-top: auto; font-weight: 600;}
+
+/* Professional Gallery CSS (Now a Slider) */
+        .gau-gallery {
+            display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; 
+            margin-bottom: 30px; scroll-snap-type: x mandatory; 
+            scrollbar-width: none; scroll-behavior: smooth;
+        }
+        .gau-gallery::-webkit-scrollbar { display: none; }
+        .gallery-item {
+            flex: 0 0 auto; width: 280px; max-width: 80%; /* स्लाइडर के लिए फिक्स चौड़ाई */
+            scroll-snap-align: start;
+            position: relative; border-radius: 16px; overflow: hidden;
+            aspect-ratio: 4/5; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer; border: 1px solid rgba(0,91,96,0.1);
+        }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.15); }
+        .gallery-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: linear-gradient(to top, rgba(0,91,96,0.95), transparent); 
+            padding: 30px 10px 15px; color: white; text-align: center;
+            font-size: 13px; font-weight: 600; opacity: 0; 
+            transform: translateY(20px); transition: all 0.4s ease;
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; transform: translateY(0); }
+        
+        /* ================= ANIMATIONS & POPUP MODAL CSS ================= */
+        .new-animated-nav .icon-circle { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .new-animated-nav .top-nav-item:hover .icon-circle { transform: translateY(-5px) scale(1.1); box-shadow: 0 8px 15px rgba(0,0,0,0.15); }
+        
+        /* 1. धड़कने वाला एनीमेशन (Pulse) */
+        @keyframes pulse-gold { 0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(212, 175, 55, 0); } 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } }
+        @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(255, 59, 48, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 59, 48, 0); } }
+        
+        /* 2. तैरने वाला एनीमेशन (Float) */
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-6px); } 100% { transform: translateY(0px); } }
+
+        /* बटनों पर रंग और एनीमेशन लगाना */
+        .pulse-anim .icon-circle { animation: pulse-gold 2s infinite; background: linear-gradient(135deg, #D4AF37, #FFD700); color: white;}
+        .pulse-anim-red .icon-circle { animation: pulse-red 2s infinite; background: linear-gradient(135deg, #FF3B30, #D32F2F); color: white;}
+        .float-anim .icon-circle { animation: float 3s ease-in-out infinite; background: var(--dark-peacock); color: white;}
+        
+        /* Modal Popup Design (Smart Centered) */
+        .modal-overlay { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(5px); animation: fadeIn 0.3s; align-items: center; justify-content: center; }
+        .modal-content { background-color: white; margin: 0; padding: 25px; width: 90%; max-width: 400px; max-height: 85vh; overflow-y: auto; border-radius: 20px; position: relative; animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .close-modal { color: #aaa; position: absolute; right: 20px; top: 15px; font-size: 28px; font-weight: bold; cursor: pointer; transition: 0.3s;}
+        .close-modal:hover { color: var(--dark-peacock); transform: scale(1.2);}
+        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+        @keyframes slideIn { from {transform: translateY(-50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
+        
     </style>
 </head>
 <body>
@@ -400,11 +411,11 @@
     </div>
 
     <main class="main-container">
-        <div class="top-nav">
-            <div class="top-nav-item" onclick="window.location.href='donor.html'"><div class="icon-circle"><i class="fa-solid fa-user-group"></i></div><span>डोनर्स</span></div>
-            <div class="top-nav-item" onclick="window.location.href='member.html'"><div class="icon-circle"><i class="fa-solid fa-id-card"></i></div><span>मेंबर्स</span></div>
-            <div class="top-nav-item"><div class="icon-circle"><i class="fa-solid fa-newspaper"></i></div><span>समाचार</span></div>
-            <div class="top-nav-item"><div class="icon-circle"><i class="fa-solid fa-calendar-check"></i></div><span>गतिविधियां</span></div>
+        <div class="top-nav new-animated-nav">
+            <div class="top-nav-item pulse-anim" onclick="openTaxModal()"><div class="icon-circle"><i class="fa-solid fa-file-invoice-dollar"></i></div><span>80G छूट</span></div>
+            <div class="top-nav-item float-anim"><div class="icon-circle"><i class="fa-solid fa-bag-shopping"></i></div><span>गौ-उत्पाद</span></div>
+            <div class="top-nav-item pulse-anim-red"><div class="icon-circle"><i class="fa-solid fa-truck-medical"></i></div><span>गौ-रेस्क्यू</span></div>
+            <div class="top-nav-item float-anim"><div class="icon-circle"><i class="fa-solid fa-hands-holding-child"></i></div><span>श्रमदान</span></div>
         </div>
 
         <div class="section-title" id="about">हमारे बारे में (About Us)</div>
@@ -418,10 +429,12 @@
         </div>
 
         <div class="section-title">खोजें (Search)</div>
-        <div class="search-box">
+        <div class="search-box" style="display:flex; align-items:center; gap:10px; padding: 10px 15px;">
             <i class="fa-solid fa-search"></i>
-            <input type="text" placeholder="नाम या मोबाइल नंबर से खोजें...">
+            <input type="text" id="globalSearchInput" placeholder="नाम या मोबाइल नंबर से खोजें..." style="flex-grow:1; border:none; outline:none; background:transparent;">
+            <button class="btn-theme btn-dark" onclick="performGlobalSearch()" style="padding: 8px 15px; border-radius: 8px; font-size: 13px; margin:0;">खोजें</button>
         </div>
+        <div id="searchResultsContainer" style="margin-bottom: 25px;"></div>
 
         <div class="premium-card video-card">
             <h3>गौमाता की सेवा सबसे बड़ा धर्म है।<br>आइए, इस नेक कार्य में अपना योगदान दें!</h3>
@@ -431,6 +444,43 @@
             <div class="btn-group">
                 <button class="btn-theme btn-dark" onclick="window.location.href='member.html'"><i class="fa-solid fa-id-card"></i> मेंबर बनें</button>
                 <button class="btn-theme btn-orange" onclick="window.location.href='donor.html'"><i class="fa-solid fa-hand-holding-heart"></i> दान करें</button>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;" id="news-section">
+            <div class="section-title" style="margin-bottom: 0;">ताज़ा समाचार</div>
+            <div style="display: flex; gap: 10px; margin-right: 15px;">
+                <button onclick="document.getElementById('news-container').scrollBy({left: -300, behavior: 'smooth'})" style="background: white; color: var(--dark-peacock); border: 2px solid var(--dark-peacock); border-radius: 50%; width: 35px; height: 35px; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"><i class="fa-solid fa-chevron-left"></i></button>
+                <button onclick="document.getElementById('news-container').scrollBy({left: 300, behavior: 'smooth'})" style="background: var(--dark-peacock); color: white; border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+        <div id="news-container" style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 25px; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth;">
+            <div style="text-align: center; width: 100%; padding: 20px; color: var(--dark-peacock);">
+                <i class="fas fa-spinner fa-spin" style="font-size: 24px;"></i><p>समाचार लोड हो रहे हैं...</p>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;" id="activities-section">
+            <div class="section-title" style="margin-bottom: 0;">गौशाला गतिविधियां</div>
+            <div style="display: flex; gap: 10px; margin-right: 15px;">
+                <button onclick="document.getElementById('activities-container').scrollBy({left: -300, behavior: 'smooth'})" style="background: white; color: var(--dark-peacock); border: 2px solid var(--dark-peacock); border-radius: 50%; width: 35px; height: 35px; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"><i class="fa-solid fa-chevron-left"></i></button>
+                <button onclick="document.getElementById('activities-container').scrollBy({left: 300, behavior: 'smooth'})" style="background: var(--dark-peacock); color: white; border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+        <div id="activities-container" style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 25px; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth;">
+            <div style="text-align: center; width: 100%; padding: 20px; color: var(--dark-peacock);">
+                <i class="fas fa-spinner fa-spin" style="font-size: 24px;"></i><p>गतिविधियां लोड हो रही हैं...</p>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;" id="gau-darshan-section">
+            <div class="section-title" style="margin-bottom: 0;">गौ-दर्शन (Live Gallery)</div>
+            <a href="javascript:void(0)" onclick="alert('पूरी गैलरी जल्द ही उपलब्ध होगी!');" style="color: var(--accent-peacock); font-size: 13px; font-weight: bold; text-decoration: none; margin-right: 10px;">सभी देखें ></a>
+        </div>
+
+        <div class="gau-gallery" id="gau-gallery-container">
+            <div style="text-align: center; width: 100%; grid-column: 1 / -1; padding: 20px; color: var(--dark-peacock);">
+                <i class="fas fa-spinner fa-spin" style="font-size: 24px;"></i><p>तस्वीरें लोड हो रही हैं...</p>
             </div>
         </div>
 
@@ -465,20 +515,14 @@
 
         <div class="donor-container">
             <div class="donor-header"><i class="fa-solid fa-star"></i> Precious Donors <i class="fa-solid fa-star"></i></div>
-            <div class="donor-item">
-                <div class="donor-left">
-                    <div class="donor-img"><img src="assets/images/donor1.png" onerror="this.src='https://ui-avatars.com/api/?name=Flora+Rani&background=005B60&color=fff'"></div>
-                    <div class="donor-name">Flora Rani</div>
+            
+            <div id="live-donors-list">
+                <div style="text-align: center; padding: 20px;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 24px; color: var(--dark-peacock);"></i>
+                    <p style="margin-top: 10px; font-size: 14px; color: grey;">Loading Live Donors...</p>
                 </div>
-                <div class="donor-amount">₹ 52,000 <i class="fa-solid fa-hand-holding-heart" style="color:var(--accent-peacock);"></i></div>
             </div>
-            <div class="donor-item">
-                <div class="donor-left">
-                    <div class="donor-img"><img src="assets/images/donor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Deepika+Mehta&background=D4AF37&color=fff'"></div>
-                    <div class="donor-name">Deepika Mehta</div>
-                </div>
-                <div class="donor-amount">₹ 5,267 <i class="fa-solid fa-hand-holding-heart" style="color:var(--accent-peacock);"></i></div>
-            </div>
+
             <a href="donor.html" class="view-all-btn">सभी डोनर्स देखें ></a>
         </div>
 
@@ -489,6 +533,49 @@
         </div>
 
     </main>
+    
+    <div id="taxModal" class="modal-overlay">
+        <div class="modal-content premium-card">
+            <span class="close-modal" onclick="closeTaxModal()">&times;</span>
+            <div style="text-align:center; color: var(--gold-color); font-size: 40px; margin-bottom: 10px;"><i class="fa-solid fa-award"></i></div>
+            <h3 style="text-align:center; color: var(--dark-peacock); margin-bottom: 15px;">80G कर छूट (Tax Exemption)</h3>
+            
+            <div id="taxModalOptions">
+                <p style="font-size: 14px; line-height: 1.6; color: #555; text-align: center; margin-bottom: 15px;">
+                    गौशाला में दिया गया दान 80G के तहत कर-मुक्त है। कृपया नीचे दिए गए विकल्पों में से चुनें:
+                </p>
+                <button class="btn-theme btn-orange" style="width: 100%; justify-content: center; margin-bottom: 15px;" onclick="window.location.href='donor.html'"><i class="fa-solid fa-hand-holding-heart"></i> 1. Donate for 80-G Relaxation</button>
+                <button class="btn-theme btn-dark" style="width: 100%; justify-content: center;" onclick="showCertForm()"><i class="fa-solid fa-download"></i> 2. Download Certificate</button>
+            </div>
+
+            <div id="taxModalForm" style="display: none;">
+                <p style="font-size: 13px; color: var(--dark-peacock); font-weight: bold; text-align: center; margin-bottom: 15px;">सर्टिफिकेट डाउनलोड करने के लिए जानकारी सत्यापित करें:</p>
+                
+                <input type="text" id="cert_name" placeholder="पूरा नाम (Name) *" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; outline:none; margin-bottom: 10px;">
+                <input type="text" id="cert_father" placeholder="पिता का नाम (Father's Name) *" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; outline:none; margin-bottom: 10px;">
+                <input type="tel" id="cert_mobile" placeholder="मोबाइल नंबर (Mobile) *" maxlength="10" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; outline:none; margin-bottom: 10px;">
+                <input type="text" id="cert_pan" placeholder="PAN Card Number *" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; outline:none; text-transform:uppercase; margin-bottom: 15px;">
+                
+                <button class="btn-theme btn-dark" id="btnVerifyCert" style="width: 100%; justify-content: center;" onclick="verifyForCertificate()">
+                    <span id="verifyText"><i class="fa-solid fa-shield-check"></i> Verify Details</span>
+                    <i class="fas fa-spinner fa-spin" id="verifyLoader" style="display:none;"></i>
+                </button>
+                <button class="btn-theme btn-white" style="width: 100%; justify-content: center; margin-top: 10px; border: 1px solid #ccc;" onclick="resetTaxModal()">पीछे जाएँ (Back)</button>
+            </div>
+
+            <div id="taxModalSuccess" style="display: none; text-align: center;">
+                <div style="color: #28a745; font-size: 40px; margin-bottom: 10px;"><i class="fa-solid fa-circle-check"></i></div>
+                <h4 style="color: var(--dark-peacock); font-weight:bold; margin-bottom: 10px;">80G Receipts Found!</h4>
+                <p style="font-size: 13px; color: #555; margin-bottom: 15px;">आपकी जानकारी सत्यापित हो गई है। नीचे आपकी 80G रसीदें दी गई हैं:</p>
+                
+                <div id="certListContainer" style="max-height: 220px; overflow-y: auto; text-align: left; margin-bottom: 15px; padding-right: 5px;">
+                </div>
+                
+                <button class="btn-theme btn-dark" onclick="downloadAll80G()" style="width: 100%; justify-content: center; margin-bottom: 10px;"><i class="fa-solid fa-file-pdf"></i> Download All (सभी डाउनलोड करें)</button>
+                <button class="btn-theme btn-white" style="width: 100%; justify-content: center; border: 1px solid #ccc;" onclick="resetTaxModal()">पीछे जाएँ (Back)</button>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer" id="contact">
         <div class="footer-grid">
@@ -583,6 +670,376 @@
             const slideWidth = promoSlider.clientWidth;
             promoSlider.scrollTo({ left: index * slideWidth, behavior: 'smooth' });
         }
+
+        // ================= LIVE PRECIOUS DONORS FETCH LOGIC =================
+        async function loadPreciousDonors() {
+            const scriptUrl = "https://script.google.com/macros/s/AKfycbztreTtH2ZzH5Irosuwqpawr-Annf59ikgf8e0UgwfjVA9DWsY3LTPKD_INHl6_60HRTg/exec"; 
+            try {
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    headers: { "Content-Type": "text/plain" },
+                    body: JSON.stringify({ "Action": "FETCH_PRECIOUS_DONORS" })
+                });
+                const res = await response.json();
+                
+                if (res.status === "success" && res.data.length > 0) {
+                    let html = "";
+                    const colors = ["005B60", "D4AF37", "E65100", "1565C0", "28a745"]; 
+                    
+                    res.data.forEach((donor, index) => {
+                        let defaultColor = colors[index % colors.length];
+                        
+                        let photoSrc = "";
+                        if (donor.photo && donor.photo !== "Not Uploaded") {
+                            let match = donor.photo.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                            photoSrc = match ? `https://wsrv.nl/?url=https://lh3.googleusercontent.com/d/${match[1]}` : donor.photo;
+                        } else {
+                            photoSrc = `https://ui-avatars.com/api/?name=${encodeURIComponent(donor.name)}&background=${defaultColor}&color=fff`;
+                        }
+
+                        html += `
+                        <div class="donor-item">
+                            <div class="donor-left">
+                                <div class="donor-img">
+                                    <img src="${photoSrc}" crossorigin="anonymous" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(donor.name)}&background=ccc&color=fff'">
+                                </div>
+                                <div class="donor-name">${donor.name}</div>
+                            </div>
+                            <div class="donor-amount">₹ ${donor.amount.toLocaleString('en-IN')} <i class="fa-solid fa-hand-holding-heart" style="color:var(--accent-peacock);"></i></div>
+                        </div>`;
+                    });
+                    document.getElementById('live-donors-list').innerHTML = html;
+                } else {
+                    document.getElementById('live-donors-list').innerHTML = `<p style="text-align:center; padding:15px; color:grey;">अभी कोई डोनर नहीं है।</p>`;
+                }
+            } catch (e) {
+                console.error("Error loading donors:", e);
+                document.getElementById('live-donors-list').innerHTML = `<p style="text-align:center; padding:15px; color:red;">डोनर्स लोड करने में त्रुटि!</p>`;
+            }
+        }
+        
+        // ================= 80G MODAL POPUP & VERIFICATION LOGIC =================
+        function openTaxModal() { 
+            document.getElementById('taxModal').style.display = 'flex'; 
+        }
+        
+        function closeTaxModal() { 
+            document.getElementById('taxModal').style.display = 'none'; 
+            setTimeout(resetTaxModal, 300); // बंद होने के बाद फॉर्म को रीसेट कर दें
+        }
+
+        window.onclick = function(event) { 
+            if (event.target == document.getElementById('taxModal')) {
+                closeTaxModal();
+            }
+        }
+
+        function showCertForm() {
+            document.getElementById('taxModalOptions').style.display = 'none';
+            document.getElementById('taxModalForm').style.display = 'block';
+            document.getElementById('taxModalSuccess').style.display = 'none';
+        }
+
+        function resetTaxModal() {
+            document.getElementById('taxModalOptions').style.display = 'block';
+            document.getElementById('taxModalForm').style.display = 'none';
+            document.getElementById('taxModalSuccess').style.display = 'none';
+            
+            // इनपुट बॉक्स खाली करें
+            document.getElementById('cert_name').value = '';
+            document.getElementById('cert_father').value = '';
+            document.getElementById('cert_mobile').value = '';
+            document.getElementById('cert_pan').value = '';
+        }
+        
+        // Verify for cerrtificate
+        
+        let matched80GRecords = []; // मैच हुई रसीदों को स्टोर करने के लिए
+
+        async function verifyForCertificate() {
+            const n = document.getElementById('cert_name').value.trim().toLowerCase();
+            const f = document.getElementById('cert_father').value.trim().toLowerCase();
+            const m = document.getElementById('cert_mobile').value.trim();
+            const p = document.getElementById('cert_pan').value.trim().toUpperCase();
+
+            if(!n || !f || !m || !p) { 
+                Swal.fire('Error', 'कृपया सर्टिफिकेट के लिए सभी जानकारी (Name, Father, Mobile, PAN) भरें!', 'warning'); 
+                return; 
+            }
+
+            document.getElementById('verifyText').style.display = 'none';
+            document.getElementById('verifyLoader').style.display = 'inline-block';
+            document.getElementById('btnVerifyCert').style.pointerEvents = 'none';
+
+            const scriptUrl = "https://script.google.com/macros/s/AKfycbztreTtH2ZzH5Irosuwqpawr-Annf59ikgf8e0UgwfjVA9DWsY3LTPKD_INHl6_60HRTg/exec"; 
+            const searchUrl = `${scriptUrl}?action=search&mobile=${m}&name=${n}&father=${f}`;
+
+            try {
+                const response = await fetch(searchUrl);
+                const data = await response.json();
+
+                if(data.status === 'success') {
+                    matched80GRecords = []; // पुरानी लिस्ट साफ करें
+
+                    // शीट में से वो सारी लाइनें ढूँढें जिनका PAN मैच हो रहा है और PDF लिंक बना हुआ है
+                    data.data.forEach(record => {
+                        if(record.pan && record.pan.toUpperCase() === p && record.pdfLink && record.pdfLink.trim() !== "") {
+                            matched80GRecords.push(record);
+                        }
+                    });
+
+                    if(matched80GRecords.length > 0) {
+                        // अगर रसीदें मिल गईं, तो HTML की लिस्ट तैयार करें
+                        let listHtml = "";
+                        matched80GRecords.forEach((rec) => {
+                            listHtml += `
+                            <div style="background: #f9f9f9; border: 1px solid #ddd; border-left: 4px solid var(--accent-peacock); padding: 12px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <div style="font-weight: bold; color: var(--dark-peacock); font-size: 15px;">₹${rec.amount}/-</div>
+                                    <div style="font-size: 12px; color: #555;"><i class="fa-regular fa-calendar"></i> ${rec.date}</div>
+                                </div>
+                                <a href="${rec.pdfLink}" target="_blank" style="background: #28a745; color: white; padding: 8px 15px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold;"><i class="fa-solid fa-download"></i> PDF</a>
+                            </div>`;
+                        });
+                        
+                        document.getElementById('certListContainer').innerHTML = listHtml;
+                        document.getElementById('taxModalForm').style.display = 'none';
+                        document.getElementById('taxModalSuccess').style.display = 'block';
+                    } else {
+                        // अगर PAN मैच हुआ लेकिन PDF नहीं बनी
+                        let panMatchedButNoPdf = data.data.some(r => r.pan && r.pan.toUpperCase() === p);
+                        if (panMatchedButNoPdf) {
+                            Swal.fire('Pending', 'आपकी जानकारी सही है, लेकिन अभी तक आपकी 80G रसीद (PDF) जनरेट नहीं हुई है। कृपया कुछ समय बाद प्रयास करें।', 'info');
+                        } else {
+                            Swal.fire('Not Matched', 'रिकॉर्ड मिल गया है, लेकिन आपका PAN कार्ड नंबर मैच नहीं हो रहा है।', 'error');
+                        }
+                    }
+                } else {
+                    Swal.fire('Not Found', 'कोई रिकॉर्ड नहीं मिला। कृपया अपनी भरी गई जानकारी जाँचें।', 'error');
+                }
+            } catch(e) {
+                Swal.fire('Error', 'सर्वर से जुड़ने में समस्या आई।', 'error');
+            } finally {
+                document.getElementById('verifyText').style.display = 'inline-block';
+                document.getElementById('verifyLoader').style.display = 'none';
+                document.getElementById('btnVerifyCert').style.pointerEvents = 'auto';
+            }
+        }
+
+        // 🚨 नया फंक्शन: एक साथ सारी रसीदें डाउनलोड करने के लिए 🚨
+        function downloadAll80G() {
+            if (matched80GRecords.length === 0) return;
+            
+            // यह कोड हर रसीद को एक नए टैब में 1-1 सेकंड के गैप पर खोलेगा (ताकि ब्राउज़र उसे ब्लॉक न करे)
+            matched80GRecords.forEach((rec, index) => {
+                setTimeout(() => {
+                    window.open(rec.pdfLink, '_blank');
+                }, index * 1000); 
+            });
+            
+            Swal.fire('Downloading...', 'आपकी सभी रसीदें अलग-अलग टैब में खुल रही हैं। (अगर ब्राउज़र पॉप-अप ब्लॉक करे, तो कृपया उसे Allow करें)', 'success');
+        }
+        
+        
+        // ================= GLOBAL SEARCH LOGIC =================
+        async function performGlobalSearch() {
+            const query = document.getElementById('globalSearchInput').value.trim();
+            const resultsContainer = document.getElementById('searchResultsContainer');
+            
+            if (query.length < 3) {
+                resultsContainer.innerHTML = '<p style="color:red; font-size:13px; text-align:center;">⚠️ कृपया खोजने के लिए कम से कम 3 अक्षर या अंक लिखें।</p>';
+                return;
+            }
+
+            resultsContainer.innerHTML = '<div style="text-align:center; color:var(--dark-peacock); padding:10px;"><i class="fas fa-spinner fa-spin"></i> खोज रहे हैं...</div>';
+
+            const scriptUrl = "https://script.google.com/macros/s/AKfycbztreTtH2ZzH5Irosuwqpawr-Annf59ikgf8e0UgwfjVA9DWsY3LTPKD_INHl6_60HRTg/exec"; 
+            try {
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    headers: { "Content-Type": "text/plain" },
+                    body: JSON.stringify({ "Action": "GLOBAL_SEARCH", "query": query })
+                });
+                const res = await response.json();
+                
+                if (res.status === "success" && res.data.length > 0) {
+                    let html = '<div style="background: white; border-radius: 12px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid rgba(0,91,96,0.1);">';
+                    res.data.forEach(person => {
+                        let pic = person.photo ? person.photo : `https://ui-avatars.com/api/?name=${encodeURIComponent(person.name)}&background=005B60&color=fff`;
+                        if (pic.includes('drive.google.com')) {
+                            let match = pic.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                            pic = match ? `https://wsrv.nl/?url=https://lh3.googleusercontent.com/d/${match[1]}` : pic;
+                        }
+                        
+                        html += `
+                        <div style="display: flex; align-items: center; gap: 15px; padding: 12px 10px; border-bottom: 1px solid #eee;">
+                            <img src="${pic}" crossorigin="anonymous" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(person.name)}&background=ccc&color=fff'" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-peacock);">
+                            <div style="flex-grow: 1;">
+                                <div style="font-weight: bold; color: var(--dark-peacock); font-size: 15px;">${person.name}</div>
+                                <div style="font-size: 12px; color: grey;"><i class="fa-solid fa-user-tie"></i> S/o: ${person.father} &nbsp;|&nbsp; <i class="fa-solid fa-location-dot"></i> ${person.city}</div>
+                            </div>
+                            <div style="font-size: 10px; font-weight: bold; background: #e0f2f1; padding: 5px 10px; border-radius: 20px; color: var(--dark-peacock);">${person.type}</div>
+                        </div>`;
+                    });
+                    html += '</div>';
+                    resultsContainer.innerHTML = html;
+                } else {
+                    resultsContainer.innerHTML = '<p style="color:red; text-align:center; padding:10px;">❌ कोई रिकॉर्ड नहीं मिला!</p>';
+                }
+            } catch (e) {
+                resultsContainer.innerHTML = '<p style="color:red; text-align:center; padding:10px;">सर्वर से जुड़ने में समस्या आई!</p>';
+            }
+        }
+
+        // ================= LIVE UPDATES (NEWS & ACTIVITIES) FETCH LOGIC =================
+        async function loadUpdates() {
+            const scriptUrl = "https://script.google.com/macros/s/AKfycbztreTtH2ZzH5Irosuwqpawr-Annf59ikgf8e0UgwfjVA9DWsY3LTPKD_INHl6_60HRTg/exec"; 
+            try {
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    headers: { "Content-Type": "text/plain" },
+                    body: JSON.stringify({ "Action": "FETCH_UPDATES" })
+                });
+                const res = await response.json();
+                
+                const newsContainer = document.getElementById('news-container');
+                const activitiesContainer = document.getElementById('activities-container');
+                
+                if (res.status === "success" && res.data.length > 0) {
+                    let newsHtml = "";
+                    let activityHtml = "";
+                    
+                    res.data.forEach(item => {
+                        let isActivity = item.type.includes("गतिविधि");
+                        let badgeClass = isActivity ? "badge-activity" : "badge-news";
+                        let defaultImg = "https://images.unsplash.com/photo-1599839619722-39751411ea63?q=80&w=600&auto=format&fit=crop"; 
+                        
+                        let imgSrc = item.image || defaultImg;
+                        if (imgSrc.includes('drive.google.com')) {
+                            let match = imgSrc.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                            if(match) imgSrc = `https://wsrv.nl/?url=https://lh3.googleusercontent.com/d/${match[1]}`;
+                        }
+
+                        let cardHtml = `
+                        <div class="update-card">
+                            <img src="${imgSrc}" class="update-img" onerror="this.src='${defaultImg}'">
+                            <div class="update-body">
+                                <span class="update-badge ${badgeClass}">${item.type || 'अपडेट'}</span>
+                                <div class="update-title">${item.title}</div>
+                                <div class="update-desc">${item.desc}</div>
+                                <div class="update-date"><i class="fa-regular fa-calendar"></i> ${item.date}</div>
+                            </div>
+                        </div>`;
+                        
+                        if(isActivity) {
+                            activityHtml += cardHtml;
+                        } else {
+                            newsHtml += cardHtml;
+                        }
+                    });
+                    
+                    newsContainer.innerHTML = newsHtml !== "" ? newsHtml : `<p style="padding:15px; color:grey; width:100%; text-align:center;">अभी कोई समाचार नहीं है।</p>`;
+                    activitiesContainer.innerHTML = activityHtml !== "" ? activityHtml : `<p style="padding:15px; color:grey; width:100%; text-align:center;">अभी कोई गतिविधि नहीं है।</p>`;
+                } else {
+                    newsContainer.innerHTML = `<p style="padding:15px; color:grey; width:100%; text-align:center;">अभी कोई ताज़ा अपडेट नहीं है।</p>`;
+                    activitiesContainer.innerHTML = `<p style="padding:15px; color:grey; width:100%; text-align:center;">अभी कोई ताज़ा गतिविधि नहीं है।</p>`;
+                }
+            } catch (e) {
+                document.getElementById('news-container').innerHTML = `<p style="color:red; text-align:center; width:100%;">लोड करने में त्रुटि!</p>`;
+                document.getElementById('activities-container').innerHTML = `<p style="color:red; text-align:center; width:100%;">लोड करने में त्रुटि!</p>`;
+            }
+        }
+
+        // ================= LIVE GALLERY FETCH LOGIC =================
+        async function loadGallery() {
+            const scriptUrl = "https://script.google.com/macros/s/AKfycbztreTtH2ZzH5Irosuwqpawr-Annf59ikgf8e0UgwfjVA9DWsY3LTPKD_INHl6_60HRTg/exec"; 
+            try {
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    headers: { "Content-Type": "text/plain" },
+                    body: JSON.stringify({ "Action": "FETCH_GALLERY" })
+                });
+                const res = await response.json();
+                const container = document.getElementById('gau-gallery-container');
+                
+                if (res.status === "success" && res.data.length > 0) {
+                    let html = "";
+                    res.data.forEach(item => {
+                        let imgSrc = item.image;
+                        if (imgSrc.includes('drive.google.com')) {
+                            let match = imgSrc.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                            if(match) imgSrc = `https://wsrv.nl/?url=https://lh3.googleusercontent.com/d/${match[1]}`;
+                        }
+                        
+                        html += `
+                        <div class="gallery-item">
+                            <img src="${imgSrc}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1599839619722-39751411ea63?w=400'">
+                            <div class="gallery-overlay">
+                                <span><i class="fa-solid fa-heart" style="color: #FFD700;"></i> ${item.caption}</span>
+                            </div>
+                        </div>`;
+                    });
+                    container.innerHTML = html;
+                } else {
+                     container.innerHTML = `<p style="text-align: center; width: 100%; grid-column: 1 / -1; padding: 20px; color: grey;">गैलरी में अभी कोई तस्वीर नहीं है।</p>`;
+                }
+            } catch (e) { 
+                console.log("Gallery Error:", e); 
+                document.getElementById('gau-gallery-container').innerHTML = `<p style="text-align: center; width: 100%; grid-column: 1 / -1; padding: 20px; color: red;">तस्वीरें लोड करने में समस्या आई!</p>`;
+            }
+        }
+
+        // ================= PAGE LOAD & AUTO-REFRESH =================
+        document.addEventListener("DOMContentLoaded", () => {
+            if(typeof loadPreciousDonors === "function") loadPreciousDonors();
+            if(typeof loadUpdates === "function") loadUpdates(); 
+            if(typeof loadGallery === "function") loadGallery(); 
+
+            setInterval(() => {
+                if(typeof loadPreciousDonors === "function") loadPreciousDonors();
+                if(typeof loadUpdates === "function") loadUpdates();
+                if(typeof loadGallery === "function") loadGallery();
+            }, 30000); 
+        });
+// ================= CONTINUOUS AUTO SCROLL (लगातार चलने के लिए) =================
+            // स्लाइडर्स को लगातार बिना रुके चलाने के लिए उनकी पुरानी 'Snapping' (झटके से रुकना) को हटाना होगा
+            const newsBox = document.getElementById('news-container');
+            const galleryBox = document.getElementById('gau-gallery-container');
+            const actBox = document.getElementById('activities-container');
+            
+            if(newsBox) { newsBox.style.scrollSnapType = 'none'; newsBox.style.scrollBehavior = 'auto'; }
+            if(galleryBox) { galleryBox.style.scrollSnapType = 'none'; galleryBox.style.scrollBehavior = 'auto'; }
+            if(actBox) { actBox.style.scrollSnapType = 'none'; actBox.style.scrollBehavior = 'auto'; }
+
+            // यह टाइमर हर 30 मिलीसेकंड में 1 पिक्सल खिसकाएगा, जिससे यह बिल्कुल स्मूथ दिखेगा
+            setInterval(() => {
+                // 1. समाचार (News) -> Right to Left
+                if(newsBox) {
+                    if(newsBox.scrollLeft + newsBox.clientWidth >= newsBox.scrollWidth - 1) {
+                        newsBox.scrollLeft = 0; // खत्म होने पर तुरंत बिना झटके के वापस शुरू में
+                    } else {
+                        newsBox.scrollLeft += 1; // 1 पिक्सल आगे
+                    }
+                }
+
+                // 2. गौ-दर्शन (Gallery) -> Right to Left
+                if(galleryBox) {
+                    if(galleryBox.scrollLeft + galleryBox.clientWidth >= galleryBox.scrollWidth - 1) {
+                        galleryBox.scrollLeft = 0; 
+                    } else {
+                        galleryBox.scrollLeft += 1;
+                    }
+                }
+
+                // 3. गतिविधियां (Activities) -> Left to Right (उल्टा चलेगा)
+                if(actBox) {
+                    if(actBox.scrollLeft <= 0) {
+                        actBox.scrollLeft = actBox.scrollWidth; // शुरू में पहुँचने पर सीधा आखिरी पर
+                    } else {
+                        actBox.scrollLeft -= 1; // 1 पिक्सल पीछे
+                    }
+                }
+            }, 30); // 30 मिलीसेकंड = बहुत ही स्मूथ और लगातार
     </script>
 </body>
 </html>
